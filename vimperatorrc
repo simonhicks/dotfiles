@@ -30,5 +30,3 @@ noremap so :stackoverflow<space>
 
 command! tpb -nargs=* -description="Search the pirate bay for videos" open http://tpbunblocker.com/search/<args>/0/7/200
 
-" work specific stuff
-so ~/.work-vimperatorrc
