@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# prints your external ip address to STDOUT
+
+ifconfig | grep inet | grep netmask | grep broadcast | sed "s/.*broadcast //"

@@ -1,0 +1,63 @@
+# moving focus between windows
+bind h:cmd focus left
+bind j:cmd focus down
+bind k:cmd focus up
+bind l:cmd focus right
+
+# divide the screen into a 8 x 8
+alias column (screenSizeX/8)
+alias row (screenSizeY/8)
+
+config modalEscapeKey esc
+
+# cmd+shift+r toggles reduce mode
+bind h:r,cmd,shift:toggle move windowTopLeftX;windowTopLeftY windowSizeX-${column};windowSizeY
+bind j:r,cmd,shift:toggle move windowTopLeftX;windowTopLeftY+${row} windowSizeX;windowSizeY-${row}
+bind k:r,cmd,shift:toggle move windowTopLeftX;windowTopLeftY windowSizeX;windowSizeY-${row}
+bind l:r,cmd,shift:toggle move windowTopLeftX+${column};windowTopLeftY windowSizeX-${column};windowSizeY
+
+# cmd+shift+g toggles grow mode
+bind h:g,cmd,shift:toggle move windowTopLeftX-${column};windowTopLeftY windowSizeX+${column};windowSizeY
+bind j:g,cmd,shift:toggle move windowTopLeftX;windowTopLeftY windowSizeX;windowSizeY+${row}
+bind k:g,cmd,shift:toggle move windowTopLeftX;windowTopLeftY-${row} windowSizeX;windowSizeY+${row}
+bind l:g,cmd,shift:toggle move windowTopLeftX;windowTopLeftY windowSizeX+${column};windowSizeY
+
+# cmd+shift+{h,j,k,l} to move
+bind h:cmd,shift move windowTopLeftX-${column};windowTopLeftY windowSizeX;windowSizeY
+bind j:cmd,shift move windowTopLeftX;windowTopLeftY+${row} windowSizeX;windowSizeY
+bind k:cmd,shift move windowTopLeftX;windowTopLeftY-${row} windowSizeX;windowSizeY
+bind l:cmd,shift move windowTopLeftX+${column};windowTopLeftY windowSizeX;windowSizeY
+
+# cmd+shift+s to shrink a tiny bit in all directions (to change the order of selection when moving)
+bind s:cmd,shift move windowTopLeftX+10;windowTopLeftY+10 windowSizeX-20;windowSizeY-30
+
+# cmd+shift+p followed by h,j,k,l for presets
+bind h:p,cmd,shift move screenOriginX;screenOriginY screenSizeX/2;screenSizeY
+bind j:p,cmd,shift move screenOriginX;screenOriginY+screenSizeY/2 screenSizeX;screenSizeY/2
+bind k:p,cmd,shift move screenOriginX;screenOriginY screenSizeX;screenSizeY/2
+bind l:p,cmd,shift move screenOriginX+screenSizeX/2;screenOriginY screenSizeX/2;screenSizeY
+bind u:p,cmd,shift move screenOriginX;screenOriginY screenSizeX/2;screenSizeY/2
+bind n:p,cmd,shift move screenOriginX;screenOriginY+screenSizeY/2 screenSizeX/2;screenSizeY/2
+bind o:p,cmd,shift move screenOriginX+screenSizeX/2;screenOriginY screenSizeX/2;screenSizeY/2
+bind .:p,cmd,shift move screenOriginX+screenSizeX/2;screenOriginY+screenSizeY/2 screenSizeX/2;screenSizeY/2
+bind f:p,cmd,shift move screenOriginX;screenOriginY screenSizeX;screenSizeY
+bind m:p,cmd,shift move screenOriginX+1.5*${column};screenOriginY+${row} screenSizeX-3*${column};screenSizeY-2*${row}
+
+
+
+# hide the current application
+bind m:cmd hide current
+
+# <, > for throwing to other display with 2 side by side
+bind m:cmd,shift throw 1 resize
+bind ,:cmd,shift throw 0 resize
+bind .:cmd,shift throw 2 resize
+
+## hjkl for throw to other display with 3+ displays
+# bind j:cmd,alt throw 1 resize
+# bind k:cmd,alt throw 2 resize
+# bind l:cmd,alt throw 2 resize
+# bind h:cmd,alt throw 0 resize
+
+# open a new terminal
+bind return:cmd shell '~/scripts/open_iterm_window'

@@ -1,0 +1,42 @@
+/* general text stuff */
+xterm*faceName: Terminus:style=Regular:size=10
+XTerm*boldMode: true
+XTerm*alwaysBoldMode: false
+
+/* color stuff */
+xterm*dynamicColors: true
+Xterm*background: #333333
+/* Blacks */
+xterm*color0: #151515
+xterm*color8: #333333
+/* Reds */
+xterm*color1: #ce4545
+xterm*color9: #ff5555
+/* Greens */
+xterm*color2: #00aa00
+xterm*color10: #55ff55
+/* Yellows */
+xterm*color3: #ffff22
+xterm*color11: #ffff55
+/* Blues */
+xterm*color4: #007dff
+xterm*color12: #55c0ff
+/* Purples */
+xterm*color5: #c118c1
+xterm*color13: #ff55ff
+/* Cyans */
+xterm*color6: #29d6d6
+xterm*color14: #55ffff
+/* Whites */
+xterm*color7: #bbbbbb
+xterm*color15: #ffffff
+
+XTerm*metaSendsEscape: false
+xterm*utf8:               2
+xterm*saveLines:          10000
+xterm*scrollTtyOutput:    false
+xterm*scrollBar:          true
+xterm*rightScrollBar:     true
+xterm*jumpScroll:         true
+xterm*multiScroll:        true
+xterm*toolBar:            false

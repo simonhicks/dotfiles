@@ -1,0 +1,34 @@
+"3.7 (created: 2013/04/03 18:20:07)
+
+highlight Hint::after content: attr(number); font-size: 20pt; font-size: 16pt; font-size: 14pt; font-size: 13pt; font-size: 12pt
+set hintchars=asdfghjkliuernv
+source! /Users/shicks/.vimperatorrc.local
+set! browser.fullscreen.autohide=false
+
+set toolbars=nonavigation
+
+noremap <C-l> :nohlsearch<CR>
+
+cnoremap <C-h> <left>
+cnoremap <C-l> <right>
+cnoremap <C-j> <down>
+cnoremap <C-k> <up>
+
+noremap ]t gt
+noremap [t gT
+noremap [z zO
+noremap ]z zI
+noremap <C-t> :tab<space>
+
+
+" custom search commands for publicly facing stuff
+command! github -nargs=* -description="Search github..." open https://github.com/search?q=<args>
+noremap gh :github<space>
+
+command! stackoverflow -nargs=* -description="Search stackoverflow.com..." open http://stackoverflow.com/search?q=<args>
+noremap so :stackoverflow<space>
+
+command! tpb -nargs=* -description="Search the pirate bay for videos" open http://tpbunblocker.com/search/<args>/0/7/200
+
+" work specific stuff
+so ~/.work-vimperatorrc

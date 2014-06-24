@@ -1,0 +1,85 @@
+#!/bin/bash
+
+coreScriptDir=~/scripts
+localScriptDir=~/local-scripts
+
+function printHelp() {
+    echo "
+===============================================================================
+
+    Usage: scriptify [-L] <file> [ <command> ]
+
+    scriptify is a tool for creating tiny bash scripts.
+
+    If <command> is passed, then a new file called <file> is created using
+    a /bin/bash sha-bang containing the given command as the contents of the 
+    script.
+
+    Otherwise, if <file> exists, it is converted into an executable and moved
+    into $coreScriptDir, or $localScriptDir (if -L is used).
+
+    If <file> doesn't exist, then it is created by reading from STDIN and the
+    resulting file is made executable and moved into the script directory.
+
+===============================================================================
+
+"
+    exit
+}
+
+shiftnum=0
+scriptDir="$coreScriptDir"
+while getopts L o
+do  case "$o" in
+    L) 
+        scriptDir="$localScriptDir"
+        ((shiftnum=$shiftnum+1))
+        ;;
+    [?]) printHelp;;
+    esac
+done
+for (( i = 0; i < $shiftnum; i++ ));
+do
+    shift
+done
+
+if [ "$1" ]
+then
+    file=$1
+fi
+
+if [ "$2" ]
+then
+    cmd=$2
+fi
+
+function scriptifyFile() {
+    if [ -e "$scriptDir" ]
+    then
+        echo Scriptifying $1 in $scriptDir...
+    else
+        echo Creating script directory $scriptDir...
+        mkdir -p "$scriptDir"
+        echo Scriptifying $1 in $scriptDir...
+    fi
+    chmod +x $1
+    mv $1 $scriptDir
+}
+
+if [ "$cmd" ]
+then
+    echo "#!/bin/bash
+$cmd" > $file
+    scriptifyFile $file
+elif [ $file ]
+then
+    if [ -f $file ]
+    then
+        scriptifyFile $file
+    else 
+        rlwrap cat > $file
+        scriptifyFile $file
+    fi
+else
+    printHelp
+fi

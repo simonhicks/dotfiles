@@ -1,0 +1,130 @@
+#!/bin/bash
+
+# set the default params
+root="."
+fileType=""
+insensitive="false"
+open="no"
+
+function printHelp() {
+    echo "
+    search is a tool for searching a directory tree for a given regular
+    expression. It will find all instances of a given regexp and then open
+    the relevant files in vim with the search term highlighted. Basically,
+    its a wrapper around grep...
+
+    USAGE: search [options] <regexp>
+
+    options are:
+        -r <root>   set the root folder. Defaults to $root
+
+        -t <ext>    limit the results to a particular file type, eg.
+                    'search -t java' will only search java files. defaults
+                    to searching all files
+
+        -o yes|no   If yes, the matching files are opened in vim. If no, the
+                    file names are just printed to STDOUT. Defaults to $open.
+
+        -i          pass this flag to use case insensitive search. Defaults to
+                    case sensitive search.
+
+        -h          Print this help.
+    "
+    exit 1
+}
+
+# parse the options
+shiftNum=0
+while getopts "hir:t:d:o:" OPTION
+do
+    case $OPTION in
+        r)
+            let shiftNum+=2
+            root="$OPTARG";;
+        t)
+            let shiftNum+=2
+            fileType="$OPTARG";;
+        o)
+            let shiftNum+=2
+            open="$OPTARG";;
+        i)
+            let shiftNum+=1
+            insensitive="true";;
+        h)
+            printHelp;;
+    esac
+done
+
+for (( i = 0; i < shiftNum; i++ )); do
+    shift
+done
+
+regexp="$1"
+
+echo $projectDir
+
+if [[ -d $root ]]
+then
+    cd $root
+    if [[ "$regexp" ]]
+    then
+        echo "    Searching $root for $regexp..."
+
+        # we need one pattern for grep and one for vim
+        if [[ "$insensitive" = true ]]
+        then
+          grepPattern="-i $regexp"
+          vimRegexp="${regexp}\c"
+        else
+          grepPattern="-e $regexp"
+          vimRegexp="$regexp"
+        fi
+
+
+        # recursively search everything in . except .git
+        fileSelector="-r . --exclude-dir='.git'"
+
+        # ... and filter on filetype if requested
+        if [[ "fileType" ]]
+        then
+          fileSelector="$fileSelector --include='*.$fileType'"
+        fi
+
+        # we egrep for '^[^:]+:' before '^[^:]+' so we only capture lines
+        # containing :, which filters out binary files
+        filterCmd() {
+          egrep '^[^:]+:' | egrep -o '^[^:]+' | uniq 
+        }
+
+        matchingFiles=$(eval "grep $fileSelector $grepPattern" | filterCmd | sort )
+
+        # open the files in vim
+        if [[ "$matchingFiles" ]]
+        then
+            if [[ "$open" = "yes" ]]
+            then
+                vim -c "/$vimRegexp" -p ${matchingFiles[@]}
+            else
+                echo
+                for file in $matchingFiles
+                do
+                    echo "    - $file"
+                done
+            fi
+        else
+            echo
+            echo "    No matches found for pattern $regexp"
+            echo
+        fi
+    else # No regular expression
+        echo
+        echo "    ERROR: Please enter a regular expression for searching"
+        echo
+        printHelp
+    fi
+else # invalid search root
+    echo
+    echo "    ERROR: invalid search path $root"
+    echo
+    printHelp
+fi

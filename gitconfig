@@ -1,0 +1,26 @@
+[user]
+	name = Simon Hicks
+	email = code@simonhicks.org
+
+[color]
+  ui = auto
+
+[alias]
+  oops = reset --hard
+  unstage = reset HEAD
+  tree = log --graph --color --decorate --abbrev-commit --relative-date --pretty=\"%C(yellow)%h %C(blue)(%an)%C(reset): %s - %C(green)%cr\"
+  t    = log --graph --color --decorate --abbrev-commit --relative-date --pretty=\"%C(yellow)%h %C(blue)(%an)%C(reset): %s - %C(green)%cr\"
+  u = reset HEAD
+  l = log
+  co = checkout
+  cb = checkout -b
+  A = add -A .
+  c = commit
+  pl = pull
+  ps = push
+  m = merge
+  b = branch
+  rb = rebase
+  rm = remote
+  s = status
+  f = fetch

@@ -1,0 +1,79 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+:Q	../vimrc.vim	/^map :Q :q$/;"	m
+:W	../vimrc.vim	/^map :W :w$/;"	m
+:WQ	../vimrc.vim	/^map :WQ :wq$/;"	m
+:Wq	../vimrc.vim	/^map :Wq :wq$/;"	m
+<C-@>	../vimrc.vim	/^imap <C-@> <C-Space>$/;"	m
+<C-Space>	../vimrc.vim	/^inoremap <expr> <C-Space> pumvisible() \\|\\| &omnifunc == '' ?$/;"	m
+<C-U>	../vimrc.vim	/^inoremap <C-U> <C-G>u<C-U>$/;"	m
+<C-h>	../vimrc.vim	/^imap <C-h> <Esc>:tabp<CR>$/;"	m
+<C-h>	../vimrc.vim	/^map <C-h> :tabp<CR>$/;"	m
+<C-j>	../vimrc.vim	/^imap <C-j> <C-w>j<C-w>_$/;"	m
+<C-j>	../vimrc.vim	/^map <C-j> <C-w>j<C-w>_$/;"	m
+<C-k>	../vimrc.vim	/^imap <C-k> <C-w>k<C-w>_$/;"	m
+<C-k>	../vimrc.vim	/^map <C-k> <C-w>k<C-w>_$/;"	m
+<C-l>	../vimrc.vim	/^imap <C-l> <Esc>:tabn<CR>$/;"	m
+<C-l>	../vimrc.vim	/^map <C-l> :tabn<CR>$/;"	m
+<C-w>	../vimrc.vim	/^imap <C-w> <C-o><C-w>$/;"	m
+<CR>	../vimrc.vim	/^inoremap <expr> <CR> pumvisible() ? "\\<lt>C-m>" : "\\<lt>CR>"$/;"	m
+<S-Tab>	../vimrc.vim	/^map <S-Tab> <C-O>$/;"	m
+<Space><Space>	../vimrc.vim	/^map <Space><Space> <Space>ci$/;"	m
+<Space>ca	../vimrc.vim	/^map <Space>ca <Space>cA $/;"	m
+<Space>fm	../vimrc.vim	/^map <Space>fm <Space>cA FIXME $/;"	m
+<Space>ntc	../vimrc.vim	/^map <Space>ntc :NERDTreeToggle<CR>$/;"	m
+<Space>nto	../vimrc.vim	/^map <Space>nto :NERDTreeToggle<CR>$/;"	m
+<Space>to	../vimrc.vim	/^map <Space>to <Space>cA TODO $/;"	m
+<Space>±@*ebdjiygwgrb	../vimrc.vim	/^map <Space>±@*ebdjiygwgrb <Plug>NERDCommenterAltDelims$/;"	m
+<space>-	../vimrc.vim	/^map <space>- <C-W>-$/;"	m
+<space><C-]>	../vimrc.vim	/^nnoremap <space><C-]> <C-w><C-]><C-w>T$/;"	m
+<space>=	../vimrc.vim	/^map <space>= <C-w>+$/;"	m
+<space>h	../vimrc.vim	/^map <space>h <C-w>h$/;"	m
+<space>j	../vimrc.vim	/^map <space>j <C-w>j$/;"	m
+<space>k	../vimrc.vim	/^map <space>k <C-w>k$/;"	m
+<space>l	../vimrc.vim	/^map <space>l <C-w>l$/;"	m
+<space>t/	../vimrc.vim	/^nnoremap <space>t\/ :tjump \/^$/;"	m
+<space>tn	../vimrc.vim	/^map <space>tn :tabnew $/;"	m
+<space>ut	../vimrc.vim	/^map <space>ut :GundoToggle<CR>$/;"	m
+<space>vs	../vimrc.vim	/^map <space>vs :botright vsplit $/;"	m
+IncludeMarks	/Users/simon/Code/dotfiles/vim/bundle/showmarks/plugin/showmarks.vim	/^fun! s:IncludeMarks()$/;"	f
+NameOfMark	/Users/simon/Code/dotfiles/vim/bundle/showmarks/plugin/showmarks.vim	/^fun! s:NameOfMark(mark)$/;"	f
+ShowMarks	/Users/simon/Code/dotfiles/vim/bundle/showmarks/plugin/showmarks.vim	/^	aug ShowMarks$/;"	a
+ShowMarks	/Users/simon/Code/dotfiles/vim/bundle/showmarks/plugin/showmarks.vim	/^fun! s:ShowMarks()$/;"	f
+ShowMarksClearAll	/Users/simon/Code/dotfiles/vim/bundle/showmarks/plugin/showmarks.vim	/^com! -nargs=0 ShowMarksClearAll  :call <sid>ShowMarksClearAll()$/;"	c
+ShowMarksClearAll	/Users/simon/Code/dotfiles/vim/bundle/showmarks/plugin/showmarks.vim	/^fun! s:ShowMarksClearAll()$/;"	f
+ShowMarksClearMark	/Users/simon/Code/dotfiles/vim/bundle/showmarks/plugin/showmarks.vim	/^com! -nargs=0 ShowMarksClearMark :call <sid>ShowMarksClearMark()$/;"	c
+ShowMarksClearMark	/Users/simon/Code/dotfiles/vim/bundle/showmarks/plugin/showmarks.vim	/^fun! s:ShowMarksClearMark()$/;"	f
+ShowMarksHideAll	/Users/simon/Code/dotfiles/vim/bundle/showmarks/plugin/showmarks.vim	/^fun! s:ShowMarksHideAll()$/;"	f
+ShowMarksOn	/Users/simon/Code/dotfiles/vim/bundle/showmarks/plugin/showmarks.vim	/^com! -nargs=0 ShowMarksOn        :call <sid>ShowMarksOn()$/;"	c
+ShowMarksOn	/Users/simon/Code/dotfiles/vim/bundle/showmarks/plugin/showmarks.vim	/^fun! s:ShowMarksOn()$/;"	f
+ShowMarksPlaceMark	/Users/simon/Code/dotfiles/vim/bundle/showmarks/plugin/showmarks.vim	/^com! -nargs=0 ShowMarksPlaceMark :call <sid>ShowMarksPlaceMark()$/;"	c
+ShowMarksPlaceMark	/Users/simon/Code/dotfiles/vim/bundle/showmarks/plugin/showmarks.vim	/^fun! s:ShowMarksPlaceMark()$/;"	f
+ShowMarksSetup	/Users/simon/Code/dotfiles/vim/bundle/showmarks/plugin/showmarks.vim	/^fun! s:ShowMarksSetup()$/;"	f
+ShowMarksToggle	/Users/simon/Code/dotfiles/vim/bundle/showmarks/plugin/showmarks.vim	/^com! -nargs=0 ShowMarksToggle    :call <sid>ShowMarksToggle()$/;"	c
+ShowMarksToggle	/Users/simon/Code/dotfiles/vim/bundle/showmarks/plugin/showmarks.vim	/^fun! s:ShowMarksToggle()$/;"	f
+VerifyText	/Users/simon/Code/dotfiles/vim/bundle/showmarks/plugin/showmarks.vim	/^fun! s:VerifyText(which)$/;"	f
+\sm	/Users/simon/Code/dotfiles/vim/bundle/showmarks/plugin/showmarks.vim	/^noremap <unique> <script> \\sm m$/;"	m
+_	../vimrc.vim	/^map _ <C-w>_$/;"	m
+cursor_position	../vimrc.vim	/^  augroup cursor_position$/;"	a
+filetype_txt	../vimrc.vim	/^  augroup filetype_txt$/;"	a
+j	../vimrc.vim	/^inoremap <expr> j pumvisible() ? "\\<lt>C-n>" : "j"$/;"	m
+k	../vimrc.vim	/^inoremap <expr> k pumvisible() ? "\\<lt>C-p>" : "k"$/;"	m
+loaded_showmarks	/Users/simon/Code/dotfiles/vim/bundle/showmarks/plugin/showmarks.vim	/^let loaded_showmarks = 1$/;"	v
+m	/Users/simon/Code/dotfiles/vim/bundle/showmarks/plugin/showmarks.vim	/^noremap <silent> m :exe 'norm \\sm'.nr2char(getchar())<bar>call <sid>ShowMarks()<CR>$/;"	m
+mapleader	../vimrc.vim	/^let mapleader=" "$/;"	v
+maplocalleader	../vimrc.vim	/^let maplocalleader="m"$/;"	v
+s:all_marks	/Users/simon/Code/dotfiles/vim/bundle/showmarks/plugin/showmarks.vim	/^let s:all_marks = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.'`^<>[]{}()\\""$/;"	v
+tag_maintenance	../vimrc.vim	/^  augroup tag_maintenance$/;"	a
+vimclojure#DynamicHighlighting	../vimrc.vim	/^let vimclojure#DynamicHighlighting = 1$/;"	v
+vimclojure#FuzzyIndent	../vimrc.vim	/^let vimclojure#FuzzyIndent = 1$/;"	v
+vimclojure#HighlightBuiltins	../vimrc.vim	/^let vimclojure#HighlightBuiltins = 1$/;"	v
+vimclojure#HighlightContrib	../vimrc.vim	/^let vimclojure#HighlightContrib = 1$/;"	v
+vimclojure#NailgunClient	../vimrc.vim	/^let vimclojure#NailgunClient = $HOME . "\/.vim\/lib\/vimclojure-nailgun-client\/ng"$/;"	v
+vimclojure#ParenRainbow	../vimrc.vim	/^let vimclojure#ParenRainbow = 1$/;"	v
+vimclojure#SplitSize	../vimrc.vim	/^let vimclojure#SplitSize = 10$/;"	v
+vimclojure#WantNailgun	../vimrc.vim	/^let vimclojure#WantNailgun = 1$/;"	v

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+gitStatus=`git status 2>/dev/null`
+# gitStatus=$1
+if [ -n "$gitStatus" ]
+then
+    branch=`echo $gitStatus | egrep -o '# On branch [^[:space:]]*' | sed -e 's/# On branch //'`
+
+    echo -n "($branch) "
+fi

@@ -1,0 +1,61 @@
+#/bin/bash
+
+if [ "$1" == "--xmas" ]
+then
+  shift
+  string=$@
+  length=${#string}
+  color_name="red"
+  for i in `seq 0 $((length - 1))`
+  do
+    letter=${string:$i:1}
+    color --$color_name "$letter"
+    if [[ "$letter" != " " ]]
+    then
+      if [ "$color_name" == "red" ]
+      then
+        color_name="green"
+      else
+        color_name="red"
+      fi
+    fi
+  done
+  exit
+elif [ "$1" == "--rainbow" ]
+then
+  shift
+  string=$@
+  length=${#string}
+  color_name="red" # yellow purple blue green
+  for i in `seq 0 $((length -1))`
+  do
+    letter=${string:$i:1}
+    color --$color_name "$letter"
+    if [[ "$letter" != " " ]]
+    then
+      if [ "$color_name" == "red" ]
+      then
+        color_name="yellow"
+      elif [ "$color_name" == "yellow" ]
+      then
+        color_name="purple"
+      elif [ "$color_name" == "purple" ]
+      then
+        color_name="blue"
+      elif [ "$color_name" == "blue" ]
+      then
+        color_name="green"
+      elif [ "$color_name" == "green" ]
+      then
+        color_name="red"
+      fi
+    fi
+  done
+  exit
+else
+  color="$(color-code $1)"
+  reset="$(color-code)"
+  shift
+  printf "${color}$@${reset}"
+  exit
+fi

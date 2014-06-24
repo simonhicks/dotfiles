@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [[ "$1" && "$2" && "$3" ]]
+then
+  from_port=$1
+  to_host=$2
+  to_port=$3
+
+  ssh -f `whoami`@$to_host -L $from_port:$to_host:$to_port -N
+else
+  echo 'USAGE: tunnel <from-port> <to-host> <to-port>'
+fi

@@ -1,0 +1,19 @@
+set editing-mode vi
+set completion-ignore-case
+set expand-tilde
+
+# command mode mappings
+set keymap vi-command
+"k": history-search-backward
+"j": history-search-forward
+"/": reverse-search-history
+
+# use this for insert mode mappings
+set keymap vi-insert
+Control-k: history-search-backward
+Control-j: history-search-forward
+Control-h: backward-char
+Control-l: forward-char
+$if Bash
+  Space: magic-space
+$endif

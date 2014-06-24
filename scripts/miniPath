@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+full_path = `pwd`.chomp
+if full_path == '/'
+  puts '/'
+else
+  segments = full_path.split(/\//).select{|e| !e.empty?}
+  if segments.length == 1
+    puts full_path
+  else
+    prefix = segments[0..-2].collect{|word| word[0] == '.' ? word[0,2] : word[0] }.join("/")
+    puts "/" + prefix + "/" + segments.last
+  end
+end

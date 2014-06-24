@@ -1,0 +1,51 @@
+# short form cli apps
+quiet_pushd() {
+  pushd $1 > /dev/null
+}
+alias c='quiet_pushd'
+quiet_popd() {
+  popd $1 > /dev/null
+}
+alias b='quiet_popd'
+alias l='ls -lh'
+alias k="kpcli --kdb=$HOME/Dropbox/passwords.kdb"
+alias r='ranger'
+alias g='git'
+alias s='ssh'
+alias cl='clear'
+alias ca='clear && '
+alias t='todo.sh -a'
+alias trans='transmission-remote-cli'
+alias o='rifle'
+alias gr='./gradlew'
+
+if [ `which mvim` ]
+then
+  VIM_EXEC="mvim"
+else
+  VIM_EXEC="gvim"
+fi
+
+alias v=$VIM_EXEC
+
+# ipython aliases
+alias ipy='ipython kernel'
+
+if [ -x ~/local-scripts/brightness ]
+then
+  alias br='brightness'
+fi
+
+if [  `which xsel` ]
+then
+  alias  pb='xsel --clipboard'
+else
+  pb() {
+    if [ "$@" ]
+    then
+      pbcopy "$@"
+    else
+      pbpaste
+    fi
+  }
+fi

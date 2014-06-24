@@ -1,0 +1,124 @@
+#!/usr/bin/env ruby
+
+class Password
+  def initialize length=8
+    @sounds = []
+    @last_sound = [:vowel, :consonant][rand(2)]
+    until to_s.length >= length
+      add_sound
+    end
+  end
+
+  @@dipthongs_allowed = true
+  def self.dipthongs_allowed= v
+    @@dipthongs_allowed = v
+  end
+
+  def to_s
+    @sounds.join("")
+  end
+
+  def add_sound
+    case @last_sound
+    when :vowel
+      add_consonant
+    when :consonant
+      add_vowel
+    end
+  end
+
+  def add_vowel
+    @sounds << @@vowel_sounds[rand(@@vowel_sounds.length)]
+    @last_sound = :vowel
+  end
+
+  def add_consonant
+    @sounds << @@consonant_sounds[rand(@@consonant_sounds.length)]
+    @last_sound = :consonant
+  end
+
+  @@vowel_sounds = []
+  @@consonant_sounds = []
+
+  def self.allow_vowel_sound s
+    @@vowel_sounds << s
+  end
+
+  def self.disallow_vowel_sound s
+    @@vowel_sounds.delete s
+  end
+
+  def self.allow_consonant_sound s
+    @@consonant_sounds << s
+  end
+
+  def self.disallow_consonant_sound s
+    @@consonant_sounds.delete s
+  end
+
+  %w(a e i o u).each do |l1|
+    allow_vowel_sound l1
+    if @@dipthongs_allowed
+      %w(a e i o u).map do |l2|
+        allow_vowel_sound(l1+l2)
+      end
+    end
+  end
+
+  allow_vowel_sound "y"
+
+  if @@dipthongs_allowed
+    allow_vowel_sound "oia"
+    allow_vowel_sound "aio"
+    disallow_vowel_sound "aa"
+    disallow_vowel_sound "ii"
+    disallow_vowel_sound "uu"
+  end
+
+  %w(qu w r t y p s d f g h j k l z x c v b n m).each do |l|
+    allow_consonant_sound l
+  end
+
+  %w(h t w r y p k l c).each do |l|
+    allow_consonant_sound "s#{l}"
+  end
+
+  %w(w r y s h l).each do |l|
+    allow_consonant_sound "t#{l}"
+    allow_consonant_sound "p#{l}"
+    allow_consonant_sound "k#{l}"
+    allow_consonant_sound "d#{l}"
+  end
+
+  allow_consonant_sound("ng")
+
+  disallow_consonant_sound "pw"
+
+end
+
+def print_help
+  puts "
+  ==================================================================
+
+  pwg generates random passwords. The passwords are intended to be
+  pronouncable by an english speaker so they are easier to remember.
+  
+  Usage: pwg [<length>]
+  
+  ==================================================================
+
+"
+end
+
+if ARGV[1] == '--no-dipthongs'
+  Password.dipthongs_allowed = false
+end
+
+case ARGV[0]
+when /\d+/
+  puts Password.new(ARGV[0].to_i)
+when nil
+  puts Password.new
+else
+  print_help
+end

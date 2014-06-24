@@ -1,0 +1,7 @@
+if [ -d $HOME/Documents/Therapy/journal ]
+then 
+  cd $HOME/Documents/Therapy/journal && mvim `date +%Y-%m-%d`.md
+elif [ -d ~/Documents/journal ]
+then
+  cd ~/Documents/journal && gvim `date +%Y-%m-%d`.md
+fi

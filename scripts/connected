@@ -1,0 +1,40 @@
+#!/bin/bash
+
+function printHelp() {
+  echo "
+  connected is a tool for changing profiles, configs etc. in such a way to enable offline
+  development (eg. while on the tube)
+
+  USAGE: connected <state>
+
+  <state> should be either -y (for connected) or -n (for offline)
+
+  "
+  exit 1
+}
+
+function makeOffline() {
+  mv ~/.lein/profiles.clj{,.offline}
+  exit 0
+}
+
+function makeOnline() {
+  mv ~/.lein/profiles.clj{.offline,}
+  exit 0
+}
+
+while getopts "ynh" OPTION
+do
+    case $OPTION in
+        y)
+             makeOnline;;
+        n)
+             makeOffline;;
+        h)
+             printHelp;;
+    esac
+done
+
+# if we get here then something's gone wrong!
+printHelp
+             

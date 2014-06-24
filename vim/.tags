@@ -1,0 +1,75 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+:Q	vimrc.vim	/^map :Q :q$/;"	m
+:W	vimrc.vim	/^map :W :w$/;"	m
+:WQ	vimrc.vim	/^map :WQ :wq$/;"	m
+:Wq	vimrc.vim	/^map :Wq :wq$/;"	m
+<A-j>	vimrc.vim	/^noremap <A-j> ∆$/;"	m
+<A-j>	vimrc.vim	/^vnoremap <A-j> ∆$/;"	m
+<A-k>	vimrc.vim	/^noremap <A-k> ˚$/;"	m
+<A-k>	vimrc.vim	/^vnoremap <A-k> ˚$/;"	m
+<C-@>	vimrc.vim	/^imap <C-@> <C-Space>$/;"	m
+<C-Space>	vimrc.vim	/^inoremap <expr> <C-Space> pumvisible() \\|\\| &omnifunc == '' ?$/;"	m
+<C-U>	vimrc.vim	/^inoremap <C-U> <C-G>u<C-U>$/;"	m
+<C-b>	vimrc.vim	/^map <C-b> :MiniBufExplorer<CR>$/;"	m
+<C-h>	vimrc.vim	/^map <C-h> <C-b>h$/;"	m
+<C-l>	vimrc.vim	/^map <C-l> <C-b>l$/;"	m
+<C-u>	vimrc.vim	/^noremap <C-u> zA$/;"	m
+<CR>	vimrc.vim	/^inoremap <expr> <CR> pumvisible() ? "\\<lt>C-m>" : "\\<lt>CR>"$/;"	m
+<S-Tab>	vimrc.vim	/^map <S-Tab> <C-O>$/;"	m
+<Space><Space>	vimrc.vim	/^map <Space><Space> <Space>ci$/;"	m
+<Space>ca	vimrc.vim	/^map <Space>ca <Space>cA $/;"	m
+<Space>fm	vimrc.vim	/^map <Space>fm <Space>cA FIXME $/;"	m
+<Space>ntc	vimrc.vim	/^map <Space>ntc :NERDTreeToggle<CR>$/;"	m
+<Space>nto	vimrc.vim	/^map <Space>nto :NERDTreeToggle<CR>$/;"	m
+<Space>sh	vimrc.vim	/^map <Space>sh :call OpenShell()<CR>$/;"	m
+<Space>to	vimrc.vim	/^map <Space>to <Space>cA TODO $/;"	m
+<Space>±@*ebdjiygwgrb	vimrc.vim	/^map <Space>±@*ebdjiygwgrb <Plug>NERDCommenterAltDelims$/;"	m
+<space>-	vimrc.vim	/^map <space>- <C-w>-$/;"	m
+<space><C-]>	vimrc.vim	/^nnoremap <space><C-]> <C-w><C-]><C-w>T$/;"	m
+<space>=	vimrc.vim	/^map <space>= <C-w>+$/;"	m
+<space>h	vimrc.vim	/^map <space>h <C-w>h$/;"	m
+<space>j	vimrc.vim	/^map <space>j <C-w>j$/;"	m
+<space>k	vimrc.vim	/^map <space>k <C-w>k$/;"	m
+<space>l	vimrc.vim	/^map <space>l <C-w>l$/;"	m
+<space>t/	vimrc.vim	/^nnoremap <space>t\/ :tjump \/$/;"	m
+<space>tn	vimrc.vim	/^map <space>tn :tabnew $/;"	m
+<space>ut	vimrc.vim	/^map <space>ut :GundoToggle<CR>$/;"	m
+<space>vs	vimrc.vim	/^map <space>vs :botright vsplit $/;"	m
+Eatchar	vimrc.vim	/^  function! Eatchar(pat)$/;"	f
+FingerTraining	vimrc.vim	/^function! FingerTraining()$/;"	f
+OpenShell	vimrc.vim	/^function! OpenShell()$/;"	f
+SimpleFoldtext	vimrc.vim	/^function! SimpleFoldtext()$/;"	f
+[t	vimrc.vim	/^map [t :tabprev<CR>$/;"	m
+]t	vimrc.vim	/^map ]t :tabnext<CR>$/;"	m
+clojurescript	vimrc.vim	/^  augroup clojurescript$/;"	a
+cursor_position	vimrc.vim	/^  augroup cursor_position$/;"	a
+filetype_txt	vimrc.vim	/^  augroup filetype_txt$/;"	a
+folding	vimrc.vim	/^  augroup folding$/;"	a
+foo	foo.clj	/^(defn foo$/;"	f
+g:miniBufExplorerMoreThanOne	vimrc.vim	/^let g:miniBufExplorerMoreThanOne=1000$/;"	v
+g:solarized_contrast	vimrc.vim	/^    let g:solarized_contrast="high"$/;"	v
+html_and_xml_tag_closing	vimrc.vim	/^  augroup html_and_xml_tag_closing$/;"	a
+j	vimrc.vim	/^inoremap <expr> j pumvisible() ? "\\<lt>C-n>" : "j"$/;"	m
+k	vimrc.vim	/^inoremap <expr> k pumvisible() ? "\\<lt>C-p>" : "k"$/;"	m
+mapleader	vimrc.vim	/^let mapleader=" "$/;"	v
+maplocalleader	vimrc.vim	/^let maplocalleader="m"$/;"	v
+tag_maintenance	vimrc.vim	/^  augroup tag_maintenance$/;"	a
+vimclojure#DynamicHighlighting	vimrc.vim	/^let vimclojure#DynamicHighlighting = 1$/;"	v
+vimclojure#FuzzyIndent	vimrc.vim	/^let vimclojure#FuzzyIndent = 1$/;"	v
+vimclojure#HighlightBuiltins	vimrc.vim	/^let vimclojure#HighlightBuiltins = 1$/;"	v
+vimclojure#HighlightContrib	vimrc.vim	/^let vimclojure#HighlightContrib = 1$/;"	v
+vimclojure#NailgunClient	vimrc.vim	/^let vimclojure#NailgunClient = $HOME . "\/.vim\/lib\/vimclojure-nailgun-client\/ng"$/;"	v
+vimclojure#ParenRainbow	vimrc.vim	/^let vimclojure#ParenRainbow = 1$/;"	v
+vimclojure#SplitSize	vimrc.vim	/^let vimclojure#SplitSize = 10$/;"	v
+vimclojure#WantNailgun	vimrc.vim	/^let vimclojure#WantNailgun = 1$/;"	v
+vimrc	vimrc.vim	/^  augroup vimrc$/;"	a
+w!!	vimrc.vim	/^cmap w!! %!sudo tee > \/dev\/null %$/;"	m
+˚	vimrc.vim	/^noremap ˚ :m-2<CR>==$/;"	m
+˚	vimrc.vim	/^vnoremap ˚ :m-2<CR>gv=gv$/;"	m
+∆	vimrc.vim	/^noremap ∆ :m+<CR>==$/;"	m
+∆	vimrc.vim	/^vnoremap ∆ :m'>+<CR>gv=gv$/;"	m

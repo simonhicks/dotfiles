@@ -1,0 +1,217 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+:Q	vim/vimrc.vim	/^map :Q :q$/;"	m
+:W	vim/vimrc.vim	/^map :W :w$/;"	m
+:WQ	vim/vimrc.vim	/^map :WQ :wq$/;"	m
+:Wq	vim/vimrc.vim	/^map :Wq :wq$/;"	m
+<A-j>	vim/vimrc.vim	/^noremap <A-j> ∆$/;"	m
+<A-j>	vim/vimrc.vim	/^vnoremap <A-j> ∆$/;"	m
+<A-k>	vim/vimrc.vim	/^noremap <A-k> ˚$/;"	m
+<A-k>	vim/vimrc.vim	/^vnoremap <A-k> ˚$/;"	m
+<C-@>	vim/vimrc.vim	/^imap <C-@> <C-Space>$/;"	m
+<C-Space>	vim/vimrc.vim	/^inoremap <expr> <C-Space> pumvisible() \\|\\| &omnifunc == '' ?$/;"	m
+<C-U>	vim/vimrc.vim	/^inoremap <C-U> <C-G>u<C-U>$/;"	m
+<C-b>	vim/vimrc.vim	/^map <C-b> :MiniBufExplorer<CR>$/;"	m
+<C-h>	vim/vimrc.vim	/^map <C-h> <C-b>h$/;"	m
+<C-l>	vim/vimrc.vim	/^map <C-l> <C-b>l$/;"	m
+<C-u>	vim/vimrc.vim	/^noremap <C-u> zA$/;"	m
+<CR>	vim/vimrc.vim	/^inoremap <expr> <CR> pumvisible() ? "\\<lt>C-m>" : "\\<lt>CR>"$/;"	m
+<LocalLeader>r	vim/bundle/vim-pipe/plugin/vim-pipe.vim	/^nnoremap <silent> <LocalLeader>r :call VimPipe()<CR>$/;"	m
+<M-LeftMouse>	vim/vimrc.vim	/^  map <M-LeftMouse> <LeftMouse><C-]>$/;"	m
+<M-RightMouse>	vim/vimrc.vim	/^  map <M-RightMouse> <C-T>$/;"	m
+<Plug>ForeplayDjump	vim/bundle/foreplay/plugin/foreplay.vim	/^nnoremap <silent> <Plug>ForeplayDjump :<C-U>exe <SID>Edit('edit', expand('<cword>'))<CR>$/;"	m
+<Plug>ForeplayDsplit	vim/bundle/foreplay/plugin/foreplay.vim	/^nnoremap <silent> <Plug>ForeplayDsplit :<C-U>exe <SID>Edit('split', expand('<cword>'))<CR>$/;"	m
+<Plug>ForeplayDtabjump	vim/bundle/foreplay/plugin/foreplay.vim	/^nnoremap <silent> <Plug>ForeplayDtabjump :<C-U>exe <SID>Edit('tabedit', expand('<cword>'))<CR>$/;"	m
+<Plug>ForeplayEdit	vim/bundle/foreplay/plugin/foreplay.vim	/^nnoremap <silent> <Plug>ForeplayEdit   :<C-U>set opfunc=<SID>editop<CR>g@$/;"	m
+<Plug>ForeplayFilter	vim/bundle/foreplay/plugin/foreplay.vim	/^nnoremap <silent> <Plug>ForeplayFilter :<C-U>set opfunc=<SID>filterop<CR>g@$/;"	m
+<Plug>ForeplayK	vim/bundle/foreplay/plugin/foreplay.vim	/^nnoremap <Plug>ForeplayK :<C-R>=<SID>K()<CR><CR>$/;"	m
+<Plug>ForeplayPrint	vim/bundle/foreplay/plugin/foreplay.vim	/^nnoremap <silent> <Plug>ForeplayPrint  :<C-U>set opfunc=<SID>printop<CR>g@$/;"	m
+<Plug>ForeplayPrintLast	vim/bundle/foreplay/plugin/foreplay.vim	/^nnoremap <silent> <Plug>ForeplayPrintLast :exe <SID>print_last()<CR>$/;"	m
+<Plug>ForeplayPrompt	vim/bundle/foreplay/plugin/foreplay.vim	/^nnoremap          <Plug>ForeplayPrompt :exe <SID>inputeval()<CR>$/;"	m
+<Plug>ForeplayRecall	vim/bundle/foreplay/plugin/foreplay.vim	/^noremap!          <Plug>ForeplayRecall <C-R>=<SID>recall()<CR>$/;"	m
+<Plug>ForeplaySource	vim/bundle/foreplay/plugin/foreplay.vim	/^nnoremap <Plug>ForeplaySource :Source <C-R><C-W><CR>$/;"	m
+<S-Tab>	vim/vimrc.vim	/^map <S-Tab> <C-O>$/;"	m
+<Space><Space>	vim/vimrc.vim	/^map <Space><Space> <Space>ci$/;"	m
+<Space>ca	vim/vimrc.vim	/^map <Space>ca <Space>cA $/;"	m
+<Space>fm	vim/vimrc.vim	/^map <Space>fm <Space>cA FIXME $/;"	m
+<Space>ntc	vim/vimrc.vim	/^map <Space>ntc :NERDTreeToggle<CR>$/;"	m
+<Space>nto	vim/vimrc.vim	/^map <Space>nto :NERDTreeToggle<CR>$/;"	m
+<Space>sh	vim/vimrc.vim	/^map <Space>sh :call OpenShell()<CR>$/;"	m
+<Space>to	vim/vimrc.vim	/^map <Space>to <Space>cA TODO $/;"	m
+<Space>±@*ebdjiygwgrb	vim/vimrc.vim	/^map <Space>±@*ebdjiygwgrb <Plug>NERDCommenterAltDelims$/;"	m
+<space>-	vim/vimrc.vim	/^map <space>- <C-w>-$/;"	m
+<space><C-]>	vim/vimrc.vim	/^nnoremap <space><C-]> <C-w><C-]><C-w>T$/;"	m
+<space>=	vim/vimrc.vim	/^map <space>= <C-w>+$/;"	m
+<space>h	vim/vimrc.vim	/^map <space>h <C-w>h$/;"	m
+<space>j	vim/vimrc.vim	/^map <space>j <C-w>j$/;"	m
+<space>k	vim/vimrc.vim	/^map <space>k <C-w>k$/;"	m
+<space>l	vim/vimrc.vim	/^map <space>l <C-w>l$/;"	m
+<space>t/	vim/vimrc.vim	/^nnoremap <space>t\/ :tjump \/$/;"	m
+<space>tn	vim/vimrc.vim	/^map <space>tn :tabnew $/;"	m
+<space>ut	vim/vimrc.vim	/^map <space>ut :GundoToggle<CR>$/;"	m
+<space>vs	vim/vimrc.vim	/^map <space>vs :botright vsplit $/;"	m
+Alternate	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:Alternate(cmd) abort$/;"	f
+Apropos	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:Apropos(pattern) abort$/;"	f
+Connect	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:Connect(arg)$/;"	f
+Eatchar	vim/vimrc.vim	/^  function! Eatchar(pat)$/;"	f
+Edit	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:Edit(cmd, keyword) abort$/;"	f
+Eval	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:Eval(bang, line1, line2, count, args) abort$/;"	f
+FingerTraining	vim/vimrc.vim	/^function! FingerTraining()$/;"	f
+ForeplayConnect	vim/bundle/foreplay/plugin/foreplay.vim	/^command! -bar -complete=customlist,s:connect_complete -nargs=? ForeplayConnect :exe s:Connect(<q-args>)$/;"	c
+GF	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:GF(cmd, file) abort$/;"	f
+K	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:K()$/;"	f
+Last	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:Last(bang, count) abort$/;"	f
+Lookup	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:Lookup(ns, macro, arg) abort$/;"	f
+OpenShell	vim/vimrc.vim	/^function! OpenShell()$/;"	f
+Require	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:Require(bang, ns)$/;"	f
+SimpleFoldtext	vim/vimrc.vim	/^function! SimpleFoldtext()$/;"	f
+VimPipe	vim/bundle/vim-pipe/plugin/vim-pipe.vim	/^function! VimPipe() " {$/;"	f
+[t	vim/vimrc.vim	/^map [t :tabprev<CR>$/;"	m
+]t	vim/vimrc.vim	/^map ]t :tabnext<CR>$/;"	m
+_	vim/vimrc.vim	/^map _ <C-w>_$/;"	m
+actually_input	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:actually_input(...)$/;"	f
+add-my-paredit-bindings-to	emacs.el	/^(defmacro add-my-paredit-bindings-to (state)$/;"	f
+alternates	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:alternates() abort$/;"	f
+b:vimpipe_command	vim/ftplugin/ruby.vim	/^let b:vimpipe_command="irb"$/;"	v
+b:vimpipe_command	vim/ftplugin/sh.vim	/^let b:vimpipe_command="bash"$/;"	v
+buffer_path	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:buffer_path(...) abort$/;"	f
+client	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:client() abort$/;"	f
+clojurescript	vim/vimrc.vim	/^  augroup clojurescript$/;"	a
+cmdwinenter	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:cmdwinenter()$/;"	f
+cmdwinleave	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:cmdwinleave()$/;"	f
+connect_complete	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:connect_complete(A, L, P)$/;"	f
+cursor_position	vim/vimrc.vim	/^  augroup cursor_position$/;"	a
+decode_url	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:decode_url(url) abort$/;"	f
+editop	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:editop(type) abort$/;"	f
+electrify-return-if-match	emacs.el	/^(defun electrify-return-if-match (arg)$/;"	f
+electrify-return-match	emacs.el	/^(defvar electrify-return-match$/;"	f
+eval	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:eval(expr, ...) abort$/;"	f
+evil-insert-state-map	emacs.el	/^(define-key evil-insert-state-map (kbd "C-SPC") #'dabbrev-expand)$/;"	f
+evil-motion-state-map	emacs.el	/^(define-key evil-motion-state-map (kbd "C-; u") 'universal-argument)$/;"	f
+evil-normal-state-map	emacs.el	/^(define-key evil-normal-state-map (kbd "<backspace>") #'switch-to-buffer)$/;"	f
+evil-normal-state-map	emacs.el	/^(define-key evil-normal-state-map (kbd "<backtab>") (kbd "C-o"))$/;"	f
+evil-normal-state-map	emacs.el	/^(define-key evil-normal-state-map (kbd "C-; C-f") #'ido-find-file)$/;"	f
+evil-normal-state-map	emacs.el	/^(define-key evil-normal-state-map (kbd "C-;") nil)$/;"	f
+evil-normal-state-map	emacs.el	/^(define-key evil-normal-state-map (kbd "C-b") #'buffer-menu)$/;"	f
+evil-normal-state-map	emacs.el	/^(define-key evil-normal-state-map (kbd "C-p") nil)$/;"	f
+evil-normal-state-map	emacs.el	/^(define-key evil-normal-state-map (kbd "SPC SPC") #'evilnc-comment-or-uncomment-lines)$/;"	f
+evil-normal-state-map	emacs.el	/^(define-key evil-normal-state-map (kbd "SPC h") (kbd "C-w h"))$/;"	f
+evil-normal-state-map	emacs.el	/^(define-key evil-normal-state-map (kbd "SPC j") (kbd "C-w j"))$/;"	f
+evil-normal-state-map	emacs.el	/^(define-key evil-normal-state-map (kbd "SPC k") (kbd "C-w k"))$/;"	f
+evil-normal-state-map	emacs.el	/^(define-key evil-normal-state-map (kbd "SPC l") (kbd "C-w l"))$/;"	f
+evil-normal-state-map	emacs.el	/^(define-key evil-normal-state-map (kbd "SPC t n") #'elscreen-create)$/;"	f
+evil-normal-state-map	emacs.el	/^(define-key evil-normal-state-map (kbd "SPC u t") #'undo-tree-visualize)$/;"	f
+evil-normal-state-map	emacs.el	/^(define-key evil-normal-state-map (kbd "SPC v h") (kbd "C-x 3"))$/;"	f
+evil-normal-state-map	emacs.el	/^(define-key evil-normal-state-map (kbd "SPC v j") (kbd "C-x 2"))$/;"	f
+evil-normal-state-map	emacs.el	/^(define-key evil-normal-state-map (kbd "SPC v k") (kbd "C-x 2"))$/;"	f
+evil-normal-state-map	emacs.el	/^(define-key evil-normal-state-map (kbd "SPC v l") (kbd "C-x 3"))$/;"	f
+evil-normal-state-map	emacs.el	/^(define-key evil-normal-state-map (kbd "[ t") #'elscreen-previous)$/;"	f
+evil-normal-state-map	emacs.el	/^(define-key evil-normal-state-map (kbd "] t") #'elscreen-next)$/;"	f
+evil-nrepl	emacs.el	/^(defun evil-nrepl ()$/;"	f
+evil-visual-state-map	emacs.el	/^(define-key evil-visual-state-map (kbd "SPC SPC") #'evilnc-comment-or-uncomment-lines)$/;"	f
+filetype_txt	vim/vimrc.vim	/^  augroup filetype_txt$/;"	a
+filterop	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:filterop(type) abort$/;"	f
+folding	vim/vimrc.vim	/^  augroup folding$/;"	a
+foreplay#client	vim/bundle/foreplay/plugin/foreplay.vim	/^function! foreplay#client() abort$/;"	f
+foreplay#eval	vim/bundle/foreplay/plugin/foreplay.vim	/^function! foreplay#eval(expr) abort$/;"	f
+foreplay#eval_complete	vim/bundle/foreplay/plugin/foreplay.vim	/^function! foreplay#eval_complete(A, L, P) abort$/;"	f
+foreplay#evalparse	vim/bundle/foreplay/plugin/foreplay.vim	/^function! foreplay#evalparse(expr, ...) abort$/;"	f
+foreplay#evalprint	vim/bundle/foreplay/plugin/foreplay.vim	/^function! foreplay#evalprint(expr) abort$/;"	f
+foreplay#findfile	vim/bundle/foreplay/plugin/foreplay.vim	/^function! foreplay#findfile(path) abort$/;"	f
+foreplay#findresource	vim/bundle/foreplay/plugin/foreplay.vim	/^function! foreplay#findresource(resource) abort$/;"	f
+foreplay#input_host_port	vim/bundle/foreplay/plugin/foreplay.vim	/^function! foreplay#input_host_port()$/;"	f
+foreplay#jar_contents	vim/bundle/foreplay/plugin/foreplay.vim	/^function! foreplay#jar_contents(path) abort$/;"	f
+foreplay#local_client	vim/bundle/foreplay/plugin/foreplay.vim	/^function! foreplay#local_client(...)$/;"	f
+foreplay#ns	vim/bundle/foreplay/plugin/foreplay.vim	/^function! foreplay#ns() abort$/;"	f
+foreplay#ns_complete	vim/bundle/foreplay/plugin/foreplay.vim	/^function! foreplay#ns_complete(A, L, P) abort$/;"	f
+foreplay#omnicomplete	vim/bundle/foreplay/plugin/foreplay.vim	/^function! foreplay#omnicomplete(findstart, base) abort$/;"	f
+foreplay#quickfix_for	vim/bundle/foreplay/plugin/foreplay.vim	/^function! foreplay#quickfix_for(stacktrace) abort$/;"	f
+foreplay#skip	vim/bundle/foreplay/plugin/foreplay.vim	/^let foreplay#skip = 'synIDattr(synID(line("."),col("."),1),"name") =~? "comment\\\\|string\\\\|char"'$/;"	v
+foreplay#source	vim/bundle/foreplay/plugin/foreplay.vim	/^function! foreplay#source(symbol) abort$/;"	f
+foreplay_alternate	vim/bundle/foreplay/plugin/foreplay.vim	/^augroup foreplay_alternate$/;"	a
+foreplay_completion	vim/bundle/foreplay/plugin/foreplay.vim	/^augroup foreplay_completion$/;"	a
+foreplay_connect	vim/bundle/foreplay/plugin/foreplay.vim	/^augroup foreplay_connect$/;"	a
+foreplay_doc	vim/bundle/foreplay/plugin/foreplay.vim	/^augroup foreplay_doc$/;"	a
+foreplay_eval	vim/bundle/foreplay/plugin/foreplay.vim	/^augroup foreplay_eval$/;"	a
+foreplay_file_type	vim/bundle/foreplay/plugin/foreplay.vim	/^augroup foreplay_file_type$/;"	a
+foreplay_go_to_file	vim/bundle/foreplay/plugin/foreplay.vim	/^augroup foreplay_go_to_file$/;"	a
+foreplay_leiningen	vim/bundle/foreplay/plugin/foreplay.vim	/^augroup foreplay_leiningen$/;"	a
+foreplay_require	vim/bundle/foreplay/plugin/foreplay.vim	/^augroup foreplay_require$/;"	a
+foreplay_source	vim/bundle/foreplay/plugin/foreplay.vim	/^augroup foreplay_source$/;"	a
+g:foreplay#output_in_buffer	vim/bundle/foreplay/plugin/foreplay.vim	/^  let g:foreplay#output_in_buffer = 0$/;"	v
+g:foreplay#output_in_buffer	vim/vimrc.vim	/^let g:foreplay#output_in_buffer = 1$/;"	v
+g:loaded_foreplay	vim/bundle/foreplay/plugin/foreplay.vim	/^let g:loaded_foreplay = 1$/;"	v
+g:miniBufExplorerMoreThanOne	vim/vimrc.vim	/^let g:miniBufExplorerMoreThanOne=1000$/;"	v
+histswap	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:histswap(list) abort$/;"	f
+html_and_xml_tag_closing	vim/vimrc.vim	/^  augroup html_and_xml_tag_closing$/;"	a
+hunt	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:hunt(start, anchor) abort$/;"	f
+input	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:input(default) abort$/;"	f
+inputclose	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:inputclose() abort$/;"	f
+inputeval	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:inputeval() abort$/;"	f
+inputlist	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:inputlist(label, entries)$/;"	f
+j	vim/vimrc.vim	/^inoremap <expr> j pumvisible() ? "\\<lt>C-n>" : "j"$/;"	m
+k	vim/vimrc.vim	/^inoremap <expr> k pumvisible() ? "\\<lt>C-p>" : "k"$/;"	m
+key-translation-map	emacs.el	/^(define-key key-translation-map (kbd "C-; C-;") (kbd "M-x"))$/;"	f
+leiningen_connect	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:leiningen_connect()$/;"	f
+leiningen_init	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:leiningen_init() abort$/;"	f
+mapleader	vim/vimrc.vim	/^let mapleader=" "$/;"	v
+maplocalleader	vim/vimrc.vim	/^let maplocalleader="m"$/;"	v
+my-org-mode-stuff	emacs.el	/^(defun my-org-mode-stuff ()$/;"	f
+my-paredit-stuff	emacs.el	/^(defun my-paredit-stuff ()$/;"	f
+oneoff.eval	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:oneoff.eval(expr, options) dict abort$/;"	f
+oneoff.path	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:oneoff.path() dict abort$/;"	f
+oneoff.require	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:oneoff.require(symbol)$/;"	f
+opfunc	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:opfunc(type) abort$/;"	f
+output_response	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:output_response(response) abort$/;"	f
+print_last	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:print_last() abort$/;"	f
+printop	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:printop(type) abort$/;"	f
+protos	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:protos()$/;"	f
+qfentry	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:qfentry(entry) abort$/;"	f
+qfhistory	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:qfhistory() abort$/;"	f
+qsym	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:qsym(symbol)$/;"	f
+recall	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:recall() abort$/;"	f
+register_connection	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:register_connection(conn, ...)$/;"	f
+repl.eval	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:repl.eval(expr, options) dict abort$/;"	f
+repl.includes_file	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:repl.includes_file(file) dict abort$/;"	f
+repl.path	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:repl.path() dict abort$/;"	f
+repl.require	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:repl.require(lib) dict abort$/;"	f
+s:history	vim/bundle/foreplay/plugin/foreplay.vim	/^  let s:history = []$/;"	v
+s:jar_contents	vim/bundle/foreplay/plugin/foreplay.vim	/^let s:jar_contents = {}$/;"	v
+s:leiningen_repl_ports	vim/bundle/foreplay/plugin/foreplay.vim	/^  let s:leiningen_repl_ports = {}$/;"	v
+s:oneoff	vim/bundle/foreplay/plugin/foreplay.vim	/^let s:oneoff = {}$/;"	v
+s:oneoff_err	vim/bundle/foreplay/plugin/foreplay.vim	/^let s:oneoff_err = tempname()$/;"	v
+s:oneoff_ex	vim/bundle/foreplay/plugin/foreplay.vim	/^let s:oneoff_ex  = tempname()$/;"	v
+s:oneoff_in	vim/bundle/foreplay/plugin/foreplay.vim	/^let s:oneoff_in  = tempname()$/;"	v
+s:oneoff_out	vim/bundle/foreplay/plugin/foreplay.vim	/^let s:oneoff_out = tempname()$/;"	v
+s:oneoff_pr	vim/bundle/foreplay/plugin/foreplay.vim	/^let s:oneoff_pr  = tempname()$/;"	v
+s:oneoff_stk	vim/bundle/foreplay/plugin/foreplay.vim	/^let s:oneoff_stk = tempname()$/;"	v
+s:qffiles	vim/bundle/foreplay/plugin/foreplay.vim	/^  let s:qffiles = {}$/;"	v
+s:repl	vim/bundle/foreplay/plugin/foreplay.vim	/^let s:repl = {"requires": {}}$/;"	v
+s:repl_paths	vim/bundle/foreplay/plugin/foreplay.vim	/^  let s:repl_paths = {}$/;"	v
+s:repls	vim/bundle/foreplay/plugin/foreplay.vim	/^  let s:repls = []$/;"	v
+set-exec-path-from-shell-PATH	emacs.el	/^(defun set-exec-path-from-shell-PATH ()$/;"	f
+setup_eval	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:setup_eval() abort$/;"	f
+setup_historical	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:setup_historical()$/;"	f
+setup_require	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:setup_require()$/;"	f
+str	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:str(string)$/;"	f
+tag_maintenance	vim/vimrc.vim	/^  augroup tag_maintenance$/;"	a
+temp_response	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:temp_response(response) abort$/;"	f
+tons	vim/bundle/foreplay/plugin/foreplay.vim	/^function! s:tons(path) abort$/;"	f
+vimclojure#DynamicHighlighting	vim/vimrc.vim	/^let vimclojure#DynamicHighlighting = 1$/;"	v
+vimclojure#FuzzyIndent	vim/vimrc.vim	/^let vimclojure#FuzzyIndent = 1$/;"	v
+vimclojure#HighlightBuiltins	vim/vimrc.vim	/^let vimclojure#HighlightBuiltins = 1$/;"	v
+vimclojure#HighlightContrib	vim/vimrc.vim	/^let vimclojure#HighlightContrib = 1$/;"	v
+vimclojure#NailgunClient	vim/vimrc.vim	/^let vimclojure#NailgunClient = $HOME . "\/.vim\/lib\/vimclojure-nailgun-client\/ng"$/;"	v
+vimclojure#ParenRainbow	vim/vimrc.vim	/^let vimclojure#ParenRainbow = 1$/;"	v
+vimclojure#SplitSize	vim/vimrc.vim	/^let vimclojure#SplitSize = 10$/;"	v
+vimclojure#WantNailgun	vim/vimrc.vim	/^let vimclojure#WantNailgun = 1$/;"	v
+vimrc	vim/vimrc.vim	/^  augroup vimrc$/;"	a
+w!!	vim/vimrc.vim	/^cmap w!! %!sudo tee > \/dev\/null %$/;"	m
+˚	vim/vimrc.vim	/^noremap ˚ :m-2<CR>==$/;"	m
+˚	vim/vimrc.vim	/^vnoremap ˚ :m-2<CR>gv=gv$/;"	m
+∆	vim/vimrc.vim	/^noremap ∆ :m+<CR>==$/;"	m
+∆	vim/vimrc.vim	/^vnoremap ∆ :m'>+<CR>gv=gv$/;"	m

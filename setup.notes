@@ -1,0 +1,93 @@
+# access to git and hicks.si
+
+  $ ssh-keygen
+
+  add public key to hicks.si vps and github
+
+  $ sudo apt-get install git
+
+
+# shell environment
+  $ [~] mkdir src
+
+  $ [~/src] git clone git@github.com:simonhicks/dotfiles
+
+  deploy scripts before bashrc so git-status-line doesn't complain
+
+  $ [~] ln -s src/dotfiles/scripts scripts
+
+  $ [~] ln -s src/dotfiles/bash_profile .bashrc
+
+  $ [~] . .bashrc
+
+  fix keyboard layout so capslock is escape and S-3 is #
+
+  $ [~] ln -s src/dotfiles/Xmodmap .Xmodmap && xmodmap .Xmodmap
+
+
+# vim
+  basic vim config setup
+
+  $ sudo apt-get install vim-gtk
+
+  $ [~] ln -s src/dotfiles/vim .vim
+
+  $ [~] ln -s .vim/vimrc.vim .vimrc
+
+  install active.vim
+
+  $ [~/src] git clone si@hicks.si:Code/active
+
+  $ [~/.vim/bundle] ln -s ~/src/active active
+
+
+# fix the mouse
+  $ sudo apt-get install xserver-xorg-input-mtrack
+
+  $ [/etc/X11] sudo ln -s ~/src/dotfiles/etc/X11/xorg.conf xorg.conf
+
+  $ sudo restart lightdm
+
+
+# make git work properly
+  $ [~] ln -s src/dotfiles/gitconfig .gitconfig
+
+  $ [~] ln -s src/dotfiles/gitignore .gitignore
+
+  $ [~] ln -s src/dotfiles/git-aliases .git-aliases
+
+
+# more random symlinks to deploy
+  $ [~] ln -s src/dotfiles/hufman-aliases .hufman-aliases
+
+  $ [~] ln -s src/dotfiles/inputrc .inputrc
+
+  $ [~] ln -s src/dotfiles/lein .lein
+
+
+# get a working browser
+  install firefox/vimperator
+
+  $ [~] ln -s src/dotfiles/vimperatorrc .vimperatorrc
+
+
+# get xterm looking proper
+  $ [~] ln -s src/dotfiles/Xresources .Xresources
+
+  $ [~] ln -s src/dotfiles/xinitrc .xinitrc
+
+
+# install i3
+  $ sudo apt-get install i3
+  $ [~] ln -s src/dotfiles/i3 .i3
+
+
+# random other software to install
+  @checklist 
+    - [ ] vlc
+    - [ ] ranger
+    - [ ] cmus
+    - [ ] tree
+    - [ ] dropbox (?)
+    - [ ] keepass
+

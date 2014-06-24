@@ -1,0 +1,39 @@
+#/bin/zsh
+
+if [ "$1" == "-r" ]
+then
+  color_code="31"
+elif [ "$1" == "--red" ]
+then
+  color_code="31"
+elif [ "$1" == "-g" ]
+then
+  color_code="32"
+elif [ "$1" == "--green" ]
+then
+  color_code="32"
+elif [ "$1" == "-y" ]
+then
+  color_code="33"
+elif [ "$1" == "--yellow" ]
+then
+  color_code="33"
+elif [ "$1" == "-b" ]
+then
+  color_code="34"
+elif [ "$1" == "--blue" ]
+then
+  color_code="34"
+elif [ "$1" == "-p" ]
+then
+  color_code="35"
+elif [ "$1" == "--purple" ]
+then
+  color_code="35"
+else
+  # default is to reset to white
+  echo "\033[0m"
+  exit
+fi
+
+echo "\033[00;${color_code}m"

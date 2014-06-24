@@ -1,0 +1,178 @@
+
+# i3 config file (v4)
+#
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+
+font Terminus 8
+new_window pixel 2
+
+# class                 border  bg      text    indicator
+client.focused          #994c4c #285577 #ffffff #2e9ef4
+client.focused_inactive #4c7899 #5f676a #ffffff #484e50
+client.unfocused        #4c7899 #222222 #888888 #292d2e
+client.urgent           #2f343a #900000 #ffffff #900000
+
+set $mod Mod4
+
+# make anything with notifyd in the title, floating
+for_window [title=".*notifyd.*"] floating enable
+for_window [title=".*(?i)preferences.*"] floating enable
+# for_window [title="xcfe4-notifyd"] move absolute position center
+for_window [title="xmessage"] floating enable
+for_window [title="floater"] floating enable
+for_window [title="vimperator-.*GVIM"] floating enable
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+focus_follows_mouse no
+
+# start applications
+bindsym $mod+Return exec terminator
+bindsym $mod+e exec gvim
+bindsym $mod+i exec terminator -x ranger
+bindsym $mod+b exec firefox
+bindsym $mod+c exec terminator -x cmus
+
+# kill focused window
+bindsym $mod+q kill
+bindsym $mod+w kill
+
+# start dmenu (a program launcher)
+bindsym $mod+d exec dmenu_run
+bindsym $mod+semicolon exec dmenu_run
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# split in vertical/horizontal orientation
+# (i3 gets vertical and horizontal the wrong way round!)
+bindsym $mod+v split h
+bindsym $mod+g split v
+bindsym $mod+Shift+bar split h
+bindsym $mod+Shift+underscore split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+t layout tabbed
+bindsym $mod+n layout toggle split
+
+# push/pop from the 'minimized stack'
+bindsym $mod+m move scratchpad
+bindsym $mod+Shift+m scratchpad show; floating disable
+
+# swap the current window for the next thing in the 'minimized stack'
+bindsym $mod+Shift+n move scratchpad; scratchpad show; floating disable
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 0
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+workspace 1 output eDP1
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+bindsym $mod+Shift+q exec "gksudo pm-hibernate"
+
+bindsym $mod+Shift+t exec "/home/si/local-scripts/tpad"
+
+# resize window 
+mode "resize" {
+  # These bindings trigger as soon as you enter resize mode
+
+  bindsym h resize shrink width 10 px or 10 ppt
+  bindsym j resize shrink height 10 px or 10 ppt
+  bindsym k resize grow height 10 px or 10 ppt
+  bindsym l resize grow width 10 px or 10 ppt
+
+  bindsym Shift+h resize shrink width 25 px or 25 ppt
+  bindsym Shift+j resize shrink height 25 px or 25 ppt
+  bindsym Shift+k resize grow height 25 px or 25 ppt
+  bindsym Shift+l resize grow width 25 px or 25 ppt
+
+  # back to normal: Enter or Escape
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+  mode dock
+  position top
+  status_command i3status
+}
+
+# remap keys
+exec xmodmap ~/.Xmodmap
+
+# stuff to start on boot
+exec --no-startup-id keepassx /home/si/Dropbox/passwords.kdb -min -lock
+exec --no-startup-id dropbox start
+exec --no-startup-id nm-applet
+exec feh --bg-fill '/home/si/Pictures/wallpaper.jpg' 
+
+# make volume keys work... this will break if you update Ubuntu version
+# The problem is that media key handling was moved from gnome-settings-daemon
+# to gnome-shell. However this feature was added back to gnome-settings-daemon
+# in the Ubuntu Trusty Repository which can be installed via PPA
+# (https://launchpad.net/~ezyang/+archive/ppa):
+#
+#    sudo apt-add-repository ppa:ezyang/ppa
+#    sudo apt-get update
+#    sudo apt-get upgrade
+exec --no-startup-id gnome-settings-daemon
+
+# disable keyboard autorepeat
+exec xset -r
+
+# hide cursor, since the mouse is just annoying
+exec unclutter -idle 1 &

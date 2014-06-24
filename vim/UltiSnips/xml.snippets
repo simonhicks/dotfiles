@@ -1,0 +1,30 @@
+snippet temp "A search-around template"
+<template prevent-global-cycles="false">
+	<title>$1</title>
+	<description>$2</description>
+	<any-stage>
+		$3
+	</any-stage>
+</template>
+endsnippet
+
+snippet stage "A custom search-around stage to match on udb"
+<stage>
+	<search>
+		<property-match-criteria>
+			<initial-property-type-uri approx="Exact Match">
+				com.palantir.property.${1:UdbNumber}
+			</initial-property-type-uri>
+			<target-property-type-uri approx="Exact Match">
+				com.palantir.property.${2:UdbNumber}
+			</target-property-type-uri>
+		</property-match-criteria>
+		<target-object-criteria operator="all">
+			<object-type-uri include-child-types="true">
+				com.palantir.object.${3:person}
+			</object-type-uri>
+			<criteria operator="all"/>
+		</target-object-criteria>
+	</search>
+</stage>
+endsnippet
