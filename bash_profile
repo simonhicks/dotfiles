@@ -132,15 +132,15 @@ fi
 # #   eval "$(rbenv init -)"
 # # fi
 # =======
-# export RBENV_ROOT="${HOME}/.rbenv"
-# if [ -d "${RBENV_ROOT}" ];
-# then
-#   export PATH="${RBENV_ROOT}/bin:${PATH}"
-#   eval "$(rbenv init -)"
-# elif which rbenv > /dev/null
-# then
-#   eval "$(rbenv init -)"
-# fi
+export RBENV_ROOT="${HOME}/.rbenv"
+if [ -d "${RBENV_ROOT}" ];
+then
+  export PATH="${RBENV_ROOT}/bin:${PATH}"
+  eval "$(rbenv init -)"
+elif which rbenv > /dev/null
+then
+  eval "$(rbenv init -)"
+fi
 # >>>>>>> 26b86658f9392f36e1e13665493483edd6f118c8
 
 if [ -d ~/Dropbox/todo ]
@@ -187,3 +187,4 @@ export KEA_HOME=/usr/local/ManualCellar/kea-1.1.0
 export PATH=.:$PATH
 
 export PGM_RBENV_COMMAND='PATH=/usr/local/bin:$PATH'
+

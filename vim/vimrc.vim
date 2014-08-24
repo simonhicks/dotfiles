@@ -182,6 +182,8 @@ if has("autocmd")
   autocmd! BufReadCmd *.par call zip#Browse(expand("<amatch>"))
   " ...and so are onts
   autocmd! BufReadCmd *.ont call zip#Browse(expand("<amatch>"))
+  " ...and kmz's
+  autocmd! BufReadCmd *.kmz call zip#Browse(expand("<amatch>"))
 else
 
   " always set autoindenting on
@@ -557,6 +559,27 @@ endfunction
 
 
 """"""""
+" Shell
+""""""""
+nnoremap g! :set operatorfunc=<SID>ShellOperator<cr>g@
+vnoremap g! :<c-u>call <SID>ShellOperator(visualmode())<cr>
+nmap g!! Vg!
+function! s:ShellOperator(type)
+  let saved_register = @@
+  if a:type ==# 'char'
+    normal! `[v`]y
+  else
+    normal! `<v`>y
+  endif
+  let lines = split(system(@@), "\n")
+  for line in lines
+    echom line
+  endfor
+  let @@ = saved_register
+endfunction
+
+
+""""""""
 " Gundo
 """"""""
 map gut :GundoToggle<CR>zR
@@ -593,7 +616,7 @@ endfunction
 """"""""""""
 let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'active_filetypes': [],
-                           \ 'passive_filetypes': ['java', 'scala'] }
+                           \ 'passive_filetypes': ['java', 'scala', 'html'] }
 let g:syntastic_scala_checkers = ['sbt']
 map <silent> <C-s> :SyntasticCheck<CR>
 
@@ -602,13 +625,17 @@ map <silent> <C-s> :SyntasticCheck<CR>
 " Markdown++
 """"""""""""
 let g:mdpp_path = []
-let root = fnamemodify("~/Notes/", ":p")
-if !isdirectory(root)
-  let root = fnamemodify("~/NotesFiles/", ":p")
-endif
-for name in split(system("ls " . root), "\n")
-  call add(g:mdpp_path, root . name)
-endfor
+function! s:add_contents_to_mdpp_path(root)
+  let root = fnamemodify(a:root, ":p")
+  if isdirectory(root)
+    for name in split(system("ls " . root), "\n")
+      call add(g:mdpp_path, root . name)
+    endfor
+  endif
+endfunction
+call s:add_contents_to_mdpp_path("~/Notes/")
+call s:add_contents_to_mdpp_path("~/NotesFiles/")
+call s:add_contents_to_mdpp_path("~/Dropbox/SyncedNotes/")
 let g:mdpp_sidebar_width = 50
 let g:mdpp_todo_states = ["TODO", "INPROGRESS", "DONE"]
 let g:mdpp_todo_colors = {
