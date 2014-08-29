@@ -1,0 +1,4 @@
+--langdef=dart
+--langmap=dart:.dart
+--regex-dart=/^class +([a-zA-Z0-9_]+)/\1/c,class/
+--regex-dart=/^ *([a-zA-Z0-9_]+ +)([a-zA-Z0-9_]+)\([^\)]*\) *{/\2/f,function/

@@ -439,8 +439,8 @@ noremap <space>vK :split<space>new<CR>
 noremap <space>vL :botright<space>vert<space>new<CR>
 
 " create splits
-nmap _ :sp<CR>
 nmap \| :vsp<CR>
+nmap _ :sp<CR>
 
 " tab navigation
 nmap <space>tn :tabnew<space>
@@ -616,9 +616,9 @@ endfunction
 """"""""""""
 let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'active_filetypes': [],
-                           \ 'passive_filetypes': ['java', 'scala', 'html'] }
-let g:syntastic_scala_checkers = ['sbt']
-map <silent> <C-s> :SyntasticCheck<CR>
+                           \ 'passive_filetypes': ['java', 'scala', 'html', 'dart'] }
+" let g:syntastic_scala_checkers = ['sbt']
+map <C-s> :SyntasticCheck<CR>
 
 
 """"""""""""

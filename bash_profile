@@ -179,9 +179,11 @@ then
     export PATH=~/local-scripts:$PATH
 fi
 
-# Palantir specific stuff
-export QSPATH=/usr/local/Cellar/palantir-gotham-311/3.11.1/
-export KEA_HOME=/usr/local/ManualCellar/kea-1.1.0
+# add dart to the path
+if [ -e ~/src/dart/dart-sdk ]
+then
+  export PATH=~/src/dart/dart-sdk/bin:$PATH
+fi
 
 # add . to the path
 export PATH=.:$PATH
