@@ -1,0 +1,38 @@
+#!/bin/sh
+
+printHelp() {
+  echo "USAGE: $0 <source-path> [<iso-output-path>]"
+}
+
+if [[ ! "$1" ]]
+then
+  printHelp
+  exit 1
+fi
+
+if [[ "$1" == "--help" ]]
+then
+  printHelp
+  exit 1
+fi
+
+
+if [[ "$1" == "-h" ]]
+then
+  printHelp
+  exit 1
+fi
+
+
+inputPath=$1
+outputName=${2:-`basename $1`.iso}
+
+if [[ "${outputName: -4}" != ".iso" ]]
+then
+  echo "ERROR: invalid output path $outputName (not a .iso)"
+  echo
+  printHelp
+  exit 1
+fi
+
+hdiutil makehybrid -iso -joliet -o $outputName $inputPath
