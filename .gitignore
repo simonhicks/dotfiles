@@ -27,6 +27,7 @@ vim/bundle/doit
 vim/bundle/doit.vim
 vim/bundle/journal.vim
 vim/bundle/text.vim
+vim/bundle/todo.vim
 *.scpt
 vim/bundle/md++
 vim/bundle/mdpp
