@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if [ "$1" ]
+then
+  URL=$1
+  LOCAL_PATH=${2:-"Downloads/`basename $1`"}
+fi
+
+if [[ "$URL" && "$LOCAL_PATH" ]]
+then
+  curl -C - -o $LOCAL_PATH $URL
+else
+  echo "USAGE: `basename $0` <url> [<local-path>]"
+  echo
+  echo "Interupted downloads can be resumed. Downloads default to the ~/Downloads directory"
+fi
