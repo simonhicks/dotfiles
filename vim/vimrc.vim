@@ -665,12 +665,6 @@ noremap <space>an :Notes<CR>
 let g:markdown_fold_style = 'nested'
 
 
-""""""""""
-" Journal
-""""""""""
-let g:my_journal_directory="/Volumes/my-stuff/Documents/journal"
-
-
 """"""""""""
 " UltiSnips 
 """"""""""""
