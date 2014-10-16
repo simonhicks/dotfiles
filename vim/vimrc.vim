@@ -26,6 +26,7 @@ set equalalways                " auto resize windows on opening a new one
 set hidden                     " allow hidden buffers
 set wrapscan                   " search should wrap the buffer
 set iskeyword+=-               " foo-bar is pretty much always 1 word
+set nojoinspaces               " autoformat should do single space after full-stop
 
 " persistent undo is AWESOME!!!
 set undofile
