@@ -155,7 +155,7 @@ bar {
 exec xmodmap ~/.Xmodmap
 
 # stuff to start on boot
-exec --no-startup-id keepassx /home/si/Dropbox/passwords.kdb -min -lock
+exec --no-startup-id keepassx /home/si/Dropbox/new-passwords.kdb -min -lock
 exec --no-startup-id dropbox start
 exec --no-startup-id nm-applet
 exec feh --bg-fill '/home/si/Pictures/wallpaper.jpg' 
