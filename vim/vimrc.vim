@@ -624,18 +624,18 @@ map <C-s> :SyntasticCheck<CR>
 """"""""""""
 " Markdown++
 """"""""""""
-let g:mdpp_path = []
-function! s:add_contents_to_mdpp_path(root)
-  let root = fnamemodify(a:root, ":p")
-  if isdirectory(root)
-    for name in split(system("ls " . root), "\n")
-      call add(g:mdpp_path, root . name)
-    endfor
-  endif
-endfunction
-call s:add_contents_to_mdpp_path("~/Notes/")
-call s:add_contents_to_mdpp_path("~/NotesFiles/")
-call s:add_contents_to_mdpp_path("~/Dropbox/SyncedNotes/")
+" let g:mdpp_path = []
+" function! s:add_contents_to_mdpp_path(root)
+"   let root = fnamemodify(a:root, ":p")
+"   if isdirectory(root)
+"     for name in split(system("ls " . root), "\n")
+"       call add(g:mdpp_path, root . name)
+"     endfor
+"   endif
+" endfunction
+" call s:add_contents_to_mdpp_path("~/Notes/")
+" call s:add_contents_to_mdpp_path("~/NotesFiles/")
+" call s:add_contents_to_mdpp_path("~/Dropbox/SyncedNotes/")
 let g:mdpp_sidebar_width = 50
 let g:mdpp_todo_states = ["TODO", "INPROGRESS", "DONE"]
 let g:mdpp_todo_colors = {
@@ -655,12 +655,12 @@ let g:mdpp_todo_colors = {
       \    "ctermfg": "yellow"
       \  }
       \}
-noremap <space>ah :VNotes<space>
-noremap <space>al :VNotes<space>
-noremap <space>aj :HNotes<space>
-noremap <space>ak :HNotes<space>
-noremap <space>at :TNotes<space>
-noremap <space>an :Notes<CR>
+" noremap <space>ah :VNotes<space>
+" noremap <space>al :VNotes<space>
+" noremap <space>aj :HNotes<space>
+" noremap <space>ak :HNotes<space>
+" noremap <space>at :TNotes<space>
+" noremap <space>an :Notes<CR>
 
 let g:markdown_fold_style = 'nested'
 
