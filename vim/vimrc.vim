@@ -41,6 +41,9 @@ set undodir=~/.vim/undo
 " move forwards through jumplist with tab and backwards with shift tab
 nnoremap <S-Tab> <C-O>
 
+" always use cmdlinewindow for :
+nnoremap : :<c-f>i
+
 " fix accidental shift key 
 nnoremap :W :w
 nnoremap :Q :q
@@ -440,15 +443,15 @@ noremap <space>vK :split<space>new<CR>
 noremap <space>vL :botright<space>vert<space>new<CR>
 
 " create splits
-nmap \| :vsp<CR>
-nmap _ :sp<CR>
+nnoremap \| :vsp<CR>
+nnoremap _ :sp<CR>
 
 " tab navigation
-nmap <space>tn :tabnew<space>
-nmap [t :tabprev<CR>
-nmap ]t :tabnext<CR>
-nmap [T :tabfirst<CR>
-nmap [T :tablast<CR>
+nnoremap <space>tn :tabnew<space>
+nnoremap [t :tabprev<CR>
+nnoremap ]t :tabnext<CR>
+nnoremap [T :tabfirst<CR>
+nnoremap [T :tablast<CR>
 
 
 """""""""""""""

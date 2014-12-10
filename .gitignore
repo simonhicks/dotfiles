@@ -17,6 +17,7 @@ emacs.d/url/cookies
 vim/swap/*.swo
 vim/swap/*.sw*
 vim/bundle/active
+vim/bundle/simple-vim-shell
 vim/bundle/active.vim
 vim/bundle/fuzzy
 vim/bundle/fuzzy.vim
