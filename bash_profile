@@ -59,7 +59,7 @@ then
 fi
 
 # sudo is crap... sudo -E is WAY better
-alias sudo='sudo -E'
+# alias sudo='sudo -E'
 
 set -o vi
 export EDITOR=vim
