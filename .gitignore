@@ -18,6 +18,7 @@ vim/swap/*.swo
 vim/swap/*.sw*
 vim/bundle/active
 vim/bundle/simple-vim-shell
+vim/bundle/workflow
 vim/bundle/active.vim
 vim/bundle/fuzzy
 vim/bundle/fuzzy.vim
@@ -28,6 +29,8 @@ vim/bundle/doit
 vim/bundle/doit.vim
 vim/bundle/journal.vim
 vim/bundle/journal
+vim/bundle/workflow.vim
+vim/bundle/workflow
 vim/bundle/text.vim
 vim/bundle/todo.vim
 *.scpt
