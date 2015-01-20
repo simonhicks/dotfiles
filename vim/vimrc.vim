@@ -534,29 +534,16 @@ endfunction
 au BufReadPost *.clj,*.cljs call RainbowParenthesesLoadAll()
 
 
-"""""""""
-" Google
-"""""""""
-nnoremap gl :set operatorfunc=<SID>GoogleOperator<cr>g@
-vnoremap gl :<c-u>call <SID>GoogleOperator(visualmode())<cr>
-function! s:GoogleOperator(type)
-  let saved_register = @@
-  if a:type ==# 'v'
-    normal! `<v`>y
-  elseif a:type ==# 'char'
-    normal! `[v`]y
-  else
-    return
-  endif
-  let url = shellescape("https://www.google.co.uk/search?q=" . @@)
-  if executable('firefox')
-    execute "! firefox -new-tab " . url . "&"
-  else
-    execute "! open " . url
-  endif
-  let @@ = saved_register
-  redraw!
-endfunction
+""""""""""""""""""""
+" Search in browser
+""""""""""""""""""""
+
+call searchers#make_binding({
+      \ 'name': "Google",
+      \ 'prefix': "https://www.google.co.uk/search?q=",
+      \ 'suffix': "",
+      \ 'binding': 'gl'
+      \ })
 
 
 """"""""
