@@ -6,7 +6,7 @@ gitStatus=`git status 2>/dev/null`
 if [[ "$(echo $gitStatus | grep 'nothing to commit')" != "" ]]
 then
   color_num='2' # green => clean
-elif [[ "$(echo $gitStatus | grep '# Untracked')" != "" ]]
+elif [[ "$(echo $gitStatus | grep 'Untracked')" != "" ]]
 then
   color_num='1' # red => untracked files
 else

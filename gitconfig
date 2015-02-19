@@ -24,3 +24,5 @@
   rm = remote
   s = status
   f = fetch
+[push]
+	default = simple

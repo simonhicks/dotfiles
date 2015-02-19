@@ -653,6 +653,15 @@ let g:mdpp_todo_colors = {
 let g:markdown_fold_style = 'nested'
 
 
+"""""""""
+" Pandoc
+"""""""""
+function! PandocPreview(out)
+  execute "!pandoc -o ".a:out." %"
+  call feedkeys("<CR>")
+endfunction
+
+
 """"""""""""
 " UltiSnips 
 """"""""""""
