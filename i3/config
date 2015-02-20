@@ -32,7 +32,7 @@ bindsym $mod+Return exec terminator
 bindsym $mod+e exec gvim
 bindsym $mod+i exec terminator -x ranger
 bindsym $mod+b exec firefox
-bindsym $mod+c exec terminator -x cmus
+bindsym $mod+c exec google-chrome
 
 # kill focused window
 bindsym $mod+q kill
