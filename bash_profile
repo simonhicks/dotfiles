@@ -150,11 +150,6 @@ then
   export TODOTXT_DEFAULT_ACTION=ls
 fi
 
-if [ -e ~/.bashrc.local ]
-then
-  . ~/.bashrc.local
-fi
-
 if [ -d /System/Library/Frameworks ]
 then
   export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home
@@ -189,4 +184,9 @@ fi
 export PATH=.:$PATH
 
 export PGM_RBENV_COMMAND='PATH=/usr/local/bin:$PATH'
+
+if [ -e ~/.bashrc.local ]
+then
+  . ~/.bashrc.local
+fi
 

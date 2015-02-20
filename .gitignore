@@ -20,6 +20,8 @@ vim/bundle/active
 vim/bundle/simple-vim-shell
 vim/bundle/workflow
 vim/bundle/active.vim
+vim/bundle/todo
+vim/bundle/todo.vim
 vim/bundle/fuzzy
 vim/bundle/fuzzy.vim
 vim/bundle/buffalator

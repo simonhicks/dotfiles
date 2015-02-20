@@ -50,7 +50,8 @@ fi
 
 if [ "$2" ]
 then
-    cmd=$2
+    shift
+    cmd=$@
 fi
 
 function scriptifyFile() {
