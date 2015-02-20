@@ -19,6 +19,11 @@ vim/swap/*.sw*
 vim/bundle/active
 vim/bundle/simple-vim-shell
 vim/bundle/workflow
+vim/bundle/workflow.vim
+vim/bundle/syntastic
+vim/bundle/syntastic.vim
+vim/bundle/searchers
+vim/bundle/searchers.vim
 vim/bundle/active.vim
 vim/bundle/todo
 vim/bundle/todo.vim
