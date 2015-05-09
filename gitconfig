@@ -26,3 +26,5 @@
   f = fetch
 ; [push]
 	; default = simple
+[push]
+	default = simple

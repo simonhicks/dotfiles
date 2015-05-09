@@ -185,6 +185,12 @@ if has("autocmd")
   autocmd! BufReadCmd *.ont call zip#Browse(expand("<amatch>"))
   " ...and kmz's
   autocmd! BufReadCmd *.kmz call zip#Browse(expand("<amatch>"))
+
+  " hoplon files are mostly clojure
+  au BufRead,BufNewFile *.clj.hl set filetype=clojure
+  au BufRead,BufNewFile *.cljs.hl set filetype=clojure
+  " ... so are .boot files
+  au BufRead,BufNewFile *.boot set filetype=clojure
 else
 
   " always set autoindenting on
@@ -402,6 +408,8 @@ if has("gui_running")
   set vb " visual bell instead of beep
   set guioptions-=T
   set guioptions-=m
+  set guioptions-=R
+  set guioptions-=r
 else
   colorscheme my_colors
 endif
@@ -676,6 +684,15 @@ nnoremap <space>se :UltiSnipsEdit<CR>
 " Fugitive
 """""""""""
 noremap g* :Ggrep <cword><CR>
+
+
+"""""""""""""""""
+" Goyo/Limelight
+"""""""""""""""""
+let g:limelight_default_coefficient = 0.3
+let g:limelight_paragraph_span = 1
+autocmd User GoyoEnter Limelight
+autocmd User GoyoLeave Limelight!
 
 """""""""""""""""""""
 " Local modifications
