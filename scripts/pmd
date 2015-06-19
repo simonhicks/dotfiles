@@ -16,7 +16,7 @@ LONG_REST_SOUND="default"
 
 SCRIPT_TITLE="Pomodoro"
 
-echo "This script is pomodoro timer."
+echo "This script is a pomodoro timer."
 echo "It is currently configured for the current cycle:"
 echo ""
 echo "  work for $FOCUS_PERIOD seconds"
