@@ -23,11 +23,26 @@ echo "  work for $FOCUS_PERIOD seconds"
 echo "  rest for $REST_PERIOD seconds"
 echo ""
 echo "After $NUMBER_OF_CYCLES of those cycles, it will quit and you should take a longer break"
+if [ "$PMD_LOGFILE" ]
+then
+  echo ""
+  echo "Alerts will be logged in $PMD_LOGFILE"
+fi
+
+log() {
+  if [ "$PMD_LOGFILE" ]
+  then
+    echo "[`date`] $1" > $PMD_LOGFILE
+  else
+    echo "[`date`] $1"
+  fi
+}
 
 send_alert() {
   MESSAGE=$1
   SOUND=$2
   terminal-notifier -appIcon "`dirname $0`/resources/pmd-icon.png" -title "$SCRIPT_TITLE" -message "$MESSAGE" -sound $SOUND
+  log $MESSAGE
 }
 
 short_cycle() {
