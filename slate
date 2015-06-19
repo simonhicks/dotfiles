@@ -23,6 +23,10 @@ bind k:g,cmd,shift:toggle move windowTopLeftX;windowTopLeftY-${row} windowSizeX;
 bind l:g,cmd,shift:toggle move windowTopLeftX;windowTopLeftY windowSizeX+${column};windowSizeY
 
 # cmd+shift+{h,j,k,l} to move
+bind up:cmd,shift move windowTopLeftX;windowTopLeftY windowSizeX;windowSizeY currentID+1
+bind down:cmd,shift move windowTopLeftX;windowTopLeftY windowSizeX;windowSizeY currentID-1
+
+# cmd+shift+{h,j,k,l} to move
 bind h:cmd,shift move windowTopLeftX-${column};windowTopLeftY windowSizeX;windowSizeY
 bind j:cmd,shift move windowTopLeftX;windowTopLeftY+${row} windowSizeX;windowSizeY
 bind k:cmd,shift move windowTopLeftX;windowTopLeftY-${row} windowSizeX;windowSizeY

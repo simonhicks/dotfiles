@@ -1,5 +1,5 @@
-""""""""""""""""""""""""""""""""""
 " Standard pathogen and vim setup
+""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""
 set nocompatible
 let g:pathogen_disabled=["eclim"]
