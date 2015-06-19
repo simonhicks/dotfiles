@@ -42,7 +42,7 @@ send_alert() {
   MESSAGE=$1
   SOUND=$2
   terminal-notifier -appIcon "`dirname $0`/resources/pmd-icon.png" -title "$SCRIPT_TITLE" -message "$MESSAGE" -sound $SOUND
-  log $MESSAGE
+  log "$MESSAGE"
 }
 
 short_cycle() {
