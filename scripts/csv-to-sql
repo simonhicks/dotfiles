@@ -1,0 +1,112 @@
+#!/usr/bin/env bash
+
+show_help() {
+  echo ""
+  echo "$(basename $0) converts a csv file into a SQL script which imports that
+  data. By default it assumes all values are varchars, however you can use a
+  different type for a column by appending ':<type>' to its header (eg.
+  'id:long')" | tr '\n' ' ' | fmt -d='' -s -80
+  echo ""
+  echo "USAGE: $0 [-wh] [-s separator] [-q quote] [-t table] file"
+  echo ""
+  echo "  s separator : Character used as separator in the input data (default ',')"
+  echo "  q quote     : Character used to quote values in the input data (default '')"
+  echo "  t table     : The name of the table to create (defaults to the (sanitised)"
+  echo "                filename"
+  echo "  h           : print this help text"
+  echo ""
+}
+
+shopt -s extglob
+
+CSV_SEPARATOR=,
+QUOTE_CHAR=""
+
+while getopts "hs:q:t:" opt
+do
+  case "$opt" in
+    h)
+      show_help
+      exit 0
+      ;;
+    s) CSV_SEPARATOR="$OPTARG"
+      ;;
+    q) QUOTE_CHAR="$OPTARG"
+      ;;
+    t) TABLE_NAME="$OPTARG"
+      ;;
+  esac
+done
+shift $((OPTIND-1))
+DATA_FILE=$1
+if [ "$DATA_FILE" == "" ]
+then
+  >&2 echo "Missing argument: \$DATA_FILE"
+  >&2 show_help
+  exit 1
+fi
+TABLE_NAME=${TABLE_NAME:-$(basename $DATA_FILE | sed -e 's/\.[^.]*$//' | tr -C '[:alnum:]\n' '_')}
+SCHEMA=''
+
+while IFS=$CSV_SEPARATOR read -ra row
+do
+  if [[ $SCHEMA ]]
+  then
+    i=0
+    echo -n "INSERT INTO $TABLE_NAME VALUES ( "
+    for i in ${!row[*]}
+    do
+      IFS=$CSV_SEPARATOR cell=${row[$i]}
+      cell=${cell%%*([[:space:]])}
+      cell=${cell##*([[:space:]])}
+      if [[ $QUOTE_CHAR ]]
+      then
+        cell="${cell%%$QUOTE_CHAR}"
+        cell="${cell##$QUOTE_CHAR}"
+      fi
+      case ${COLUMN_TYPES[$i]%%(*)} in
+        integer)
+          echo -n "$cell"
+          ;;
+        *)
+          echo -n "'$cell'"
+          ;;
+      esac
+      if [[ $i -lt $ROW_COUNT ]]
+      then
+        echo -n ", "
+      else
+        echo -n " "
+      fi
+      i=$((i+1))
+    done
+    echo ");"
+  else
+    echo "DROP TABLE IF EXISTS $TABLE_NAME;"
+    SCHEMA=(${row[*]//$QUOTE_CHAR/})
+    COLUMN_NAMES=(${SCHEMA[*]%%:*})
+    COLUMN_TYPES=(${SCHEMA[*]})
+    for i in ${!COLUMN_TYPES[*]}
+    do
+      if [[ "${SCHEMA[$i]}" =~ [:] ]]
+      then
+        COLUMN_TYPES[$i]=${SCHEMA[$i]##*:}
+      else
+        COLUMN_TYPES[$i]="varchar"
+      fi
+    done
+    echo "CREATE TABLE $TABLE_NAME ("
+    for i in ${!COLUMN_NAMES[*]}
+    do
+      echo -n "  \"${COLUMN_NAMES[$i]}\" ${COLUMN_TYPES[$i]}"
+      ROW_COUNT=$((${#COLUMN_NAMES[@]}-1))
+      if [[ $i -lt $ROW_COUNT ]]
+      then
+        echo ,
+      else
+        echo
+      fi
+    done
+    echo ");"
+  fi
+done < $DATA_FILE

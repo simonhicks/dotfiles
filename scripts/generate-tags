@@ -5,7 +5,11 @@ default_options = '--exclude=node_modules --exclude=.git --exclude=*.jar --exclu
 
 # load the project configurations
 config_file_path = "#{ENV['HOME']}/.tags-config.yml"
-projects = {}
+projects = {
+  default: {
+    "*" => {}
+  }
+}
 if File.exist?(config_file_path)
   projects = YAML::load(open(config_file_path).read)
 else

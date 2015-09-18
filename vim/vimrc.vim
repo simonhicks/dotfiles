@@ -174,23 +174,32 @@ if has("autocmd")
 
   augroup folding
     autocmd!
-
     " start with all folds open
     au BufRead,BufNewFile * normal! zR
   augroup END
 
-  " pars are just zips...
-  autocmd! BufReadCmd *.par call zip#Browse(expand("<amatch>"))
-  " ...and so are onts
-  autocmd! BufReadCmd *.ont call zip#Browse(expand("<amatch>"))
-  " ...and kmz's
-  autocmd! BufReadCmd *.kmz call zip#Browse(expand("<amatch>"))
+  augroup filetype_zip
+    " pars are just zips...
+    autocmd! BufReadCmd *.par call zip#Browse(expand("<amatch>"))
+    " ...and so are onts
+    autocmd! BufReadCmd *.ont call zip#Browse(expand("<amatch>"))
+    " ...and kmz's
+    autocmd! BufReadCmd *.kmz call zip#Browse(expand("<amatch>"))
 
-  " hoplon files are mostly clojure
-  au BufRead,BufNewFile *.clj.hl set filetype=clojure
-  au BufRead,BufNewFile *.cljs.hl set filetype=clojure
-  " ... so are .boot files
-  au BufRead,BufNewFile *.boot set filetype=clojure
+  " mesa is a groovy dsl
+  augroup filetype_groovy
+    autocmd!
+    autocmd BufRead,BufNewFile *.mesa set filetype=groovy
+  augroup END
+
+  augroup filetype_almost_clj
+    " hoplon files are mostly clojure
+    au BufRead,BufNewFile *.clj.hl set filetype=clojure
+    au BufRead,BufNewFile *.cljs.hl set filetype=clojure
+    " ... so are .boot files
+    au BufRead,BufNewFile *.boot set filetype=clojure
+  augroup END
+
 else
 
   " always set autoindenting on
@@ -371,12 +380,12 @@ vnoremap <C-k> :m-2<CR>gv=gv
 """"""""""
 
 " fold/unfold the entire tree under the cursor
-nnoremap [f zC
-nnoremap ]f zO
+nnoremap [f zc
+nnoremap ]f zo
 
 " [un]fold the current node in the fold tree
-nnoremap [F zc
-nnoremap ]F zo
+nnoremap [F zC
+nnoremap ]F zO
 
 " recursively [un]fold everything
 nnoremap [<c-f> zM
@@ -691,8 +700,8 @@ noremap g* :Ggrep <cword><CR>
 """""""""""""""""
 let g:limelight_default_coefficient = 0.3
 let g:limelight_paragraph_span = 1
-autocmd User GoyoEnter Limelight
-autocmd User GoyoLeave Limelight!
+" autocmd User GoyoEnter Limelight
+" autocmd User GoyoLeave Limelight!
 
 """""""""""""""""""""
 " Local modifications

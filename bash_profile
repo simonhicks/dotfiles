@@ -190,3 +190,8 @@ then
   . ~/.bashrc.local
 fi
 
+if [ -e ~/.bash_profile.local ]
+then
+  . ~/.bash_profile.local
+fi
+
