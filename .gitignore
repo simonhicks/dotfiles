@@ -45,3 +45,4 @@ vim/bundle/md++
 vim/bundle/mdpp
 lein/repl-history
 *.pyc
+vim/bundle/print_todo
