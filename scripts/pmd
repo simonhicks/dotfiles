@@ -1,0 +1,68 @@
+#!/bin/bash
+
+# Configure cycle
+FOCUS_PERIOD="1500"      # seconds
+REST_PERIOD="300"        # seconds
+NUMBER_OF_CYCLES="4" # this is the number of focus periods before you get a long rest
+
+# Configure alert details
+FOCUS_MESSAGE="Time to start working"
+REST_MESSAGE="Time for a short break"
+LONG_REST_MESSAGE="Time for a long break"
+
+FOCUS_SOUND="default"
+REST_SOUND="default"
+LONG_REST_SOUND="default"
+
+SCRIPT_TITLE="Pomodoro"
+
+echo "This script is pomodoro timer."
+echo "It is currently configured for the current cycle:"
+echo ""
+echo "  work for $FOCUS_PERIOD seconds"
+echo "  rest for $REST_PERIOD seconds"
+echo ""
+echo "After $NUMBER_OF_CYCLES of those cycles, it will quit and you should take a longer break"
+if [ "$PMD_LOGFILE" ]
+then
+  echo ""
+  echo "Alerts will be logged in $PMD_LOGFILE"
+fi
+
+log() {
+  if [ "$PMD_LOGFILE" ]
+  then
+    echo "[`date`] $1" > $PMD_LOGFILE
+  else
+    echo "[`date`] $1"
+  fi
+}
+
+send_alert() {
+  MESSAGE=$1
+  SOUND=$2
+  terminal-notifier -appIcon "`dirname $0`/resources/pmd-icon.png" -title "$SCRIPT_TITLE" -message "$MESSAGE" -sound $SOUND
+  log "$MESSAGE"
+}
+
+short_cycle() {
+  send_alert "$FOCUS_MESSAGE" "$FOCUS_SOUND"
+  sleep $FOCUS_PERIOD
+  send_alert "$REST_MESSAGE" "$REST_SOUND"
+  sleep $REST_PERIOD
+}
+
+long_cycle() {
+  send_alert "$FOCUS_MESSAGE" "$FOCUS_SOUND"
+  sleep $FOCUS_PERIOD
+  send_alert "$LONG_REST_MESSAGE" "$LONG_REST_SOUND"
+  exit
+}
+
+i=1
+while [ $i -lt $NUMBER_OF_CYCLES ]
+do
+  short_cycle
+  i=$((i+1))
+done
+long_cycle
