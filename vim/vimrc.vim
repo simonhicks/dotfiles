@@ -686,14 +686,6 @@ nnoremap <space>se :UltiSnipsEdit<CR>
 noremap g* :Ggrep <cword><CR>
 
 
-"""""""""""""""""
-" Goyo/Limelight
-"""""""""""""""""
-let g:limelight_default_coefficient = 0.3
-let g:limelight_paragraph_span = 1
-autocmd User GoyoEnter Limelight
-autocmd User GoyoLeave Limelight!
-
 """""""""""""""""""""
 " Local modifications
 """""""""""""""""""""
