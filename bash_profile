@@ -56,8 +56,15 @@ then
 elif [ -e /usr/share/git-core/git-completion.bash ]
 then
   . /usr/share/git-core/git-completion.bash
+elif [ -e /usr/local/etc/bash_completion.d/git-completion.bash ]
+then
+  . /usr/local/etc/bash_completion.d/git-completion.bash
 fi
-
+# and git-flow
+if [ -e /usr/local/etc/bash_completion.d/git-flow-completion.bash ]
+then
+  . /usr/local/etc/bash_completion.d/git-flow-completion.bash
+fi
 # sudo is crap... sudo -E is WAY better
 # alias sudo='sudo -E'
 
@@ -86,6 +93,10 @@ function safe_rm {
   for arg in $@
   do
     if [ $arg == ~ ]
+    then
+      echo "Don't be a fucking idiot"
+      doit=0
+    elif [ $arg == / ]
     then
       echo "Don't be a fucking idiot"
       doit=0

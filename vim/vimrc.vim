@@ -1,5 +1,5 @@
-" Standard pathogen and vim setup
 """"""""""""""""""""""""""""""""""
+" Standard pathogen and vim setup
 """"""""""""""""""""""""""""""""""
 set nocompatible
 let g:pathogen_disabled=["eclim"]
@@ -300,12 +300,6 @@ inoremap <expr> <CR> pumvisible() ? "\<lt>C-m>" : "\<lt>CR>"
 " <Tab> should first try to expand/jump within a snippet, if that fails it
 " should try autocompletion (using either omnicomplete or keyword) if typing a
 " word or insert a \t otherwise.
-let g:ulti_expand_or_jump_res = 0
-function! InvokeUlti()
-  call UltiSnips#ExpandSnippetOrJump()
-  echom "g:ulti_expand_or_jump_res = " . g:ulti_expand_or_jump_res
-  return g:ulti_expand_or_jump_res
-endfunction
 function! MagicTab()
   if col('.') > 1 && strpart(getline('.'), col('.')-2, 3) =~ '^\w'
     if &omnifunc == ''
@@ -317,14 +311,7 @@ function! MagicTab()
     return "\<Tab>"
   endif
 endfunction
-function! SuperMagicTab()
-  if InvokeUlti()
-    return ""
-  else
-    return MagicTab()
-  end
-endfunction
-inoremap <Tab> <C-r>=SuperMagicTab()<CR>
+inoremap <Tab> <C-r>=MagicTab()<CR>
 
 
 """""""
@@ -333,7 +320,7 @@ inoremap <Tab> <C-r>=SuperMagicTab()<CR>
 set tags=.tags
 set tagstack
 " search for a tag by pattern matching
-nnoremap <space>tj :tjump /
+nnoremap <space>tj :tjump<space>
 
 
 """"""""""""""
@@ -461,7 +448,17 @@ nnoremap \| :vsp<CR>
 nnoremap _ :sp<CR>
 
 " tab navigation
+function! TabCD(directory)
+  execute "tabedit ".a:directory
+  execute "lcd ".a:directory
+  " TODO add an autocmd on window close, which scans for visible buffers
+  " rooted in that buffers getcwd(). If there aren't any left (and there's no
+  " unsaved changes), wipe all the hidden buffers rooted in that directory and
+  " remove that autocmd
+endfunction
+command! -nargs=* -complete=dir Tcd call TabCD("<args>")
 nnoremap <space>tn :tabnew<space>
+nnoremap <space>te :Tcd<space>
 nnoremap [t :tabprev<CR>
 nnoremap ]t :tabnext<CR>
 nnoremap [T :tabfirst<CR>
@@ -563,6 +560,16 @@ call searchers#make_binding({
       \ })
 
 
+"""""""""""""""
+" Insert dates
+"""""""""""""""
+function! AppendDateAtCursor(format)
+  let @x=substitute(system("date +'".a:format."'"), "\n", "", "")
+  normal! "xp
+endfunction
+nnoremap g<C-d> :call AppendDateAtCursor("%a, %d %b %Y")<CR>
+nnoremap g<C-t> :call AppendDateAtCursor("%H:%M")<CR>
+
 """"""""
 " Shell
 """"""""
@@ -584,10 +591,11 @@ function! s:ShellOperator(type)
 endfunction
 
 
-""""""""
-" Gundo
-""""""""
-map gut :GundoToggle<CR>zR
+"""""""""""
+" Undotree
+"""""""""""
+map gut :UndotreeToggle<CR>
+let g:undotree_SetFocusWhenToggle=1
 
 
 """"""""""""""""""""

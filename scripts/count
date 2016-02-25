@@ -1,7 +1,0 @@
-#!/usr/bin/env ruby
-
-if ARGV.length > 0
-  puts ARGV.count
-else
-  puts STDIN.lines.count
-end
