@@ -14,8 +14,7 @@ emacs.d/auto-save-list
 emacs.d/places
 *#
 emacs.d/url/cookies
-vim/swap/*.swo
-vim/swap/*.sw*
+vim/swap/*
 vim/bundle/active
 vim/bundle/simple-vim-shell
 vim/bundle/workflow
