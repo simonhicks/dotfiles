@@ -323,10 +323,11 @@ set tagstack
 nnoremap <space>tj :tjump<space>
 
 
-""""""""""""""
-" Buffalator
-""""""""""""""
+""""""""""""""""""""
+" Buffer management
+""""""""""""""""""""
 noremap <C-b> :buffers<CR>
+noremap g<C-b> :BufEdit<CR>
 
 
 """"""""""""
@@ -432,16 +433,6 @@ set wmh=0
 " expand/contract the current screen
 noremap <space>= <C-w>+
 noremap <space>- <C-w>-
-
-" create splits
-noremap <space>vh :vsplit<space>
-noremap <space>vj :botright<space>split<space>
-noremap <space>vk :split<space>
-noremap <space>vl :botright<space>vsplit<space>
-noremap <space>vH :vert<space>new<CR>
-noremap <space>vJ :botright<space>new<CR>
-noremap <space>vK :split<space>new<CR>
-noremap <space>vL :botright<space>vert<space>new<CR>
 
 " create splits
 nnoremap \| :vsp<CR>
