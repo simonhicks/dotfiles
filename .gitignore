@@ -16,6 +16,7 @@ emacs.d/places
 emacs.d/url/cookies
 vim/swap/*
 vim/bundle/active
+vim/bundle/org.vim
 vim/bundle/simple-vim-shell
 vim/bundle/workflow
 vim/bundle/workflow.vim
