@@ -41,7 +41,7 @@ fi
 if [ -f /etc/bash_completion ] && ! shopt -oq posix
 then
     . /etc/bash_completion
-elif [ -f $(brew --prefix)/etc/bash_completion ]
+elif [[ `which brew` != "" ]] && [ -f $(brew --prefix)/etc/bash_completion ]
 then
   . $(brew --prefix)/etc/bash_completion
 fi
@@ -110,16 +110,28 @@ function safe_rm {
 alias rm='safe_rm'
 
 # add git to path
-export PATH=/usr/local/git/bin:$PATH
+if [ -d /usr/local/git/bin ]
+then
+  export PATH=/usr/local/git/bin:$PATH
+fi
 
 # add ruby gem bin to path
-export PATH=/usr/local/opt/ruby/bin:$PATH
+if [ -d /usr/local/opt/ruby/bin ]
+then
+  export PATH=/usr/local/opt/ruby/bin:$PATH
+fi
 
 # add /usr/local/bin to front of path
-export PATH=/usr/local/bin:$PATH
+if [ -d /usr/local/bin ]
+then
+  export PATH=/usr/local/bin:$PATH
+fi
 
 # add npm executables to the path
-export PATH=/usr/local/share/npm/bin:$PATH
+if [ -d /usr/local/share/npm/bin ]
+then
+  export PATH=/usr/local/share/npm/bin:$PATH
+fi
 
 # import hufman aliases
 if [ -e ~/.hufman-aliases ]
@@ -143,9 +155,9 @@ fi
 # #   eval "$(rbenv init -)"
 # # fi
 # =======
-export RBENV_ROOT="${HOME}/.rbenv"
-if [ -d "${RBENV_ROOT}" ];
+if [ -d "${HOME}/.rbenv" ];
 then
+  export RBENV_ROOT="${HOME}/.rbenv"
   export PATH="${RBENV_ROOT}/bin:${PATH}"
   eval "$(rbenv init -)"
 elif which rbenv > /dev/null
@@ -166,9 +178,8 @@ then
   export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home
 fi
 
-# easy access to vps
-export VPS=simon@sh.simonhicks.org
-export GITVPS=ssh://$VPS/home/simon/Code
+
+export DOCKER_HOST=tcp://localhost:2375
 
 # do this last, so stuff in the scripts, local-scripts and current directories
 # override everything else.
@@ -205,4 +216,3 @@ if [ -e ~/.bash_profile.local ]
 then
   . ~/.bash_profile.local
 fi
-

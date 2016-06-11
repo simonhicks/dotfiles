@@ -185,6 +185,8 @@ if has("autocmd")
     autocmd! BufReadCmd *.ont call zip#Browse(expand("<amatch>"))
     " ...and kmz's
     autocmd! BufReadCmd *.kmz call zip#Browse(expand("<amatch>"))
+    " ...and pxz's
+    autocmd! BufReadCmd *.pxz call zip#Browse(expand("<amatch>"))
 
   " mesa is a groovy dsl
   augroup filetype_groovy
