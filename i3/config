@@ -30,9 +30,12 @@ focus_follows_mouse no
 # start applications
 bindsym $mod+Return exec terminator
 bindsym $mod+e exec gvim
-bindsym $mod+i exec terminator -x ranger
 bindsym $mod+b exec firefox
 bindsym $mod+c exec google-chrome
+bindsym $mod+s exec exec slack
+bindsym $mod+o exec terminator -x mutt
+bindsym $mod+i exec terminator -x ranger
+bindsym $mod+p exec terminator -x ncmpcpp
 
 # kill focused window
 bindsym $mod+q kill
@@ -54,19 +57,13 @@ bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
-# split in vertical/horizontal orientation
-# (i3 gets vertical and horizontal the wrong way round!)
-bindsym $mod+v split h
-bindsym $mod+g split v
-bindsym $mod+Shift+bar split h
-bindsym $mod+Shift+underscore split v
-
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
 bindsym $mod+t layout tabbed
+bindsym $mod+v layout stacked
+bindsym $mod+g split v
 bindsym $mod+n layout toggle split
 
 # push/pop from the 'minimized stack'
@@ -116,12 +113,10 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Are you sure you want to shutdown?' -b 'Yes, shutdown now' 'sudo /sbin/shutdown -P now'"
-bindsym $mod+Shift+s exec "i3-nagbar -t warning -m 'Are you sure you want to hibernate now?' -b 'Yes, hibernate now' 'sudo /usr/sbin/pm-hibernate'"
-bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'Are you sure you want to shutdown?' -b 'Yes, shutdown now' 'sudo /sbin/shutdown -P now'"
+bindsym $mod+Shift+s exec "i3lock -c 000000"
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-
-bindsym $mod+Shift+t exec "/home/si/local-scripts/tpad"
 
 # resize window 
 mode "resize" {
@@ -155,25 +150,32 @@ bar {
 # remap keys
 exec xmodmap ~/.Xmodmap
 
-# stuff to start on boot
-exec --no-startup-id keepassx /home/si/Dropbox/new-passwords.kdb -min -lock
-exec --no-startup-id dropbox start
-exec --no-startup-id nm-applet
-exec feh --bg-fill '/home/si/Pictures/wallpaper.jpg' 
+# configure display layout
+exec bash /home/shicks/.screenlayout/two-screens.sh
 
-# make volume keys work... this will break if you update Ubuntu version
-# The problem is that media key handling was moved from gnome-settings-daemon
-# to gnome-shell. However this feature was added back to gnome-settings-daemon
-# in the Ubuntu Trusty Repository which can be installed via PPA
-# (https://launchpad.net/~ezyang/+archive/ppa):
-#
-#    sudo apt-add-repository ppa:ezyang/ppa
-#    sudo apt-get update
-#    sudo apt-get upgrade
-exec --no-startup-id gnome-settings-daemon
+# make sure I always have a kerberos ticket
+exec bash /home/shicks/scripts/my-kerberos-ticket-fetching-daemon &
 
-# disable keyboard autorepeat
-exec xset -r
+# # stuff to start on boot
+# exec --no-startup-id keepassx /home/si/Dropbox/new-passwords.kdb -min -lock
+exec --no-startup-id /home/shicks/.dropbox-dist/dropboxd
+# exec --no-startup-id nm-applet
+exec feh --bg-fill '/home/shicks/Pictures/wallpaper.jpg' 
+
+# # make volume keys work... this will break if you update Ubuntu version
+# # The problem is that media key handling was moved from gnome-settings-daemon
+# # to gnome-shell. However this feature was added back to gnome-settings-daemon
+# # in the Ubuntu Trusty Repository which can be installed via PPA
+# # (https://launchpad.net/~ezyang/+archive/ppa):
+# #
+# #    sudo apt-add-repository ppa:ezyang/ppa
+# #    sudo apt-get update
+# #    sudo apt-get upgrade
+# exec --no-startup-id gnome-settings-daemon
+
+# # disable keyboard autorepeat
+# exec xset -r
 
 # hide cursor, since the mouse is just annoying
 exec unclutter -idle 1 &
+
