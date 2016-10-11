@@ -2,7 +2,7 @@
 " Standard pathogen and vim setup
 """"""""""""""""""""""""""""""""""
 set nocompatible
-let g:pathogen_disabled=["eclim"]
+let g:pathogen_disabled=["eclim","tsuquyomi"]
 call pathogen#infect() 
 syntax on
 filetype plugin indent on
