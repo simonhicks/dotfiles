@@ -28,6 +28,11 @@ set wrapscan                   " search should wrap the buffer
 set iskeyword+=-               " foo-bar is pretty much always 1 word
 set nojoinspaces               " autoformat should do single space after full-stop
 
+" always show status line
+set laststatus=2
+" filename[, branch], pwd, bunch-of-flags-------line,col,percent through the file
+set statusline=%f\ %{fugitive#statusline()}\ [%{getcwd()}]\ %m%r%w%q%=%l,%c\ (%p%%)
+
 " persistent undo is AWESOME!!!
 set undofile
 set undolevels=10000
@@ -115,6 +120,12 @@ if has("autocmd")
 
     " autocmd BufReadPost *.txt,*.notes,*.md setlocal textwidth=110
     autocmd Syntax markdown,notes setlocal textwidth=100
+  augroup END
+
+  augroup mail
+    autocmd!
+
+    autocmd Syntax mail %s/: *$/:/
   augroup END
 
   augroup cursor_position
@@ -304,10 +315,12 @@ inoremap <expr> <CR> pumvisible() ? "\<lt>C-m>" : "\<lt>CR>"
 " word or insert a \t otherwise.
 function! MagicTab()
   if col('.') > 1 && strpart(getline('.'), col('.')-2, 3) =~ '^\w'
-    if &omnifunc == ''
-      return "\<C-n>"
-    else
+    if &omnifunc != ''
       return "\<C-x>\<C-o>"
+    elseif exists("b:complete_with_tags") && b:complete_with_tags ==# 1
+      return "\<C-x>\<C-]>"
+    else
+      return "\<C-n>"
     end
   else
     return "\<Tab>"
@@ -330,6 +343,7 @@ nnoremap <space>tj :tjump<space>
 """"""""""""""""""""
 noremap <C-b> :buffers<CR>
 noremap g<C-b> :BufEdit<CR>
+nnoremap <space>tb :buffer<space>
 
 
 """"""""""""
