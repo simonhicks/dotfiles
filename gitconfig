@@ -1,6 +1,6 @@
 [user]
 	name = Simon Hicks
-	email = code@simonhicks.org
+	email = shicks@palantir.com
 
 [color]
   ui = auto
@@ -24,8 +24,6 @@
   rm = remote
   s = status
   f = fetch
-; [push]
-	; default = simple
 [push]
 	default = simple
 [core]

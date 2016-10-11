@@ -1,6 +1,9 @@
 vim/undo/*
 tags
 *.swp
+*.swo
+.tags
+.nrepl-port
 ng
 vim/.netrwhist
 notes
@@ -47,3 +50,4 @@ lein/repl-history
 *.pyc
 vim/bundle/print_todo
 vim/bundle/psql.vim
+vim/spell
