@@ -154,7 +154,7 @@ exec xmodmap ~/.Xmodmap
 exec bash /home/shicks/.screenlayout/two-screens.sh
 
 # make sure I always have a kerberos ticket
-exec bash /home/shicks/scripts/my-kerberos-ticket-fetching-daemon &
+exec bash /home/shicks/local-scripts/my-kerberos-ticket-fetching-daemon &
 
 # # stuff to start on boot
 # exec --no-startup-id keepassx /home/si/Dropbox/new-passwords.kdb -min -lock
