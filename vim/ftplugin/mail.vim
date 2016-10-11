@@ -20,7 +20,7 @@ function! MailCompleteFunction(findstart, base)
     endwhile
     return c-1
   else
-    let matches = split(system('/home/shicks/local-scripts/vim-ldap.pl '.a:base), "\n")
+    let matches = split(system('$HOME/local-scripts/vim-ldap.pl '.a:base), "\n")
     return {'words': matches, 'refresh': 'always'}
   endif
 endfunction
