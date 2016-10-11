@@ -8,7 +8,6 @@ quiet_popd() {
 }
 alias b='quiet_popd'
 alias l='ls -lh'
-alias k="kpcli --kdb=$HOME/Dropbox/passwords.kdb"
 alias r='ranger'
 alias g='git'
 alias s='ssh'
@@ -36,16 +35,12 @@ then
   alias br='brightness'
 fi
 
-if [  `which xsel` ]
+if [ `which xsel` ]
 then
   alias  pb='xsel --clipboard'
-else
-  pb() {
-    if [ "$@" ]
-    then
-      pbcopy "$@"
-    else
-      pbpaste
-    fi
-  }
+fi
+
+if [ `which kpcli` ]
+then
+  alias k='kpcli --kdb $HOME/Dropbox/new-passwords.kdb'
 fi
