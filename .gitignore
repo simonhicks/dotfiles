@@ -32,6 +32,8 @@ vim/bundle/todo
 vim/bundle/todo.vim
 vim/bundle/fuzzy
 vim/bundle/fuzzy.vim
+vim/bundle/open.vim
+vim/bundle/open
 vim/bundle/csv-utils.vim
 vim/bundle/csv-utils
 vim/bundle/bufedit.vim
