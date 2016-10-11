@@ -65,8 +65,6 @@ if [ -e /usr/local/etc/bash_completion.d/git-flow-completion.bash ]
 then
   . /usr/local/etc/bash_completion.d/git-flow-completion.bash
 fi
-# sudo is crap... sudo -E is WAY better
-# alias sudo='sudo -E'
 
 set -o vi
 export EDITOR=vim
