@@ -54,10 +54,10 @@ else
   set t_Co=256
   let colors_name = "my_colors"
 
-  hi Normal       ctermfg=white       ctermbg=black  cterm=none
-  hi CursorLine   ctermfg=white       ctermbg=black  cterm=underline
-  hi NonText      ctermfg=blue        ctermbg=black  cterm=none
-  hi Todo         ctermfg=red         ctermbg=black  cterm=bold
+  hi Normal       ctermfg=white       ctermbg=none  cterm=none
+  hi CursorLine   ctermfg=white       ctermbg=none  cterm=underline
+  hi NonText      ctermfg=blue        ctermbg=none  cterm=none
+  hi Todo         ctermfg=red         ctermbg=none  cterm=bold
   hi Comment      ctermfg=grey    
   hi Constant     ctermfg=darkblue    cterm=none       
   hi Directory    ctermfg=blue        cterm=none       
@@ -75,7 +75,7 @@ else
   hi StatusLineNC ctermfg=black       ctermbg=white  cterm=none
   hi VertSplit    ctermfg=black       ctermbg=white  cterm=none
   hi PmenuSel     ctermfg=white       ctermbg=darkgrey
-  hi Folded       ctermfg=grey        ctermbg=Black
+  hi Folded       ctermfg=grey        ctermbg=none
   hi Search       ctermfg=Black       ctermbg=Yellow
   hi Pmenu        ctermfg=Black       ctermbg=141
   hi Visual       ctermfg=white       ctermbg=blue
