@@ -35,7 +35,6 @@ bindsym $mod+c exec google-chrome
 bindsym $mod+s exec exec slack
 bindsym $mod+o exec terminator -x mutt
 bindsym $mod+i exec terminator -x ranger
-bindsym $mod+p exec terminator -x ncmpcpp
 
 # kill focused window
 bindsym $mod+q kill
