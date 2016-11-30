@@ -1,6 +1,6 @@
 setlocal fo+=aw
 setlocal fo-=tc
-setlocal textwidth=110
+setlocal textwidth=80
 setlocal spell
 
 function! MailCompleteFunction(findstart, base)
