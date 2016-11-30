@@ -28,3 +28,8 @@
 	default = simple
 [core]
 	excludesfile = ~/.gitignore
+[merge]
+	conflictstyle = diff3
+	tool = vimdiff
+[mergetool]
+	prompt = false

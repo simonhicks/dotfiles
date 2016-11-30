@@ -33,7 +33,7 @@ bind k:cmd,shift move windowTopLeftX;windowTopLeftY-${row} windowSizeX;windowSiz
 bind l:cmd,shift move windowTopLeftX+${column};windowTopLeftY windowSizeX;windowSizeY
 
 # cmd+shift+s to shrink a tiny bit in all directions (to change the order of selection when moving)
-bind s:cmd,shift move windowTopLeftX+10;windowTopLeftY+10 windowSizeX-20;windowSizeY-30
+# bind s:cmd,shift move windowTopLeftX+10;windowTopLeftY+10 windowSizeX-20;windowSizeY-30
 
 # cmd+shift+p followed by h,j,k,l for presets
 bind h:p,cmd,shift move screenOriginX;screenOriginY screenSizeX/2;screenSizeY

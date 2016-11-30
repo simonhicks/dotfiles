@@ -453,6 +453,7 @@ noremap <space>- <C-w>-
 " create splits
 nnoremap \| :vsp<CR>
 nnoremap _ :sp<CR>
+nnoremap + :sp<CR><C-w>T
 
 " tab navigation
 function! TabCD(directory)
@@ -488,17 +489,6 @@ if has('transparency')
   noremap [# :call IncreaseTransparency()<CR>
   noremap ]# :call DecreaseTransparency()<CR>
 endif
-
-
-""""""""""
-" NrrwRgn
-""""""""""
-function! NrrwRgnOp(type)
-  normal! :'<,'>NR!
-  normal! zR
-  echom @@
-endfunction
-vnoremap nr :<c-u>call NrrwRgnOp(visualmode())<cr>
 
 
 """"""""""""""""
@@ -619,18 +609,6 @@ let g:ipy_force_preview = 1
 
 
 """"""""""""""""""
-" Finger training
-""""""""""""""""""
-" turn this on to force yourself to use f, F, t, T, b, w, / & ? more...
-" h,j,k,l aren't much better than the arrow keys!
-function! FingerTraining()
-  map hh <nop>
-  map jj <nop>
-  map kk <nop>
-  map ll <nop>
-endfunction
-
-
 """"""""""""
 " Syntastic 
 """"""""""""
