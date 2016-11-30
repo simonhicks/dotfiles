@@ -11,4 +11,4 @@ map <buffer> cPP c!!
 
 map <buffer> g<CR> yatO<Esc>p]]cPat
 
-map <buffer> <C-[> :execute "Djump ". expand("<cword>")<CR>
+map <buffer> <C-]> :execute "Djump ". expand("<cword>")<CR>
