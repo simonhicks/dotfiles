@@ -32,7 +32,7 @@ bindsym $mod+Return exec terminator
 bindsym $mod+e exec gvim
 bindsym $mod+b exec firefox
 bindsym $mod+c exec google-chrome
-bindsym $mod+s exec exec slack
+bindsym $mod+s exec exec open-thing-dialog
 bindsym $mod+o exec terminator -x mutt
 bindsym $mod+i exec terminator -x ranger
 
@@ -156,10 +156,10 @@ exec bash /home/shicks/.screenlayout/two-screens.sh
 exec bash /home/shicks/local-scripts/my-kerberos-ticket-fetching-daemon &
 
 # # stuff to start on boot
+# exec feh --bg-fill '/home/shicks/Pictures/Minimal-retina.png'
 # exec --no-startup-id keepassx /home/si/Dropbox/new-passwords.kdb -min -lock
-exec --no-startup-id /home/shicks/.dropbox-dist/dropboxd
+# exec --no-startup-id /home/shicks/.dropbox-dist/dropboxd
 # exec --no-startup-id nm-applet
-exec feh --bg-fill '/home/shicks/Pictures/wallpaper.jpg' 
 
 # # make volume keys work... this will break if you update Ubuntu version
 # # The problem is that media key handling was moved from gnome-settings-daemon
