@@ -21,6 +21,8 @@ vim/swap/*
 vim/bundle/active
 vim/bundle/org.vim
 vim/bundle/simple-vim-shell
+vim/bundle/scratch
+vim/bundle/scratch.vim
 vim/bundle/workflow
 vim/bundle/workflow.vim
 vim/bundle/syntastic

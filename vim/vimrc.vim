@@ -696,6 +696,24 @@ let g:limelight_paragraph_span = 1
 " autocmd User GoyoEnter Limelight
 " autocmd User GoyoLeave Limelight!
 
+function! RunJava(lines)
+	let java_dir = tempname()
+  call system("mkdir ".java_dir)
+  let java_file = java_dir . "/Temp.java"
+  let prefix_lines = [
+        \ "public class Temp {",
+        \ "public static void main(String[] args) {"
+        \ ]
+  let suffix_lines = ["}", "}"]
+	call writefile(prefix_lines + a:lines + suffix_lines, java_file)
+  let output = split(system("bash -c 'cd ".java_dir."; javac Temp.java; java Temp'"), "\n")
+  for line in output
+    echom line
+  endfor
+endfunction
+
+command! -nargs=0 JavaScratchPad call scratch#open("ScratchPad.java", "RunJava")
+
 """""""""""""""""""""
 " Local modifications
 """""""""""""""""""""
