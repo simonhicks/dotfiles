@@ -35,6 +35,11 @@ bindsym $mod+c exec google-chrome
 bindsym $mod+s exec exec open-thing-dialog
 bindsym $mod+o exec terminator -x mutt
 bindsym $mod+i exec terminator -x ranger
+bindsym $mod+p exec terminator -x ncmpcpp
+
+# make the volume roller work
+bindcode 122 exec vol -
+bindcode 123 exec vol +
 
 # kill focused window
 bindsym $mod+q kill
