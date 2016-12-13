@@ -37,9 +37,17 @@ bindsym $mod+o exec terminator -x mutt
 bindsym $mod+i exec terminator -x ranger
 bindsym $mod+p exec terminator -x ncmpcpp
 
-# make the volume roller work
+# make the keyboard media keys
+# system volume
 bindcode 122 exec vol -
 bindcode 123 exec vol +
+# play/pause
+bindcode 172 exec ncmpcpp toggle
+# skip/go back a track
+bindcode 173 exec ncmpcpp prev
+bindcode 171 exec ncmpcpp next
+# display current track using the "music" button
+bindcode 179 exec zenity --notification --text "`ncmpcpp --now-playing`" --timeout=2
 
 # kill focused window
 bindsym $mod+q kill
