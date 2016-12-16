@@ -4,7 +4,7 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 font Terminus 8
-new_window pixel 2
+new_window pixel 4
 
 # class                 border  bg      text    indicator
 client.focused          #994c4c #285577 #ffffff #2e9ef4
