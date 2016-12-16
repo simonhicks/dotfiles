@@ -17,5 +17,5 @@ cnoremap <C-l> <right>
 cnoremap <C-j> <down>
 cnoremap <C-k> <up>
 
-" source! /Users/shicks/.vimperatorrc.local
+source! ~/.vimperatorrc.local
 " vim: set ft=vimperator:
