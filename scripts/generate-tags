@@ -1,49 +1,30 @@
 #!/usr/bin/env ruby
-require 'yaml'
 
 default_options = '--exclude=node_modules --exclude=.git --exclude=*.jar --exclude=*.js --langmap=Lisp:+.clj'
 
-# load the project configurations
-config_file_path = "#{ENV['HOME']}/.tags-config.yml"
-projects = {
-  default: {
-    "*" => {}
-  }
-}
-if File.exist?(config_file_path)
-  projects = YAML::load(open(config_file_path).read)
-else
-  File.open(config_file_path, 'w') {|f| f.puts(YAML::dump(projects))}
+TAG_FILE = ".tags"
+PROJECTS_FILE = ".tagprojects"
+
+projects = (File.exists?(PROJECTS_FILE) ? open(PROJECTS_FILE).lines.map(&:strip) : []) << "*"
+
+# delete the existing TAG_FILE
+if (File.exists?(TAG_FILE))
+  File.delete(TAG_FILE)
 end
+create = true
 
-# figure out where we're running from
-pwd = File.expand_path(".")
-alt_pwd = pwd.gsub(ENV['HOME'], '~')
-
-# get project specific stuff for that location
-tag_file = "#{pwd}/.tags"
-project = projects[alt_pwd] || projects[pwd] || projects[:default]
-
-if project
-  puts "Generating tags in '#{tag_file}'"
-  # delete the existing TAG_FILE
-  if (File.exists?(tag_file))
-    File.delete(tag_file)
-  end
-  create = true
-
-  # for each key in the project_config, generate ctags and add them to the tagfile
-  project.each do |root, config|
-
+# for each key in the project_config, generate ctags and add them to the tagfile
+projects.each do |root|
+  project = File.expand_path(root)
+  if root == "*" || File.exists?(project)
+    puts "Adding tags from '#{project}' to '#{TAG_FILE}'"
     # if this is the first run, then create a new file, else append to an existing one
     create_option = (create ? '' : '-a')
     create = false
 
     # run ctags
-    options = create_option + ' ' + default_options + ' ' + (config[:options] || '')
-    puts `ctags #{options} -f .tags -R #{root}`
-
+    `ctags #{create_option + ' ' + default_options} -f .tags -R #{project}`
+  else
+    puts "Couldn't find directory/file '#{project}'"
   end
-else
-  puts "There is no configuration for #{pwd} in #{config_file_path}"
 end
