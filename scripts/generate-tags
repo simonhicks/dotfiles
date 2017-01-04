@@ -5,7 +5,7 @@ default_options = '--exclude=node_modules --exclude=.git --exclude=*.jar --exclu
 TAG_FILE = ".tags"
 PROJECTS_FILE = ".tagprojects"
 
-projects = (File.exists?(PROJECTS_FILE) ? open(PROJECTS_FILE).lines.map(&:strip) : []) << "*"
+projects = (File.exists?(PROJECTS_FILE) ? open(PROJECTS_FILE).each_line.map(&:strip).to_a : []) << "*"
 
 # delete the existing TAG_FILE
 if (File.exists?(TAG_FILE))
