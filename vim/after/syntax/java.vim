@@ -4,3 +4,6 @@ syn region javaCase start="^\z(\s*\)\(case\|default\).*:\s*$" end="^\s*break;\s*
 syn region javaTryCatch start="^\z(\s*\)\(try\|catch\).*{\s*$" end="^\z1}\s*$" transparent fold keepend
 syn region javadoc start="^\s*/\*\*" end="^.*\*/" transparent fold keepend
 syn region javaBlockComment start="^\s*/\*" end="^.*\*/" transparent fold keepend
+syn clear javaError
+syn match javaError "<<<\|\.\.\|=>\|||=\|&&=\|\*\/"
+syn match javaFuncDef "[^-]->"
