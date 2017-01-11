@@ -696,7 +696,27 @@ let g:limelight_paragraph_span = 1
 " autocmd User GoyoEnter Limelight
 " autocmd User GoyoLeave Limelight!
 
+
+" JavaScratchPad
+function! s:is_java_import_line(line)
+  return match(a:line, "^import.*") != -1
+endfunction
+
+function! s:split_lines(lines)
+  let import_lines = []
+  let code_lines = []
+  for line in a:lines
+    if s:is_java_import_line(line)
+      call add(import_lines, line)
+    else
+      call add(code_lines, line)
+    endif
+  endfor
+  return {"code": code_lines, "imports": import_lines}
+endfunction
+
 function! RunJava(lines)
+  let lines = s:split_lines(a:lines)
 	let java_dir = tempname()
   call system("mkdir ".java_dir)
   let java_file = java_dir . "/Temp.java"
@@ -705,7 +725,7 @@ function! RunJava(lines)
         \ "public static void main(String[] args) {"
         \ ]
   let suffix_lines = ["}", "}"]
-	call writefile(prefix_lines + a:lines + suffix_lines, java_file)
+	call writefile(lines.imports + prefix_lines + lines.code + suffix_lines, java_file)
   let output = split(system("bash -c 'cd ".java_dir."; javac Temp.java; java Temp'"), "\n")
   for line in output
     echom line
