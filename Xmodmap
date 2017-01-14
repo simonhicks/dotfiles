@@ -1,15 +1,2 @@
-keycode 12 = 3 numbersign 3 numbersign sterling sterling sterling
-keycode 11 = 2 at 2 at
-keycode 48 = apostrophe quotedbl apostrophe quotedbl
-keycode 51 = backslash bar backslash bar bar brokenbar bar
-keycode 94 = numbersign asciitilde numbersign asciitilde dead_grave dead_breve dead_grave
-keycode 13 = 4 dollar 4 dollar EuroSign onequarter EuroSign
-
-remove Lock = Caps_Lock
-keysym Caps_Lock = Escape
-
-! swap alt & super
-remove mod1 = Alt_L
-remove mod4 = Super_L
-add mod1 = Super_L
-add mod4 = Alt_L
+! map search button to escape
+keysym Super_L = Escape

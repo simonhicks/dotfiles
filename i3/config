@@ -12,7 +12,7 @@ client.focused_inactive #4c7899 #5f676a #ffffff #484e50
 client.unfocused        #4c7899 #222222 #888888 #292d2e
 client.urgent           #2f343a #900000 #ffffff #900000
 
-set $mod Mod4
+set $mod Mod1
 
 # make anything with notifyd in the title, floating
 for_window [title=".*notifyd.*"] floating enable
@@ -25,29 +25,29 @@ for_window [title="vimperator-.*GVIM"] floating enable
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+# make touchpad/cursor less annoying
 focus_follows_mouse no
+bindsym $mod+Shift+t exec /home/shicks/local-scripts/tpad
 
 # start applications
 bindsym $mod+Return exec terminator
 bindsym $mod+e exec gvim
-bindsym $mod+b exec firefox
-bindsym $mod+c exec google-chrome
-bindsym $mod+s exec exec open-thing-dialog
+bindsym $mod+b exec vimb -c /home/shicks/.vimbrc
 bindsym $mod+o exec terminator -x mutt
 bindsym $mod+i exec terminator -x ranger
 bindsym $mod+p exec terminator -x ncmpcpp
 
-# make the keyboard media keys
-# system volume
-bindcode 122 exec vol -
-bindcode 123 exec vol +
-# play/pause
-bindcode 172 exec ncmpcpp toggle
-# skip/go back a track
-bindcode 173 exec ncmpcpp prev
-bindcode 171 exec ncmpcpp next
-# display current track using the "music" button
-bindcode 179 exec zenity --notification --text "`ncmpcpp --now-playing`" --timeout=2
+# # make the keyboard media keys
+# # system volume
+# bindcode 122 exec vol -
+# bindcode 123 exec vol +
+# # play/pause
+# bindcode 172 exec ncmpcpp toggle
+# # skip/go back a track
+# bindcode 173 exec ncmpcpp prev
+# bindcode 171 exec ncmpcpp next
+# # display current track using the "music" button
+# bindcode 179 exec zenity --notification --text "`ncmpcpp --now-playing`" --timeout=2
 
 # kill focused window
 bindsym $mod+q kill
@@ -125,9 +125,9 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
-bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'Are you sure you want to shutdown?' -b 'Yes, shutdown now' 'sudo /sbin/shutdown -P now'"
-bindsym $mod+Shift+s exec "i3lock -c 000000"
+bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+s exec "i3lock -c 000000"
 
 
 # resize window 
@@ -162,31 +162,8 @@ bar {
 # remap keys
 exec xmodmap ~/.Xmodmap
 
-# configure display layout
-exec bash /home/shicks/.screenlayout/two-screens.sh
-
-# make sure I always have a kerberos ticket
-exec bash /home/shicks/local-scripts/my-kerberos-ticket-fetching-daemon &
-
 # # stuff to start on boot
-# exec feh --bg-fill '/home/shicks/Pictures/Minimal-retina.png'
-# exec --no-startup-id keepassx /home/si/Dropbox/new-passwords.kdb -min -lock
-# exec --no-startup-id /home/shicks/.dropbox-dist/dropboxd
-# exec --no-startup-id nm-applet
-
-# # make volume keys work... this will break if you update Ubuntu version
-# # The problem is that media key handling was moved from gnome-settings-daemon
-# # to gnome-shell. However this feature was added back to gnome-settings-daemon
-# # in the Ubuntu Trusty Repository which can be installed via PPA
-# # (https://launchpad.net/~ezyang/+archive/ppa):
-# #
-# #    sudo apt-add-repository ppa:ezyang/ppa
-# #    sudo apt-get update
-# #    sudo apt-get upgrade
-# exec --no-startup-id gnome-settings-daemon
-
-# # disable keyboard autorepeat
-# exec xset -r
+exec feh --bg-fill '/home/shicks/Pictures/wallpaper.jpg'
 
 # hide cursor, since the mouse is just annoying
 exec unclutter -idle 1 &

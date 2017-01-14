@@ -24,7 +24,7 @@ shopt -s checkwinsize
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # set a fancy prompt
-PS1='$([ $? -eq 0 ] || (tput setaf 1 && echo "[FAIL] "))\[$(tput setaf 3)\][\D{%H:%M}] \[$(tput setaf 9)\]\h\[$(tput sgr0)\]:\[$(tput setaf 4)\]$(pwd) \[$(git-status-color)\]$(git-status-line)\[$(tput sgr0)\]\n\$ '
+PS1='$([ $? -eq 0 ] || (tput setaf 1 && echo "[FAIL] "))\[$(tput setaf 3)\][\D{%H:%M}] \[$(tput setaf 1)\]\h\[$(tput sgr0)\]:\[$(tput setaf 4)\]$(pwd) \[$(git-status-color)\]$(git-status-line)\[$(tput sgr0)\]\n\$ '
 
 # enable color support of ls
 export CLICOLOR=1
