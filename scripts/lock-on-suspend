@@ -1,0 +1,6 @@
+host-dbus dbus-monitor --system "type='signal',interface='org.chromium.PowerManager'" | 
+  mawk -W interactive '
+    /path=\/org\/chromium\/PowerManager; interface=org.chromium.PowerManager; member=SuspendImminent/ {
+      system("/usr/bin/i3lock -c 000000")
+    }
+  '

@@ -162,8 +162,11 @@ bar {
 # remap keys
 exec xmodmap ~/.Xmodmap
 
-# # stuff to start on boot
+# set the background
 exec feh --bg-fill '/home/shicks/Pictures/wallpaper.jpg'
+
+# lock the screen laptop goes into suspend
+exec /home/shicks/scripts/lock-on-suspend &
 
 # hide cursor, since the mouse is just annoying
 exec unclutter -idle 1 &
