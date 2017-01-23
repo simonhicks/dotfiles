@@ -155,7 +155,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
   mode dock
-  position top
+  position bottom
   status_command i3status
 }
 

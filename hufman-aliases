@@ -17,6 +17,12 @@ alias t='todo.sh -a'
 alias trans='transmission-remote-cli'
 alias o='rifle'
 alias gr='./gradlew'
+cd_up_directories() {
+  target=$(echo $@ | tr ' ' '/')
+  cd ../$target
+}
+alias ..='cd_up_directories'
+alias -- -='cd -;'
 
 if [ `which mvim` ]
 then
