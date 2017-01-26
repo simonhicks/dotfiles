@@ -16,7 +16,6 @@ set $mod Mod4
 
 # make anything with notifyd in the title, floating
 for_window [title=".*notifyd.*"] floating enable
-for_window [title=".*(?i)preferences.*"] floating enable
 # for_window [title="xcfe4-notifyd"] move absolute position center
 for_window [title="xmessage"] floating enable
 for_window [title="floater"] floating enable
@@ -155,7 +154,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
   mode dock
-  position bottom
+  position top
   status_command i3status
 }
 
