@@ -1,0 +1,116 @@
+#!/bin/bash
+
+BATTERY_CHARGED_THRESHOLD=99 # percent
+BATTERY_ALERT_THRESHOLD=60 # minutes
+BATTERY_URGENT_ALERT_THRESHOLD=30 # minutes
+BATTERY_ALERT_SENT="false"
+BATTERY_CHARGED_ALERT_SENT="false"
+
+get_acpi() {
+  acpi | sed -e 's/Battery 0: //' -e 's/\(remaining\|until charged\)//'
+}
+
+# args:
+# String...   output of `acpi`   
+#
+# result:
+# command only succeeds if a "nearly charged" alert should be sent
+nearly_charged() {
+  if [ $BATTERY_CHARGED_ALERT_SENT == "false" ]
+  then
+    echo $@ | awk -F ', ' "
+    /Charging/ {
+      sub(/%/, \"\", \$2)
+      if (\$2+0 > $BATTERY_CHARGED_THRESHOLD) {
+        exit 0
+      } else {
+        exit 1
+      }
+    }"
+    CHARGED_RESULT=$?
+    if `return $CHARGED_RESULT`
+    then
+      BATTERY_CHARGED_ALERT_SENT="true"
+      return 0
+    fi
+  fi
+  return 1
+}
+
+# args:
+# Integer     number of minutes to use as threshold
+# String...   output of `acpi` with battery name and suffix removed
+#
+# result:
+# command only succeeds if the battery is below the given threshold
+alert_threshold() {
+  LOCAL_BATTERY_THRESHOLD=$1
+  shift
+  echo $@ | awk -F ', ' "
+  /Discharging/ {
+    split(\$3,time,\":\")
+    if (time[1]+0 == 0 && time[2]+0 <= $LOCAL_BATTERY_THRESHOLD) {
+      exit 0
+    } else {
+      exit 1
+    }
+  }"
+}
+
+# args:
+# String...   output of `acpi` with battery name and suffix removed
+charging() {
+  echo $@ | grep 'Charging'
+  return $?
+}
+
+# args:
+# String...   output of `acpi` with battery name and suffix removed
+#
+# result:
+# command only succeeds if a low battery alert should be shown
+battery_alert() {
+  if [ $BATTERY_ALERT_SENT == "false" ]
+  then
+    alert_threshold $BATTERY_ALERT_THRESHOLD $@
+    LOCAL_ALERT_RESULT=$?
+    if `return $LOCAL_ALERT_RESULT`
+    then
+      BATTERY_ALERT_SENT="true"
+      return 0
+    fi
+  fi
+  return 1
+}
+
+# args:
+# String...   output of `acpi` with battery name and suffix removed
+#
+# result:
+# command only succeeds if a alow battery alert should be shown
+urgent_battery_alert() {
+  alert_threshold $BATTERY_URGENT_ALERT_THRESHOLD $@
+}
+
+while true
+do
+  ACPI_RESULT=`get_acpi`
+  if charging $ACPI_RESULT
+  then
+    BATTERY_ALERT_SENT="false"
+    if nearly_charged $ACPI_RESULT
+    then
+      /usr/bin/i3-nagbar -m "Your batter is now charged. Please unplug the charger" -t warning &
+    fi
+  else # battery is discharging
+    BATTERY_CHARGED_ALERT_SENT="false"
+    if urgent_battery_alert $ACPI_RESULT
+    then
+      /usr/bin/i3-nagbar -m "Your battery is running very, very low. Please plug in a charger ASAP!" -t error &
+    elif battery_alert $ACPI_RESULT
+    then
+      /usr/bin/i3-nagbar -m "Your battery is running low. Please plug in a charger." -t warning &
+    fi
+  fi
+  sleep 60
+done

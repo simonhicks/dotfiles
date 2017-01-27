@@ -16,7 +16,6 @@ set $mod Mod1
 
 # make anything with notifyd in the title, floating
 for_window [title=".*notifyd.*"] floating enable
-for_window [title=".*(?i)preferences.*"] floating enable
 # for_window [title="xcfe4-notifyd"] move absolute position center
 for_window [title="xmessage"] floating enable
 for_window [title="floater"] floating enable
@@ -32,7 +31,7 @@ bindsym $mod+Shift+t exec /home/shicks/local-scripts/tpad
 # start applications
 bindsym $mod+Return exec terminator
 bindsym $mod+e exec gvim
-bindsym $mod+b exec vimb -c /home/shicks/.vimbrc
+bindsym $mod+b exec firefox
 bindsym $mod+o exec terminator -x mutt
 bindsym $mod+i exec terminator -x ranger
 bindsym $mod+p exec terminator -x ncmpcpp
@@ -167,6 +166,9 @@ exec feh --bg-fill '/home/shicks/Pictures/wallpaper.jpg'
 
 # lock the screen laptop goes into suspend
 exec /home/shicks/scripts/lock-on-suspend &
+
+# display an alert on low battery
+exec /home/shicks/scripts/battery-alert-monitor &
 
 # hide cursor, since the mouse is just annoying
 exec unclutter -idle 1 &
