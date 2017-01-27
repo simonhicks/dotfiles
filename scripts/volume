@@ -1,0 +1,49 @@
+#!/bin/bash
+
+NUM_VOLUME_STEPS=65537
+MUTE_VOLUME_RESTORE_FILE=~/.mute-volume-restore
+
+get_volume() {
+  pacmd list-sinks | grep 'volume: 0:' | grep -o '...\%' | head -n 1 | sed -e 's/%//'
+}
+
+set_volume() {
+  new_volume=$1
+  if [ $new_volume -ge 100 ]
+  then
+    pacmd set-sink-volume 1 $(echo "1*$NUM_VOLUME_STEPS" | bc | sed -e 's/\...*//')
+  elif [ $new_volume -le 0 ]
+  then
+    pacmd set-sink-volume 1 0
+  else
+    pacmd set-sink-volume 1 $(echo "0.${new_volume}*$NUM_VOLUME_STEPS" | bc | sed -e 's/\...*//')
+  fi
+}
+
+toggle_mute() {
+  if [ $[`get_volume`+0] -eq 0 ]
+  then
+    set_volume $(cat $MUTE_VOLUME_RESTORE_FILE)
+    rm $MUTE_VOLUME_RESTORE_FILE
+  else
+    get_volume > ~/.mute-volume-restore
+    set_volume 0
+  fi
+}
+
+if [[ "$1" == "+" ]]
+then
+  set_volume $[`get_volume` + 10]
+elif [[ "$1" == "-" ]]
+then
+  set_volume $[`get_volume` - 10]
+elif [[ "$1" == "m" ]]
+then
+  toggle_mute
+elif [[ "$1" == "-h" ]]
+then
+  echo "USAGE: $0 [+|-]"
+  exit 1
+fi
+get_volume
+exit 0

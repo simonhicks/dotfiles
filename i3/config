@@ -48,6 +48,13 @@ bindsym $mod+p exec terminator -x ncmpcpp
 # # display current track using the "music" button
 # bindcode 179 exec zenity --notification --text "`ncmpcpp --now-playing`" --timeout=2
 
+# make brightness keys work
+bindcode 72 exec /home/shicks/scripts/brightness-adjust -
+bindcode 73 exec /home/shicks/scripts/brightness-adjust +
+bindcode 74 exec /home/shicks/scripts/volume m
+bindcode 75 exec /home/shicks/scripts/volume -
+bindcode 76 exec /home/shicks/scripts/volume +
+
 # kill focused window
 bindsym $mod+q kill
 bindsym $mod+w kill
@@ -172,4 +179,6 @@ exec /home/shicks/scripts/battery-alert-monitor &
 
 # hide cursor, since the mouse is just annoying
 exec unclutter -idle 1 &
+
+exec pulseaudio --start
 
