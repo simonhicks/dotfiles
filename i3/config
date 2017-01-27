@@ -180,5 +180,7 @@ exec /home/shicks/scripts/battery-alert-monitor &
 # hide cursor, since the mouse is just annoying
 exec unclutter -idle 1 &
 
+# make music stuff work
+exec mopidy &
 exec pulseaudio --start
 
