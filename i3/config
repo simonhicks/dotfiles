@@ -29,7 +29,8 @@ focus_follows_mouse no
 # start applications
 bindsym $mod+Return exec terminator
 bindsym $mod+e exec gvim
-bindsym $mod+b exec firefox
+# bindsym $mod+b exec firefox
+bindsym $mod+b exec vimb -c ~/.vimbrc
 bindsym $mod+c exec google-chrome
 bindsym $mod+s exec exec open-thing-dialog
 bindsym $mod+o exec terminator -x mutt
@@ -164,29 +165,8 @@ exec xmodmap ~/.Xmodmap
 # configure display layout
 exec bash /home/shicks/.screenlayout/two-screens.sh
 
-# make sure I always have a kerberos ticket
+# start some daemons
 exec bash /home/shicks/local-scripts/my-kerberos-ticket-fetching-daemon &
-
-# # stuff to start on boot
-# exec feh --bg-fill '/home/shicks/Pictures/Minimal-retina.png'
-# exec --no-startup-id keepassx /home/si/Dropbox/new-passwords.kdb -min -lock
-# exec --no-startup-id /home/shicks/.dropbox-dist/dropboxd
-# exec --no-startup-id nm-applet
-
-# # make volume keys work... this will break if you update Ubuntu version
-# # The problem is that media key handling was moved from gnome-settings-daemon
-# # to gnome-shell. However this feature was added back to gnome-settings-daemon
-# # in the Ubuntu Trusty Repository which can be installed via PPA
-# # (https://launchpad.net/~ezyang/+archive/ppa):
-# #
-# #    sudo apt-add-repository ppa:ezyang/ppa
-# #    sudo apt-get update
-# #    sudo apt-get upgrade
-# exec --no-startup-id gnome-settings-daemon
-
-# # disable keyboard autorepeat
-# exec xset -r
-
-# hide cursor, since the mouse is just annoying
+exec /usr/bin/fetchmail &
+exec /usr/local/bin/mopidy &
 exec unclutter -idle 1 &
-
