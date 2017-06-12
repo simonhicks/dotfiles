@@ -28,26 +28,24 @@ focus_follows_mouse no
 
 # start applications
 bindsym $mod+Return exec terminator
-bindsym $mod+e exec gvim
-# bindsym $mod+b exec firefox
-bindsym $mod+b exec vimb -c ~/.vimbrc
-bindsym $mod+c exec google-chrome
-bindsym $mod+s exec exec open-thing-dialog
-bindsym $mod+o exec terminator -x mutt
+bindsym $mod+e exec terminator -x vim
+bindsym $mod+b exec firefox
+# bindsym $mod+s exec exec open-thing-dialog
+# bindsym $mod+o exec terminator -x mutt
 bindsym $mod+i exec terminator -x ranger
-bindsym $mod+p exec terminator -x ncmpcpp
+# bindsym $mod+p exec terminator -x ncmpcpp
 
 # make the keyboard media keys
-# system volume
-bindcode 122 exec vol -
-bindcode 123 exec vol +
-# play/pause
-bindcode 172 exec ncmpcpp toggle
-# skip/go back a track
-bindcode 173 exec ncmpcpp prev
-bindcode 171 exec ncmpcpp next
-# display current track using the "music" button
-bindcode 179 exec zenity --notification --text "`ncmpcpp --now-playing`" --timeout=2
+## system volume
+#bindcode 122 exec vol -
+#bindcode 123 exec vol +
+## play/pause
+#bindcode 172 exec ncmpcpp toggle
+## skip/go back a track
+#bindcode 173 exec ncmpcpp prev
+#bindcode 171 exec ncmpcpp next
+## display current track using the "music" button
+#bindcode 179 exec zenity --notification --text "`ncmpcpp --now-playing`" --timeout=2
 
 # kill focused window
 bindsym $mod+q kill
@@ -163,10 +161,10 @@ bar {
 exec xmodmap ~/.Xmodmap
 
 # configure display layout
-exec bash /home/shicks/.screenlayout/two-screens.sh
+exec bash /home/shicks/.screenlayout/hi-dpi-screen.sh
 
 # start some daemons
-exec bash /home/shicks/local-scripts/my-kerberos-ticket-fetching-daemon &
-exec /usr/bin/fetchmail &
-exec /usr/local/bin/mopidy &
+#exec bash /home/shicks/local-scripts/my-kerberos-ticket-fetching-daemon &
+#exec /usr/bin/fetchmail &
+#exec /usr/local/bin/mopidy &
 exec unclutter -idle 1 &
