@@ -1,4 +1,3 @@
-
 # i3 config file (v4)
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
@@ -30,15 +29,18 @@ focus_follows_mouse no
 bindsym $mod+Return exec terminator
 bindsym $mod+e exec gvim
 # bindsym $mod+b exec firefox
-bindsym $mod+b exec vimb -c ~/.vimbrc
-bindsym $mod+c exec google-chrome
+# bindsym $mod+b exec vimb -c ~/.vimbrc
+bindsym $mod+b exec browser
 bindsym $mod+s exec exec open-thing-dialog
-bindsym $mod+o exec terminator -x mutt
+bindsym $mod+o exec terminator -x screen -DR mutt
+bindsym $mod+Shift+o exec terminator -x mutt
 bindsym $mod+i exec terminator -x ranger
 bindsym $mod+p exec terminator -x ncmpcpp
+bindsym $mod+Shift+g exec xfce4-screenshooter
 
 # make the keyboard media keys
-# system volume
+# system volume and muting
+bindcode 121 exec toggle-sound
 bindcode 122 exec vol -
 bindcode 123 exec vol +
 # play/pause

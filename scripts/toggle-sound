@@ -1,0 +1,20 @@
+#!/bin/bash
+unmute() {
+  amixer -c 0 set PCM unmute
+  amixer -c 0 set Headphone unmute
+  amixer -c 0 set Master unmute
+}
+
+mute() {
+  amixer -c 0 set Master mute
+}
+
+channelismuted() {
+  amixer -c 0 get $1 | grep \\[off\\]
+}
+
+ismuted() {
+  channelismuted PCM || channelismuted Master || channelismuted Headphone
+}
+
+ismuted && unmute || mute
