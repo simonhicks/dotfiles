@@ -21,6 +21,7 @@ vim/swap/*
 vim/bundle/active
 vim/bundle/org.vim
 vim/bundle/show.vim
+vim/bundle/cntr.vim
 vim/bundle/simple-vim-shell
 vim/bundle/scratch
 vim/bundle/scratch.vim
