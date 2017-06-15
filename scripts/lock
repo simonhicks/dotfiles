@@ -1,0 +1,4 @@
+#!/bin/bash
+
+scrot ~/Pictures/lockscreen.png
+i3lock -i ~/Pictures/lockscreen.png

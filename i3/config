@@ -31,7 +31,7 @@ bindsym $mod+e exec gvim
 # bindsym $mod+b exec firefox
 # bindsym $mod+b exec vimb -c ~/.vimbrc
 bindsym $mod+b exec browser
-bindsym $mod+s exec exec open-thing-dialog
+bindsym $mod+s exec open-thing-dialog
 bindsym $mod+o exec terminator -x screen -DR mutt
 bindsym $mod+Shift+o exec terminator -x mutt
 bindsym $mod+i exec terminator -x ranger
@@ -128,7 +128,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'Are you sure you want to shutdown?' -b 'Yes, shutdown now' 'sudo /sbin/shutdown -P now'"
-bindsym $mod+Shift+s exec "i3lock -c 000000"
+bindsym $mod+Shift+s exec /home/shicks/scripts/lock
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 
