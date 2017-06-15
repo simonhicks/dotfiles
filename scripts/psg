@@ -1,3 +1,14 @@
 #!/bin/bash
 
-ps -ef | grep "$@" | grep -v "$0" | grep -v "grep"
+find_procs() {
+  ps -ef | grep "$@" | grep -v "$0" | grep -v "grep"
+}
+
+if [ "$1" == "-k" ] || [ "$1" == "--kill" ]
+then
+  shift
+  find_procs $@ | awk '{print $2}' | xargs kill -9
+else
+  find_procs $@
+fi
+

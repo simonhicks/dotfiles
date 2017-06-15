@@ -1,11 +1,37 @@
 #!/usr/bin/env ruby
 
+def usage
+  puts "USAGE: generate-tags [options]"
+  puts ""
+  puts "--no-builds       don't run gradlew assemble in any projects"
+  puts "--no-dep-builds   don't run gradlew assemble in dependent projects"
+  puts "--help            print this help text"
+  puts ""
+  exit 1
+end
+
+@local_build = true
+@deps_builds = true
+
+def handle_flag(arg)
+  if arg == "--help"
+    usage
+  elsif arg == "--no-deps-builds"
+    @deps_builds = false
+  elsif arg == "--no-builds"
+    @local_build = false
+    @deps_builds = false
+  end
+end
+
+ARGV.each{ |arg| handle_flag(arg) }
+
 default_options = '--exclude=node_modules --exclude=.git --exclude=*.jar --exclude=*.js --langmap=Lisp:+.clj'
 
 TAG_FILE = ".tags"
 PROJECTS_FILE = ".tagprojects"
 
-projects = (File.exists?(PROJECTS_FILE) ? open(PROJECTS_FILE).each_line.map(&:strip).to_a : []) << "*"
+projects = (File.exists?(PROJECTS_FILE) ? open(PROJECTS_FILE).each_line.map(&:strip).to_a : []) << "."
 
 # delete the existing TAG_FILE
 if (File.exists?(TAG_FILE))
@@ -16,11 +42,18 @@ create = true
 # for each key in the project_config, generate ctags and add them to the tagfile
 projects.each do |root|
   project = File.expand_path(root)
-  if root == "*" || File.exists?(project)
+  if File.exists?(project)
     puts "Adding tags from '#{project}' to '#{TAG_FILE}'"
     # if this is the first run, then create a new file, else append to an existing one
     create_option = (create ? '' : '-a')
     create = false
+
+    # if it's a gradle project, it probably has generated src (because fucking java is such a fucking verbose language that you have no choice but to get computers to write your code for you)
+    if File.exists?("#{project}/gradlew")
+      if (root == "." && @local_build) || (root != "." && @deps_builds)
+        puts `cd #{project} && ./gradlew assemble`
+      end
+    end
 
     # run ctags
     `ctags #{create_option + ' ' + default_options} -f .tags -R #{project}`

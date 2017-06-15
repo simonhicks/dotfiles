@@ -336,6 +336,11 @@ set tags=.tags
 set tagstack
 " search for a tag by pattern matching
 nnoremap <space>tj :tjump<space>
+function! s:fancy_tjump(tagString)
+  execute "tjump ".substitute(substitute(a:tagString, '\(\u\U*\)', '.*\1', 'g'), '\.\*', '/', '')
+endfunction
+command! -nargs=* Tjump call s:fancy_tjump("<args>")
+nnoremap <space>Tj :Tjump<space>
 
 
 """"""""""""""""""""
@@ -608,13 +613,12 @@ let g:ipy_completefunc = 'local'
 let g:ipy_force_preview = 1
 
 
-""""""""""""""""""
 """"""""""""
 " Syntastic 
 """"""""""""
-let g:syntastic_mode_map = { 'mode': 'active',
+let g:syntastic_mode_map = { 'mode': 'passive',
                            \ 'active_filetypes': [],
-                           \ 'passive_filetypes': ['java', 'scala', 'html', 'dart'] }
+                           \ 'passive_filetypes': [] }
 " let g:syntastic_scala_checkers = ['sbt']
 map <C-s> :SyntasticCheck<CR>
 
@@ -696,6 +700,24 @@ let g:limelight_paragraph_span = 1
 " autocmd User GoyoEnter Limelight
 " autocmd User GoyoLeave Limelight!
 
+" GenericScratchPad
+function! RunScratchPadCmd(cmd, filename, lines)
+  let temp_dir = tempname()
+  call system("mkdir ".temp_dir)
+  let bash_file = temp_dir."/".a:filename
+  call writefile(a:lines, bash_file)
+  let output = split(system("bash -c 'cd ".temp_dir."; ".a:cmd.";'"), "\n")
+  for line in output
+    echom line
+  endfor
+endfunction
+
+" BashScratchPad
+function! RunBash(lines)
+  call RunScratchPadCmd("bash temp.sh", "temp.sh", a:lines)
+endfunction
+
+command! -nargs=0 BashScratchPad call scratch#open("scratchpad.sh", "RunBash")
 
 " JavaScratchPad
 function! s:is_java_import_line(line)
@@ -715,24 +737,23 @@ function! s:split_lines(lines)
   return {"code": code_lines, "imports": import_lines}
 endfunction
 
-function! RunJava(lines)
+function! s:java_file_lines(lines)
   let lines = s:split_lines(a:lines)
-	let java_dir = tempname()
-  call system("mkdir ".java_dir)
-  let java_file = java_dir . "/Temp.java"
   let prefix_lines = [
         \ "public class Temp {",
         \ "public static void main(String[] args) {"
         \ ]
   let suffix_lines = ["}", "}"]
-	call writefile(lines.imports + prefix_lines + lines.code + suffix_lines, java_file)
-  let output = split(system("bash -c 'cd ".java_dir."; javac Temp.java; java Temp'"), "\n")
-  for line in output
-    echom line
-  endfor
+  return lines.imports + prefix_lines + lines.code + suffix_lines
+endfunction
+
+function! RunJava(lines)
+  call RunScratchPadCmd("javac Temp.java; java Temp", "Temp.java", s:java_file_lines(a:lines))
 endfunction
 
 command! -nargs=0 JavaScratchPad call scratch#open("ScratchPad.java", "RunJava")
+
+
 
 """""""""""""""""""""
 " Local modifications

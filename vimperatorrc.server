@@ -1,13 +1,14 @@
 "3.14.0 (created: 2016/06/07 23:58:16)
 
 map <C-l> :nohl<Return>
-set toolbars=addons,nobookmarks,nomenu,nonavigation,tabs
+set toolbars=addons,nobookmarks,menu,navigation,tabs
 set! browser.fullscreen.autohide=false
 
-set toolbars=nonavigation
+"set toolbars=nonavigation
 
 map ]t gt
 map [t gT
+map t <C-t>
 noremap [z zO
 noremap ]z zI
 
@@ -15,8 +16,6 @@ cnoremap <C-h> <left>
 cnoremap <C-l> <right>
 cnoremap <C-j> <down>
 cnoremap <C-k> <up>
-
-map t <C-T>
 
 source! ~/.vimperatorrc.local
 " vim: set ft=vimperator:
