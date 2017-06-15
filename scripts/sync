@@ -1,0 +1,47 @@
+#!/bin/bash
+
+
+resolveConflicts() {
+  local MADE_CHANGES="no"
+  while [ "$(git ls-files --abbrev --unmerged | wc -l)" -gt 0 ]
+  do
+    local MADE_CHANGES="yes"
+    local TEMPNAME="`mktemp`"
+    rm $TEMPNAME
+    local SCREENNAME="`basename $TEMPNAME | tr '.' '_'`"
+    tmux new-session -d -s $SCREENNAME
+    sleep 1
+    tmux send-keys -t $SCREENNAME "cd $1"
+    sleep 0.1
+    tmux send-keys -t $SCREENNAME "git status"
+    sleep 0.1
+    tmux send-keys -t $SCREENNAME "echo 'Please resolve the merge conflicts and close this tmux session.'"
+    sleep 0.1
+    tmux attach -t $SCREENNAME
+  done
+  if [ $MADE_CHANGES == "yes" ]
+  then
+    git add -A .
+    git commit -m 'resolved merge conflicts'
+  fi
+}
+
+# @param  repo  The root path to the repo. This should be the same both on server and laptop
+syncRepo() {
+  cd $1
+  # remote commit
+  ssh shicks /home/shicks/scripts/indir $1 git add -A
+  ssh shicks /home/shicks/scripts/indir $1 git commit -m "'changes-made-on-server'"
+  ssh shicks /home/shicks/scripts/indir $1 git push origin master
+  # local commit
+  git add -A .
+  git commit -m 'changes made on laptop'
+  # pull
+  git pull origin master
+  resolveConflicts $1
+  # push back
+  git push origin master
+}
+
+syncRepo ~/notes
+syncRepo ~/todo
