@@ -135,47 +135,11 @@ then
     . ~/.hufman-aliases
 fi
 
-if [ -e ~/scripts/resources/cdup.sh ]
+if [ -d /opt/java/current ]
 then
-    alias cdup='. ~/scripts/resources/cdup.sh'
+  export JAVA_HOME=/opt/java/current
+  export PATH=$PATH:$JAVA_HOME/bin
 fi
-
-# # FIXME I'm not sure what to do here... basically, I just don't want to screw
-# # up desideratum's setup... I don't think I use rbenv there much (if at all) so
-# # it shouldn't matter, but I'm leaving this in just in case until I can
-# # actually have a look
-#
-# <<<<<<< HEAD
-# # if which rbenv > /dev/null
-# # then
-# #   eval "$(rbenv init -)"
-# # fi
-# =======
-if [ -d "${HOME}/.rbenv" ];
-then
-  export RBENV_ROOT="${HOME}/.rbenv"
-  export PATH="${RBENV_ROOT}/bin:${PATH}"
-  eval "$(rbenv init -)"
-elif which rbenv > /dev/null
-then
-  eval "$(rbenv init -)"
-fi
-# >>>>>>> 26b86658f9392f36e1e13665493483edd6f118c8
-
-if [ -d ~/Dropbox/todo ]
-then
-  export TODO_DIR=~/Dropbox/todo
-  export TODOTXT_CFG_FILE=~/.todo.cfg
-  export TODOTXT_DEFAULT_ACTION=ls
-fi
-
-if [ -d /System/Library/Frameworks ]
-then
-  export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home
-fi
-
-
-export DOCKER_HOST=tcp://localhost:2375
 
 # do this last, so stuff in the scripts, local-scripts and current directories
 # override everything else.
