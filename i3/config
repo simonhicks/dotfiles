@@ -28,7 +28,7 @@ focus_follows_mouse no
 # start applications
 bindsym $mod+Return exec terminator
 bindsym $mod+e exec terminator -x vim
-bindsym $mod+b exec browser
+bindsym $mod+b exec /home/shicks/local-scripts/browser
 bindsym $mod+s exec /home/shicks/local-scripts/open-thing-dialog
 bindsym $mod+o exec terminator -x /home/shicks/local-scripts/rmutt
 bindsym $mod+i exec terminator -x ranger
