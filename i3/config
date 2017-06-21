@@ -168,3 +168,4 @@ exec bash /home/shicks/.screenlayout/hi-dpi-screen.sh
 #exec /usr/bin/fetchmail &
 #exec /usr/local/bin/mopidy &
 exec unclutter -idle 1 &
+exec /usr/bin/vmware-user
