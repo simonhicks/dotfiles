@@ -160,9 +160,6 @@ bar {
 # remap keys
 exec xmodmap ~/.Xmodmap
 
-# configure display layout
-exec bash /home/shicks/.screenlayout/hi-dpi-screen.sh
-
 # start some daemons
 #exec bash /home/shicks/local-scripts/my-kerberos-ticket-fetching-daemon &
 #exec /usr/bin/fetchmail &

@@ -156,10 +156,10 @@ then
     export PATH=~/local-scripts:$PATH
 fi
 
-# add dart to the path
-if [ -e ~/src/dart/dart-sdk ]
+# add xrandr wrappers to the path
+if [ -e ~/.screenlayout ]
 then
-  export PATH=~/src/dart/dart-sdk/bin:$PATH
+  export PATH=~/.screenlayout:$PATH
 fi
 
 # add . to the path
