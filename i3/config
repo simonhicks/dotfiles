@@ -33,19 +33,19 @@ bindsym $mod+s exec /home/shicks/local-scripts/open-thing-dialog
 bindsym $mod+o exec terminator -x /home/shicks/local-scripts/rmutt
 bindsym $mod+i exec terminator -x ranger
 bindsym $mod+Shift+t exec /home/shicks/local-scripts/tpad toggle
-# bindsym $mod+p exec terminator -x ncmpcpp
+bindsym $mod+p exec terminator -x ncmpcpp
 
-# make the keyboard media keys
-## system volume
-#bindcode 122 exec vol -
-#bindcode 123 exec vol +
-## play/pause
-#bindcode 172 exec ncmpcpp toggle
-## skip/go back a track
-#bindcode 173 exec ncmpcpp prev
-#bindcode 171 exec ncmpcpp next
-## display current track using the "music" button
-#bindcode 179 exec zenity --notification --text "`ncmpcpp --now-playing`" --timeout=2
+# # make the keyboard media keys
+# # system volume
+# bindcode 122 exec vol -
+# bindcode 123 exec vol +
+# # play/pause
+# bindcode 172 exec ncmpcpp toggle
+# # skip/go back a track
+# bindcode 173 exec ncmpcpp prev
+# bindcode 171 exec ncmpcpp next
+# # display current track using the "music" button
+# bindcode 179 exec zenity --notification --text "`ncmpcpp --now-playing`" --timeout=2
 
 # kill focused window
 bindsym $mod+q kill
