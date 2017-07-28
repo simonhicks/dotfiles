@@ -3,6 +3,6 @@ setlocal shiftwidth=4
 
 let b:complete_with_tags = 1
 
-if exists(":DoWhat")
-  DoWhat :make
+if exists(":DoWhat") && exists(":Gradle")
+  DoWhat :Gradle
 endif
