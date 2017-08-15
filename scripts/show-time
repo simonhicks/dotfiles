@@ -1,0 +1,9 @@
+#!/bin/bash
+date +%H:%M | figlet -W -f big | head -n -1
+while IFS= read -s -r -n1 char
+do
+  if [ "$char" == "q" ]
+  then
+    exit
+  fi
+done

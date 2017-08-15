@@ -1,0 +1,19 @@
+#!/bin/bash
+
+if [ "$1" == "-h" ] || [ "$1" == "--help" ] || [ "$#" -lt 2 ]
+then
+  echo ""
+  echo "USAGE: repeat <N> <cmd>"
+  echo ""
+  echo "  Runs <cmd> <N> times in a row"
+  echo ""
+  exit 1
+fi
+
+NUMBER_OF_REPEATS="$1"
+shift
+
+for i in `seq $NUMBER_OF_REPEATS`
+do
+  $@
+done
