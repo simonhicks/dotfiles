@@ -34,6 +34,8 @@ bindsym $mod+o exec terminator -x /home/shicks/local-scripts/rmutt
 bindsym $mod+i exec terminator -x ranger
 bindsym $mod+Shift+t exec /home/shicks/local-scripts/tpad toggle
 bindsym $mod+p exec terminator -x ncmpcpp
+bindsym $mod+c exec terminator --geometry=280x124 -T floater --command=/home/shicks/scripts/show-time
+
 
 # # make the keyboard media keys
 # # system volume

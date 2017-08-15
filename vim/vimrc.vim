@@ -320,7 +320,7 @@ function! MagicTab()
     elseif exists("b:complete_with_tags") && b:complete_with_tags ==# 1
       return "\<C-x>\<C-]>"
     else
-      return "\<C-n>"
+      return "\<C-x>\<C-n>"
     end
   else
     return "\<Tab>"
@@ -571,6 +571,7 @@ function! AppendDateAtCursor(format)
 endfunction
 nnoremap g<C-d> :call AppendDateAtCursor("%a, %d %b %Y")<CR>
 nnoremap g<C-t> :call AppendDateAtCursor("%H:%M")<CR>
+imap <C-d> <C-o>g<C-d>
 
 """"""""
 " Shell
@@ -690,6 +691,14 @@ nnoremap <space>se :UltiSnipsEdit<CR>
 " Fugitive
 """""""""""
 noremap g* :Ggrep <cword><CR>
+function! Gtodo(string)
+  if a:string == ''
+    Ggrep 'TODO.*shicks'
+  else
+    exec "Ggrep 'TODO.*" . a:string . "'"
+  endif
+endfunction
+command! -nargs=* Gtodo call Gtodo(<q-args>)
 
 
 """""""""""""""""
@@ -753,17 +762,6 @@ endfunction
 
 command! -nargs=0 JavaScratchPad call scratch#open("ScratchPad.java", "RunJava")
 
-
-function! s:generate_tags(bang)
-  let cmd  = $HOME . "/scripts/generate-tags "
-  if a:bang ==# '!'
-    let cmd = cmd . "--no-builds"
-  endif
-  call system(cmd)
-endfunction
-
-command! -nargs=0 -bang GenerateTags call s:generate_tags("<bang>")
-
 " add checkstyle format to errorformat
 let &efm='[ant:checkstyle] [ERROR] %f:%l:%c: %m,' .
       \  '[ant:checkstyle] [ERROR] %f:%l: %m,' .
@@ -784,14 +782,16 @@ let &efm='[ant:checkstyle] [ERROR] %f:%l:%c: %m,' .
       \  '%f:%l:%m,' .
       \  '%f|%l| %m'
 
-" These errorformats came from the defaults, but they cause errors... probably
-" because the escaping was transcribed incorrectly
+" These errorformats were transcribed from the defaults, but they cause
+" errors... probably because the escaping was transcribed incorrectly
       " \  '"%f"\, line %l%*\D%c%*[^ ] %m,' .
       " \  "%D%*\a[%*\d]: Entering directory %*[`']%f','" .
       " \  "%X%*\a[%*\d]: Leaving directory %*[`']%f'," .
       " \  "%D%*\a: Entering directory %*[`']%f'," .
       " \  "%X%*\a: Leaving directory %*[`']%f'," .
       " \  '%DMaking %*\a in %f,' .
+
+let g:gradleVimBrowser = $HOME . "/local-scripts/browser"
 
 
 

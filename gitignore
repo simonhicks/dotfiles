@@ -5,3 +5,6 @@
 .tagprojects
 .nrepl-port
 .todo
+shicks.gradle
+.vimproject
+tmp*.gradle
