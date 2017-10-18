@@ -1,0 +1,34 @@
+#!/bin/bash
+
+workspace_name() {
+  i3-msg -t get_workspaces | jq '.[] | select(.visible) | .name'
+}
+
+workspace_number() {
+  i3-msg -t get_workspaces | jq '.[] | select(.visible) | .num'
+}
+
+NEW_NAME=""
+if [ $# != 0 ]
+then
+  NEW_NAME="`workspace_number`: `echo $@ | tr ' ' '-'`"
+fi
+
+# need to restore workspace_name -> workspace_number first
+if [ "`workspace_name`" != "`workspace_number`" ]
+then
+  echo "restoring old workspace name"
+  bash -c "i3-msg rename workspace '\"'`workspace_name`'\"' to `workspace_number`"
+  i3-msg -t get_workspaces | jq '.[] | select(.visible) '
+  echo
+  echo
+fi
+
+if [ "$NEW_NAME" != "" ]
+then
+  echo "changing name to $NEW_NAME"
+  bash -c "i3-msg rename workspace `workspace_number` to $NEW_NAME"
+  i3-msg -t get_workspaces | jq '.[] | select(.visible) '
+  echo
+  echo
+fi
