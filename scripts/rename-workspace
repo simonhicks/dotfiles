@@ -14,8 +14,8 @@ then
   NEW_NAME="`workspace_number`: `echo $@ | tr ' ' '-'`"
 fi
 
-# need to restore workspace_name -> workspace_number first
-if [ "`workspace_name`" != "`workspace_number`" ]
+# need to restore workspace_name -> workspace_number first (otherwise we lose the workspace number)
+if [ "`workspace_name`" != '"'"`workspace_number`"'"' ]
 then
   echo "restoring old workspace name"
   bash -c "i3-msg rename workspace '\"'`workspace_name`'\"' to `workspace_number`"

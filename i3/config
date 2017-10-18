@@ -3,7 +3,7 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-font Terminus 8
+font pango:Terminus 12
 new_window pixel 4
 
 # class                 border  bg      text    indicator
