@@ -1,2 +1,2 @@
 #!/bin/bash
-/home/shicks/scripts/rename-workspace `zenity --entry --title="Rename i3 Workspace" --text "Enter new i3 workspace title"`
+/home/shicks/scripts/rename-workspace `zenity --entry --title="Rename i3 Workspace" --text "Enter new i3 workspace\ntitle:"`
