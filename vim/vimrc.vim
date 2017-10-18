@@ -339,8 +339,8 @@ nnoremap <space>tj :tjump<space>
 function! s:fancy_tjump(tagString)
   execute "tjump ".substitute(substitute(a:tagString, '\(\u\U*\)', '.*\1', 'g'), '\.\*', '/', '')
 endfunction
-command! -nargs=* Tjump call s:fancy_tjump("<args>")
 nnoremap <space>Tj :Tjump<space>
+command! -nargs=* Tjump call s:fancy_tjump("<args>")
 
 
 """"""""""""""""""""
@@ -761,6 +761,10 @@ function! RunJava(lines)
 endfunction
 
 command! -nargs=0 JavaScratchPad call scratch#open("ScratchPad.java", "RunJava")
+
+if exists(":Javadoc")
+  map <space>jd :Javadoc<space>
+endif
 
 " add checkstyle format to errorformat
 let &efm='[ant:checkstyle] [ERROR] %f:%l:%c: %m,' .

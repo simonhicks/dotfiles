@@ -1,7 +1,7 @@
 #!/bin/bash
 if [[ "$1" == "" ]]
 then
-  curl wttr.in/washington
+  curl wttr.in/washington?m
 else
-  curl wttr.in/$1
+  curl wttr.in/$1?m
 fi

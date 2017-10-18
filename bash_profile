@@ -24,7 +24,7 @@ shopt -s checkwinsize
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # set a fancy prompt
-PS1='$([ $? -eq 0 ] || (tput setaf 1 && echo "[FAIL] "))\[$(tput setaf 3)\][\D{%H:%M}] \[$(tput setaf 5)\]\h\[$(tput sgr0)\]:\[$(tput setaf 4)\]$(pwd) \[$(git-status-color)\]$(git-status-line)\[$(tput sgr0)\]\n\$ '
+PS1='$(EXIT_CODE=$? && [ $EXIT_CODE -eq 0 ] || (tput setaf 1 && echo "[FAIL: $EXIT_CODE] "))\[$(tput setaf 3)\][\D{%H:%M}] \[$(tput setaf 5)\]\h\[$(tput sgr0)\]:\[$(tput setaf 4)\]$(pwd) \[$(git-status-color)\]$(git-status-line)\[$(tput sgr0)\]\n\$ '
 
 # enable color support of ls
 export CLICOLOR=1
@@ -139,6 +139,11 @@ if [ -d /opt/java/current ]
 then
   export JAVA_HOME=/opt/java/current
   export PATH=$PATH:$JAVA_HOME/bin
+fi
+
+if [ -d ~/jdks/jdk1.6 ]
+then
+  export JAVA_1_6_HOME=~/jdks/jdk1.6
 fi
 
 # do this last, so stuff in the scripts, local-scripts and current directories

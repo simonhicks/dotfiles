@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -u
+
+pattern="$1"
+shift
+
+find . -name "$pattern" $@

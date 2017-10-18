@@ -35,12 +35,13 @@ bindsym $mod+i exec terminator -x ranger
 bindsym $mod+Shift+t exec /home/shicks/local-scripts/tpad toggle
 bindsym $mod+p exec terminator -x ncmpcpp
 bindsym $mod+c exec terminator --geometry=280x124 -T floater --command=/home/shicks/scripts/show-time
+bindsym $mod+shift+slash exec /home/shicks/scripts/google
 
 
-# # make the keyboard media keys
-# # system volume
-# bindcode 122 exec vol -
-# bindcode 123 exec vol +
+# make the keyboard media keys
+# system volume
+bindcode 122 exec amixer -D pulse sset Master 2%-
+bindcode 123 exec amixer -D pulse sset Master 2%+
 # # play/pause
 # bindcode 172 exec ncmpcpp toggle
 # # skip/go back a track
@@ -168,3 +169,7 @@ exec xmodmap ~/.Xmodmap
 #exec /usr/local/bin/mopidy &
 exec unclutter -idle 1 &
 exec /usr/bin/vmware-user
+
+# use C-; to activate, h/j/k/l to shrink region, S-{h/j/k/l} to move region, <Space> to click and ; to move mouse to region
+exec /usr/bin/keynav &
+exec /home/shicks/local-scripts/tpad off
