@@ -1,0 +1,7 @@
+#!/bin/bash
+
+THING=`zenity --entry --title="Open thing dialog" --text="Thing: "`
+if [ "$THING" != "" ]
+then
+  /home/shicks/scripts/open-thing $THING
+fi

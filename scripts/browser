@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ $# -eq 0 ]
+then
+  /usr/bin/google-chrome --app="https://google.com"
+else
+  /usr/bin/google-chrome --app="$@"
+fi
