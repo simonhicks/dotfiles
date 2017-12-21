@@ -2,3 +2,4 @@ set foldexpr=getline(v:lnum)=~'^\\s*$'&&getline(v:lnum-1)=~'^\\s*$'&&getline(v:l
 setlocal foldmethod=expr
 setlocal foldopen=all
 setlocal foldclose=all
+norm zm
