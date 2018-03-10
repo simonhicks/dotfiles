@@ -11,6 +11,7 @@ filetype plugin indent on
 """""""""""""""""""""""""
 " General sensible stuff
 """""""""""""""""""""""""
+set belloff=all                " disable all the bells
 set ff=unix                    " prevent stupid 's everywhere
 set backspace=indent,eol,start " allow backspacing over everything in insert mode
 set history=50                 " keep 50 lines of command line history
