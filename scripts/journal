@@ -1,1 +1,3 @@
-vim -c ':Journal'
+#!/bin/bash
+
+vim -c ":Journal"
