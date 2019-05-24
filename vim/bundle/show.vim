@@ -1,1 +1,1 @@
-/home/simon/src/show.vim
+/Users/simon.hicks/src/vimprojects/show.vim

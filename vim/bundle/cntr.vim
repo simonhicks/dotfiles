@@ -1,1 +1,1 @@
-/home/simon/src/cntr.vim
+/Users/simon.hicks/src/vimprojects/cntr.vim/

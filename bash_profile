@@ -174,9 +174,6 @@ then
   export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home
 fi
 
-
-export DOCKER_HOST=tcp://localhost:2375
-
 # do this last, so stuff in the scripts, local-scripts and current directories
 # override everything else.
 #

@@ -7,7 +7,6 @@ call pathogen#infect()
 syntax on
 filetype plugin indent on
 
-
 """""""""""""""""""""""""
 " General sensible stuff
 """""""""""""""""""""""""
@@ -28,6 +27,7 @@ set hidden                     " allow hidden buffers
 set wrapscan                   " search should wrap the buffer
 set iskeyword+=-               " foo-bar is pretty much always 1 word
 set nojoinspaces               " autoformat should do single space after full-stop
+set lazyredraw                 " don't redraw while executing macros
 
 " always show status line
 set laststatus=2
@@ -39,7 +39,14 @@ set undofile
 set undolevels=10000
 set undoreload=10000
 
-" NOTE if these directories don't exist vim can't create them for you.
+function! s:createDirIfDoesntExist(path)
+  if !isdirectory(a:path)
+    call mkdir(a:path, "p")
+  endif
+endfunction
+call s:createDirIfDoesntExist("~/.vim/backup")
+call s:createDirIfDoesntExist("~/.vim/swap")
+call s:createDirIfDoesntExist("~/.vim/undo")
 set backupdir=~/.vim/backup
 set directory=~/.vim/swap
 set undodir=~/.vim/undo
@@ -121,6 +128,10 @@ if has("autocmd")
 
     " autocmd BufReadPost *.txt,*.notes,*.md setlocal textwidth=110
     autocmd Syntax markdown,notes setlocal textwidth=100
+  augroup END
+
+  augroup default_filetype
+    autocmd BufEnter * if &filetype == "" | setlocal ft=markdown | endif
   augroup END
 
   augroup mail
@@ -383,6 +394,9 @@ noremap <C-j> :m+<CR>==
 noremap <C-k> :m-2<CR>==
 vnoremap <C-j> :m'>+<CR>gv=gv
 vnoremap <C-k> :m-2<CR>gv=gv
+" don't break visual mode on indent/dedent
+vnoremap > >gv
+vnoremap < <gv
 
 
 """"""""""
@@ -473,10 +487,13 @@ endfunction
 command! -nargs=* -complete=dir Tcd call TabCD("<args>")
 nnoremap <space>tn :tabnew<space>
 nnoremap <space>te :Tcd<space>
+nnoremap <space>to :tabonly<CR>
 nnoremap [t :tabprev<CR>
 nnoremap ]t :tabnext<CR>
 nnoremap [T :tabfirst<CR>
 nnoremap [T :tablast<CR>
+nnoremap <t :-tabmove<CR>
+nnoremap >t :+tabmove<CR>
 
 
 """""""""""""""
@@ -570,8 +587,8 @@ function! AppendDateAtCursor(format)
   let @x=substitute(system("date +'".a:format."'"), "\n", "", "")
   normal! "xp
 endfunction
-nnoremap g<C-d> :call AppendDateAtCursor("%a, %d %b %Y")<CR>
-nnoremap g<C-t> :call AppendDateAtCursor("%H:%M")<CR>
+inoremap <c-i><C-d> <C-o>:call AppendDateAtCursor("%a, %d %b %Y")<CR>
+inoremap <c-i><C-t> <C-o>:call AppendDateAtCursor("%H:%M")<CR>
 
 """"""""
 " Shell
@@ -762,6 +779,6 @@ command! -nargs=0 JavaScratchPad call scratch#open("ScratchPad.java", "RunJava")
 if filereadable(glob('~/.vimrc.local'))
   so ~/.vimrc.local
 endif
-if filereadable(glob('./.vimrc.local'))
+if filereadable(glob('./.vimrc.local')) && (fnamemodify('.', ':p') != fnamemodify('~', ':p'))
   so ./.vimrc.local
 endif
