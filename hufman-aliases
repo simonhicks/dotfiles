@@ -24,9 +24,9 @@ cd_up_directories() {
 alias ..='cd_up_directories'
 alias -- -='cd -;'
 
-if [ `which mvim` ]
+if [ -x "/Applications/MacVim.app/Contents/bin/mvim" ]
 then
-  VIM_EXEC="mvim"
+  VIM_EXEC="/Applications/MacVim.app/Contents/bin/mvim"
 else
   VIM_EXEC="gvim"
 fi
@@ -50,3 +50,7 @@ if [ `which kpcli` ]
 then
   alias k='kpcli --kdb $HOME/Dropbox/new-passwords.kdb'
 fi
+
+fb() {
+  firebase --token $(cat ~/.firebase_token) $@
+}

@@ -169,9 +169,9 @@ then
   export TODOTXT_DEFAULT_ACTION=ls
 fi
 
-if [ -d /System/Library/Frameworks ]
+if [ -x /usr/libexec/java_home ]
 then
-  export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home
+  export JAVA_HOME="$(/usr/libexec/java_home -v 10)"
 fi
 
 # do this last, so stuff in the scripts, local-scripts and current directories
@@ -183,10 +183,20 @@ then
   export PATH=~/scripts:$PATH
 fi
 
+if [ -d "$HOME/.pub-cache/bin" ]
+then
+  export PATH="$PATH":"$HOME/.pub-cache/bin"
+fi
+
 if [ -e ~/local-scripts ]
 then
     # add ~/local-scripts to the path
     export PATH=~/local-scripts:$PATH
+fi
+
+if [ -e ~/src/flutter/bin/ ]
+then
+  export PATH=$PATH:~/src/flutter/bin/
 fi
 
 # add dart to the path
@@ -209,3 +219,19 @@ if [ -e ~/.bash_profile.local ]
 then
   . ~/.bash_profile.local
 fi
+# added by Anaconda3 2019.03 installer
+# >>> conda init >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$(CONDA_REPORT_ERRORS=false '/anaconda3/bin/conda' shell.bash hook 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    \eval "$__conda_setup"
+else
+    if [ -f "/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/anaconda3/etc/profile.d/conda.sh"
+        CONDA_CHANGEPS1=false conda activate base
+    else
+        \export PATH="/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda init <<<

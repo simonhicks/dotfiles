@@ -40,8 +40,9 @@ set undolevels=10000
 set undoreload=10000
 
 function! s:createDirIfDoesntExist(path)
-  if !isdirectory(a:path)
-    call mkdir(a:path, "p")
+  let path = fnamemodify(a:path, ":p")
+  if !isdirectory(path)
+    call mkdir(path, "p")
   endif
 endfunction
 call s:createDirIfDoesntExist("~/.vim/backup")
@@ -312,14 +313,38 @@ endif
 " do incremental searching
 set incsearch
 
+"""""""""""""
+" AutoPairs "
+"""""""""""""
+augroup autopairs
+  au Filetype vim let b:AutoPairs = {}
+  au Filetype clojure let b:AutoPairs = {}
+  au Filetype clojurescript let b:AutoPairs = {}
+  au Filetype lisp let b:AutoPairs = {}
+  au Filetype scheme let b:AutoPairs = {}
+  au Filetype text let b:AutoPairs = {}
+  au Filetype markdown let b:AutoPairs = {}
+augroup END
+
+"""""""""""
+" vim-lsc "
+"""""""""""
+let g:lsc_server_commands = {'dart': 'dart_language_server', 'python': 'pyls'}
+let g:lsc_auto_map = {'defaults': v:true,
+      \ 'NextReference': ']r',
+      \ 'PreviousReference': '[r',
+      \ 'Completion': 'omnifunc'
+      \ }
+let g:lsc_reference_highlights = v:false
+
 
 """""""""""""""""
 " Omnicompletion
 """""""""""""""""
 " set up a nice looking menu
-set completeopt=menuone
-inoremap <expr> j pumvisible() ? "\<lt>C-n>" : "j"
-inoremap <expr> k pumvisible() ? "\<lt>C-p>" : "k"
+set completeopt=menu,menuone,noselect,noinsert
+" inoremap <expr> j pumvisible() ? "\<lt>C-n>" : "j"
+" inoremap <expr> k pumvisible() ? "\<lt>C-p>" : "k"
 inoremap <expr> <CR> pumvisible() ? "\<lt>C-m>" : "\<lt>CR>"
 
 " <Tab> should first try to expand/jump within a snippet, if that fails it
@@ -587,8 +612,8 @@ function! AppendDateAtCursor(format)
   let @x=substitute(system("date +'".a:format."'"), "\n", "", "")
   normal! "xp
 endfunction
-inoremap <c-i><C-d> <C-o>:call AppendDateAtCursor("%a, %d %b %Y")<CR>
-inoremap <c-i><C-t> <C-o>:call AppendDateAtCursor("%H:%M")<CR>
+inoremap <c-g>d <C-o>:call AppendDateAtCursor("%a, %d %b %Y")<CR>
+inoremap <c-g>t <C-o>:call AppendDateAtCursor("%H:%M")<CR>
 
 """"""""
 " Shell
@@ -771,6 +796,10 @@ endfunction
 
 command! -nargs=0 JavaScratchPad call scratch#open("ScratchPad.java", "RunJava")
 
+"""""""""
+" Flutter
+"""""""""
+let g:flutter_show_log_on_run=0
 
 
 """""""""""""""""""""
