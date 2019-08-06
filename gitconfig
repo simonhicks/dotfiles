@@ -1,6 +1,6 @@
 [user]
-	name = Simon Hicks
-	email = shicks@palantir.com
+  name = Simon Hicks
+  email = shicks@palantir.com
 
 [color]
   ui = auto
@@ -25,11 +25,11 @@
   s = status
   f = fetch
 [push]
-	default = simple
+  default = simple
 [core]
-	excludesfile = ~/.gitignore
+  excludesfile = ~/.gitignore
 [merge]
-	conflictstyle = diff3
-	tool = vimdiff
+  conflictstyle = diff3
+  tool = vimdiff
 [mergetool]
-	prompt = false
+  prompt = false
