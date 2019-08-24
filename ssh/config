@@ -5,3 +5,4 @@ User simon
 Host gh
 HostName github.com
 User git
+IdentityFile ~/.ssh/id_ecdsa

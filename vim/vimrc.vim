@@ -307,8 +307,6 @@ set incsearch
 """""""""""""""""
 " set up a nice looking menu
 set completeopt=menuone
-inoremap <expr> j pumvisible() ? "\<lt>C-n>" : "j"
-inoremap <expr> k pumvisible() ? "\<lt>C-p>" : "k"
 inoremap <expr> <CR> pumvisible() ? "\<lt>C-m>" : "\<lt>CR>"
 
 " <Tab> should first try to expand/jump within a snippet, if that fails it
@@ -698,8 +696,31 @@ noremap g* :Ggrep <cword><CR>
 """""""""""""""""
 let g:limelight_default_coefficient = 0.3
 let g:limelight_paragraph_span = 1
-" autocmd User GoyoEnter Limelight
-" autocmd User GoyoLeave Limelight!
+
+
+""""""""""
+" Vim LSC
+""""""""""
+let g:lsc_server_commands = {
+      \ 'python': 'pyls'
+      \ }
+let g:lsc_auto_map = {
+    \ 'GoToDefinition': '<C-]>',
+    \ 'GoToDefinitionSplit': ['<C-W>]', '<C-W><C-]>'],
+    \ 'FindReferences': 'gr',
+    \ 'NextReference': ']r',
+    \ 'PreviousReference': '[r',
+    \ 'FindImplementations': 'gI',
+    \ 'FindCodeActions': 'ga',
+    \ 'Rename': 'gR',
+    \ 'ShowHover': v:true,
+    \ 'DocumentSymbol': 'go',
+    \ 'WorkspaceSymbol': 'gS',
+    \ 'SignatureHelp': 'gm',
+    \ 'Completion': 'completefunc',
+    \}
+let g:lsc_reference_highlights = v:false
+
 
 " GenericScratchPad
 function! RunScratchPadCmd(cmd, filename, lines)

@@ -44,8 +44,6 @@ then
   . $(brew --prefix)/etc/bash_completion
 fi
 
-# # add ./src to CDPATH
-# export CDPATH=".:~/src"
 
 # add git's tab completion
 if [ -e /usr/local/git/contrib/completion/git-completion.bash ]
@@ -140,28 +138,6 @@ then
     alias cdup='. ~/scripts/resources/cdup.sh'
 fi
 
-# # FIXME I'm not sure what to do here... basically, I just don't want to screw
-# # up desideratum's setup... I don't think I use rbenv there much (if at all) so
-# # it shouldn't matter, but I'm leaving this in just in case until I can
-# # actually have a look
-#
-# <<<<<<< HEAD
-# # if which rbenv > /dev/null
-# # then
-# #   eval "$(rbenv init -)"
-# # fi
-# =======
-if [ -d "${HOME}/.rbenv" ];
-then
-  export RBENV_ROOT="${HOME}/.rbenv"
-  export PATH="${RBENV_ROOT}/bin:${PATH}"
-  eval "$(rbenv init -)"
-elif which rbenv > /dev/null
-then
-  eval "$(rbenv init -)"
-fi
-# >>>>>>> 26b86658f9392f36e1e13665493483edd6f118c8
-
 if [ -d ~/Dropbox/todo ]
 then
   export TODO_DIR=~/Dropbox/todo
@@ -174,8 +150,17 @@ then
   export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home
 fi
 
+# add dart to the path
+if [ -e ~/src/dart/dart-sdk ]
+then
+  export PATH=~/src/dart/dart-sdk/bin:$PATH
+fi
 
-export DOCKER_HOST=tcp://localhost:2375
+if [ -e ~/anaconda3/bin ]
+then
+  export PATH="~/anaconda3/bin:$PATH"
+fi
+
 
 # do this last, so stuff in the scripts, local-scripts and current directories
 # override everything else.
@@ -192,16 +177,8 @@ then
     export PATH=~/local-scripts:$PATH
 fi
 
-# add dart to the path
-if [ -e ~/src/dart/dart-sdk ]
-then
-  export PATH=~/src/dart/dart-sdk/bin:$PATH
-fi
-
 # add . to the path
 export PATH=.:$PATH
-
-export PGM_RBENV_COMMAND='PATH=/usr/local/bin:$PATH'
 
 if [ -e ~/.bashrc.local ]
 then
@@ -212,3 +189,4 @@ if [ -e ~/.bash_profile.local ]
 then
   . ~/.bash_profile.local
 fi
+

@@ -4,3 +4,6 @@
 .tags
 .tagprojects
 .nrepl-port
+.Rhistory
+.Rproj.user
+pr_scrapes_etl.Rproj
