@@ -196,12 +196,26 @@ fi
 if [ -e ~/src/dart/dart-sdk ]
 then
   export PATH=~/src/dart/dart-sdk/bin:$PATH
+elif [ -e /usr/lib/dart/bin ]
+then
+  export PATH=/usr/lib/dart/bin:$PATH
+fi
+
+# add flutter to the path
+if [ -e ~/opt/flutter/bin ]
+then
+  export PATH=~/opt/flutter/bin:$PATH
+fi
+
+# add jdk to the path
+if [ -e ~/jdks/current ]
+then
+  export JAVA_HOME=~/jdks/current/jre/
+  export PATH=~/jdks/current/bin:$PATH
 fi
 
 # add . to the path
 export PATH=.:$PATH
-
-export PGM_RBENV_COMMAND='PATH=/usr/local/bin:$PATH'
 
 if [ -e ~/.bashrc.local ]
 then

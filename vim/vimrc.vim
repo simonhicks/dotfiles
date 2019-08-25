@@ -307,9 +307,9 @@ set incsearch
 """""""""""""""""
 " set up a nice looking menu
 set completeopt=menuone
-inoremap <expr> j pumvisible() ? "\<lt>C-n>" : "j"
-inoremap <expr> k pumvisible() ? "\<lt>C-p>" : "k"
-inoremap <expr> <CR> pumvisible() ? "\<lt>C-m>" : "\<lt>CR>"
+imap <expr> <c-j> pumvisible() ? "\<lt>C-n>" : "\<lt>C-j>"
+imap <expr> <c-k> pumvisible() ? "\<lt>C-p>" : "\<lt>C-k>"
+" inoremap <expr> <CR> pumvisible() ? "\<lt>C-m>" : "\<lt>CR>"
 
 " <Tab> should first try to expand/jump within a snippet, if that fails it
 " should try autocompletion (using either omnicomplete or keyword) if typing a
@@ -429,6 +429,24 @@ if has("gui_running")
   set guioptions-=m
   set guioptions-=R
   set guioptions-=r
+
+  " Font things
+  set guifont=Monospace\ 12
+  function! s:GetFontSize()
+    return str2nr(matchlist(&guifont, "[0-9][0-9]*")[0])
+  endfunction
+  function! s:IncreaseFontSize()
+    let curr = s:GetFontSize()
+    let new = substitute(&guifont, curr, curr + 1, '')
+    execute "set guifont=".substitute(new, ' ', '\\ ', '')
+  endfunction
+  function! s:DecreaseFontSize()
+    let curr = s:GetFontSize()
+    let new = substitute(&guifont, curr, curr - 1, '')
+    execute "set guifont=".substitute(new, ' ', '\\ ', '')
+  endfunction
+  map ]z :call <sid>IncreaseFontSize()<CR>
+  map [z :call <sid>DecreaseFontSize()<CR>
 else
   colorscheme my_colors
 endif
@@ -754,7 +772,25 @@ endfunction
 
 command! -nargs=0 JavaScratchPad call scratch#open("ScratchPad.java", "RunJava")
 
-
+"""""""""
+" vim-lsc
+"""""""""
+let g:lsc_reference_highlights = v:false
+let g:lsc_auto_map = {
+      \ 'GoToDefinition': '<C-]>',
+      \ 'GoToDefinitionSplit': '<C-W><C-]>',
+      \ 'FindReferences': 'gr',
+      \ 'NextReference': '<C-n>',
+      \ 'PreviousReference': '<C-p>',
+      \ 'FindImplementations': 'gI',
+      \ 'FindCodeActions': 'ga',
+      \ 'Rename': 'gR',
+      \ 'ShowHover': v:true,
+      \ 'DocumentSymbol': 'go',
+      \ 'WorkspaceSymbol': 'gS',
+      \ 'SignatureHelp': 'gm',
+      \ 'Completion': 'completefunc',
+      \ }
 
 """""""""""""""""""""
 " Local modifications

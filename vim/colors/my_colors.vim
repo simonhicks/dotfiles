@@ -45,6 +45,7 @@ if has("gui_running")
   hi DiffAdd      guifg=#000000    guibg=#00ff00    ctermfg=black   ctermbg=green
   hi DiffChange   guifg=#ffffff    guibg=#0000ff    ctermfg=white   ctermbg=blue
   hi DiffText     guifg=#0000ff    guibg=#ffffff    ctermfg=blue    ctermbg=white
+  hi SpellCap     gui=undercurl    guisp=#ffff00
 else
   set background=dark
   hi clear Normal
