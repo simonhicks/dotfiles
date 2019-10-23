@@ -50,3 +50,8 @@ if [ `which kpcli` ]
 then
   alias k='kpcli --kdb $HOME/Dropbox/new-passwords.kdb'
 fi
+
+if [ -e /Applications/MacVim.app/Contents/MacOS ]
+then
+  alias vim=/Applications/MacVim.app/Contents/MacOS/Vim
+fi

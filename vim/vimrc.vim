@@ -28,6 +28,7 @@ set hidden                     " allow hidden buffers
 set wrapscan                   " search should wrap the buffer
 set iskeyword+=-               " foo-bar is pretty much always 1 word
 set nojoinspaces               " autoformat should do single space after full-stop
+set noequalalways              " only resize the current window when splitting
 
 " always show status line
 set laststatus=2
@@ -38,6 +39,19 @@ set statusline=%f\ %{fugitive#statusline()}\ [%{getcwd()}]\ %m%r%w%q%=%l,%c\ (%p
 set undofile
 set undolevels=10000
 set undoreload=10000
+
+function! s:createDirIfDoesntExist(path)
+  let path = fnamemodify(a:path, ":p")
+  if !isdirectory(path)
+    call mkdir(path, "p")
+  endif
+endfunction
+call s:createDirIfDoesntExist("~/.vim/backup")
+call s:createDirIfDoesntExist("~/.vim/swap")
+call s:createDirIfDoesntExist("~/.vim/undo")
+set backupdir=~/.vim/backup
+set directory=~/.vim/swap
+set undodir=~/.vim/undo
 
 " NOTE if these directories don't exist vim can't create them for you.
 set backupdir=~/.vim/backup
@@ -53,7 +67,6 @@ nnoremap :Q :q
 nnoremap :Wq :wq
 nnoremap :WQ :wq
 nnoremap :E# :e#
-
 " move around ex command history without moving hands
 cmap <C-j> <down>
 cmap <C-k> <up>
@@ -74,6 +87,10 @@ if has('clipboard')
   nnoremap <C-y> "*y
   vnoremap <C-y> "*y
   nnoremap <C-S-y> "*y$
+endif
+
+if has('terminal')
+  let &shell='bash --login'
 endif
 
 let maplocalleader="\\"
@@ -140,21 +157,6 @@ if has("autocmd")
 
   augroup END
 
-  " eat a specified character... this only exists for the purposes of html/xml
-  " autoclosing. Otherwise </<Tab> adds an actual tab
-  function! Eatchar(pat)
-    let c = nr2char(getchar(0))
-    return (c =~ a:pat) ? '' : c
-  endfunction
-
-  augroup html_and_xml_tag_closing
-    autocmd!
-
-    " autoclose html/xml tags with </<Tab>
-    autocmd BufReadPost *.html iabbr <silent> <buffer> </ </<C-x><C-o><CR><C-R>=Eatchar('\t')<CR>
-    autocmd BufReadPost *.xml iabbr <silent> <buffer> </ </<C-x><C-o><CR><C-R>=Eatchar('\t')<CR>
-  augroup END
-
   augroup clojurescript
     autocmd!
 
@@ -199,6 +201,12 @@ if has("autocmd")
     autocmd! BufReadCmd *.kmz call zip#Browse(expand("<amatch>"))
     " ...and pxz's
     autocmd! BufReadCmd *.pxz call zip#Browse(expand("<amatch>"))
+
+  " tableau files are xml
+  augroup tableau
+    autocmd!
+    autocmd BufRead,BufNewFile *.twb set filetype=xml
+  augroup END
 
   " mesa is a groovy dsl
   augroup filetype_groovy
@@ -314,7 +322,9 @@ inoremap <expr> <CR> pumvisible() ? "\<lt>C-m>" : "\<lt>CR>"
 " word or insert a \t otherwise.
 function! MagicTab()
   if col('.') > 1 && strpart(getline('.'), col('.')-2, 3) =~ '^\w'
-    if &omnifunc != ''
+    if pumvisible()
+      return "\<C-n>"
+    elseif &omnifunc != ''
       return "\<C-x>\<C-o>"
     elseif exists("b:complete_with_tags") && b:complete_with_tags ==# 1
       return "\<C-x>\<C-]>"
@@ -562,14 +572,21 @@ call searchers#make_binding({
 
 
 """""""""""""""
-" Insert dates
+" Insert things
 """""""""""""""
-function! AppendDateAtCursor(format)
+function! s:appendDateAtCursor(format)
   let @x=substitute(system("date +'".a:format."'"), "\n", "", "")
   normal! "xp
 endfunction
-nnoremap g<C-d> :call AppendDateAtCursor("%a, %d %b %Y")<CR>
-nnoremap g<C-t> :call AppendDateAtCursor("%H:%M")<CR>
+nnoremap g<C-d> :call <SID>appendDateAtCursor("%a, %d %b %Y")<CR>
+nnoremap g<C-S-t> :call <SID>appendDateAtCursor("%a, %d %b %Y %H:%M")<CR>
+nnoremap g<C-S-t> :call <SID>appendDateAtCursor("%H:%M")<CR>
+nnoremap g<C-f> "=expand("%")<CR>p
+inoremap <C-g><C-d> <C-o>:call <SID>appendDateAtCursor("%a, %d %b %Y")<CR>
+inoremap <C-g><C-t> <C-o>:call <SID>appendDateAtCursor("%H:%M")<CR>
+inoremap <C-g><C-S-t> <C-o>:call <SID>appendDateAtCursor("%a, %d %b %Y %H:%M")<CR>
+inoremap <C-g><C-f> <C-o>"=expand("%")<CR>p
+inoremap <c-g><C-f> <C-o>"=expand("%")<CR>p
 
 """"""""
 " Shell
@@ -698,11 +715,19 @@ let g:limelight_default_coefficient = 0.3
 let g:limelight_paragraph_span = 1
 
 
+"""""""""""""
+" XML things
+"""""""""""""
+let g:xml_syntax_folding=1
+au FileType xml setlocal foldmethod=syntax
+
+
 """"""""""
 " Vim LSC
 """"""""""
 let g:lsc_server_commands = {
-      \ 'python': 'pyls'
+      \ 'python': 'pyls',
+      \ 'r': 'R --slave -e languageserver::run()'
       \ }
 let g:lsc_auto_map = {
     \ 'GoToDefinition': '<C-]>',
@@ -775,7 +800,44 @@ endfunction
 
 command! -nargs=0 JavaScratchPad call scratch#open("ScratchPad.java", "RunJava")
 
+"""""""""""
+" REPL.vim
+"""""""""""
 
+function! s:make_repl_name(cmd)
+  return substitute(a:cmd, '[^a-zA_Z_][^a-zA-Z_]*', '_', 'g')
+endfunction
+
+function! s:is_existing_repl()
+  if exists('b:repl') && b:repl != ''
+    if repl#is_running(b:repl)
+      return v:true
+    else
+      unlet b:repl
+    end
+  endif
+  return v:false
+endfunction
+  
+
+function! s:start_generic_repl(cmd)
+  if s:is_existing_repl()
+    echoerr "REPL ".b:repl." is already running in this buffer. Please stop that repl first."
+    return
+  else
+    let l:repl_name = s:make_repl_name(a:cmd)
+    let b:repl = l:repl_name
+    call repl#start(l:repl_name, {'opbind': 'cp', 'linebind': 'cpp', 'cmd': a:cmd})
+  endif
+endfunction
+
+function s:stop_buffer_repl()
+  call repl#kill(b:repl)
+  unlet b:repl
+endfunction
+
+command! -nargs=+ -complete=shellcmd Repl call <SID>start_generic_repl(<q-args>)
+command! -nargs=0 ReplStop call <SID>stop_buffer_repl()
 
 """""""""""""""""""""
 " Local modifications

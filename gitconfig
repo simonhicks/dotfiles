@@ -10,6 +10,7 @@
   unstage = reset HEAD
   tree = log --graph --color --decorate --abbrev-commit --relative-date --pretty=\"%C(yellow)%h %C(blue)(%an)%C(reset): %s - %C(green)%cr\"
   t    = log --graph --color --decorate --abbrev-commit --relative-date --pretty=\"%C(yellow)%h %C(blue)(%an)%C(reset): %s - %C(green)%cr\"
+  d = diff
   u = reset HEAD
   l = log
   co = checkout

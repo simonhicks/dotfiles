@@ -7,3 +7,9 @@
 .Rhistory
 .Rproj.user
 pr_scrapes_etl.Rproj
+.Rproj.user
+.RData
+*.Rproj
+.idea
+.lintr
+tags
