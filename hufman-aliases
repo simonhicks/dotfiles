@@ -13,10 +13,9 @@ alias g='git'
 alias s='ssh'
 alias cl='clear'
 alias ca='clear && '
-alias t='todo.sh -a'
-alias trans='transmission-remote-cli'
 alias o='rifle'
 alias gr='./gradlew'
+alias :q='exit'
 cd_up_directories() {
   target=$(echo $@ | tr ' ' '/')
   cd ../$target

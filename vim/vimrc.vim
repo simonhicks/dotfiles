@@ -67,6 +67,11 @@ nnoremap :Q :q
 nnoremap :Wq :wq
 nnoremap :WQ :wq
 nnoremap :E# :e#
+
+" sometimes I hit esc then <c-w> too fast, and the <c-w> gets sent to insert
+" mode by accident
+imap <C-w> <Esc><C-w>
+
 " move around ex command history without moving hands
 cmap <C-j> <down>
 cmap <C-k> <up>
@@ -91,6 +96,7 @@ endif
 
 if has('terminal')
   let &shell='bash --login'
+  nmap <D-Cr> :silent terminal<CR>
 endif
 
 let maplocalleader="\\"
@@ -206,6 +212,12 @@ if has("autocmd")
   augroup tableau
     autocmd!
     autocmd BufRead,BufNewFile *.twb set filetype=xml
+  augroup END
+
+  " Rmd files are just markdown
+  augroup rmd
+    autocmd!
+    autocmd BufRead,BufNewFile *.Rmd set filetype=markdown
   augroup END
 
   " mesa is a groovy dsl
@@ -336,6 +348,7 @@ function! MagicTab()
   endif
 endfunction
 inoremap <Tab> <C-r>=MagicTab()<CR>
+
 
 
 """""""
@@ -485,6 +498,8 @@ nnoremap [t :tabprev<CR>
 nnoremap ]t :tabnext<CR>
 nnoremap [T :tabfirst<CR>
 nnoremap [T :tablast<CR>
+nnoremap <t :-tabm<CR>
+nnoremap >t :+tabm<CR>
 
 
 """""""""""""""
@@ -616,12 +631,6 @@ map gut :UndotreeToggle<CR>
 let g:undotree_SetFocusWhenToggle=1
 
 
-""""""""""""""""""""
-" TextObj RubyBlock
-""""""""""""""""""""
-runtime macros/matchit.vim
-
-
 """"""""""
 " IPython
 """"""""""
@@ -673,13 +682,17 @@ let g:mdpp_todo_colors = {
       \    "ctermfg": "yellow"
       \  }
       \}
-" noremap <space>ah :VNotes<space>
-" noremap <space>al :VNotes<space>
-" noremap <space>aj :HNotes<space>
-" noremap <space>ak :HNotes<space>
-" noremap <space>at :TNotes<space>
-" noremap <space>an :Notes<CR>
-
+let g:mdpp_repl_configs = {
+      \   'sql': {
+      \     'cmd': 'snowsql prod'
+      \   },
+      \   'ruby': {
+      \     'cmd': 'irb'
+      \   },
+      \   'r': {
+      \     'cmd': 'R --no-save --no-readline --interactive'
+      \   }
+      \ }
 let g:markdown_fold_style = 'nested'
 
 
@@ -691,16 +704,6 @@ function! PandocPreview(out)
   call feedkeys("<CR>")
 endfunction
 
-
-""""""""""""
-" UltiSnips 
-""""""""""""
-let g:UltiSnipsExpandTrigger="<C-g>"
-let g:UltiSnipsJumpForwardTrigger="<Tab>"
-let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
-let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsRemoveSelectModeMappings = 0
-nnoremap <space>se :UltiSnipsEdit<CR>
 
 """""""""""
 " Fugitive
@@ -808,7 +811,7 @@ function! s:make_repl_name(cmd)
   return substitute(a:cmd, '[^a-zA_Z_][^a-zA-Z_]*', '_', 'g')
 endfunction
 
-function! s:is_existing_repl()
+function! s:has_existing_repl()
   if exists('b:repl') && b:repl != ''
     if repl#is_running(b:repl)
       return v:true
@@ -819,9 +822,8 @@ function! s:is_existing_repl()
   return v:false
 endfunction
   
-
-function! s:start_generic_repl(cmd)
-  if s:is_existing_repl()
+function! s:start_generic_repl(cmd, bang)
+  if a:bang != '!' && s:has_existing_repl()
     echoerr "REPL ".b:repl." is already running in this buffer. Please stop that repl first."
     return
   else
@@ -836,8 +838,9 @@ function s:stop_buffer_repl()
   unlet b:repl
 endfunction
 
-command! -nargs=+ -complete=shellcmd Repl call <SID>start_generic_repl(<q-args>)
+command! -nargs=+ -bang -complete=shellcmd Repl call <SID>start_generic_repl(<q-args>, <q-bang>)
 command! -nargs=0 ReplStop call <SID>stop_buffer_repl()
+
 
 """""""""""""""""""""
 " Local modifications
