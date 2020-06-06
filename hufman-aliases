@@ -13,10 +13,9 @@ alias g='git'
 alias s='ssh'
 alias cl='clear'
 alias ca='clear && '
-alias t='todo.sh -a'
-alias trans='transmission-remote-cli'
 alias o='rifle'
 alias gr='./gradlew'
+alias :q='exit'
 cd_up_directories() {
   target=$(echo $@ | tr ' ' '/')
   cd ../$target
@@ -49,4 +48,9 @@ fi
 if [ `which kpcli` ]
 then
   alias k='kpcli --kdb $HOME/Dropbox/new-passwords.kdb'
+fi
+
+if [ -e /Applications/MacVim.app/Contents/MacOS ]
+then
+  alias vim=/Applications/MacVim.app/Contents/MacOS/Vim
 fi
