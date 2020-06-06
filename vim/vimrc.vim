@@ -28,6 +28,7 @@ set hidden                     " allow hidden buffers
 set wrapscan                   " search should wrap the buffer
 set iskeyword+=-               " foo-bar is pretty much always 1 word
 set nojoinspaces               " autoformat should do single space after full-stop
+set noequalalways              " only resize the current window when splitting
 
 " always show status line
 set laststatus=2
@@ -39,7 +40,15 @@ set undofile
 set undolevels=10000
 set undoreload=10000
 
-" NOTE if these directories don't exist vim can't create them for you.
+function! s:createDirIfDoesntExist(path)
+  let path = fnamemodify(a:path, ":p")
+  if !isdirectory(path)
+    call mkdir(path, "p")
+  endif
+endfunction
+call s:createDirIfDoesntExist("~/.vim/backup")
+call s:createDirIfDoesntExist("~/.vim/swap")
+call s:createDirIfDoesntExist("~/.vim/undo")
 set backupdir=~/.vim/backup
 set directory=~/.vim/swap
 set undodir=~/.vim/undo
@@ -53,6 +62,10 @@ nnoremap :Q :q
 nnoremap :Wq :wq
 nnoremap :WQ :wq
 nnoremap :E# :e#
+
+" sometimes I hit esc then <c-w> too fast, and the <c-w> gets sent to insert
+" mode by accident
+imap <C-w> <Esc><C-w>
 
 " move around ex command history without moving hands
 cmap <C-j> <down>
@@ -74,6 +87,11 @@ if has('clipboard')
   nnoremap <C-y> "*y
   vnoremap <C-y> "*y
   nnoremap <C-S-y> "*y$
+endif
+
+if has('terminal')
+  let &shell='bash --login'
+  nmap <D-Cr> :silent terminal<CR>
 endif
 
 let maplocalleader="\\"
@@ -138,21 +156,6 @@ if has("autocmd")
       \   exe "normal! g`\"" |
       \ endif
 
-  augroup END
-
-  " eat a specified character... this only exists for the purposes of html/xml
-  " autoclosing. Otherwise </<Tab> adds an actual tab
-  function! Eatchar(pat)
-    let c = nr2char(getchar(0))
-    return (c =~ a:pat) ? '' : c
-  endfunction
-
-  augroup html_and_xml_tag_closing
-    autocmd!
-
-    " autoclose html/xml tags with </<Tab>
-    autocmd BufReadPost *.html iabbr <silent> <buffer> </ </<C-x><C-o><CR><C-R>=Eatchar('\t')<CR>
-    autocmd BufReadPost *.xml iabbr <silent> <buffer> </ </<C-x><C-o><CR><C-R>=Eatchar('\t')<CR>
   augroup END
 
   augroup clojurescript
@@ -306,17 +309,17 @@ set incsearch
 " Omnicompletion
 """""""""""""""""
 " set up a nice looking menu
-set completeopt=menuone
-imap <expr> <c-j> pumvisible() ? "\<lt>C-n>" : "\<lt>C-j>"
-imap <expr> <c-k> pumvisible() ? "\<lt>C-p>" : "\<lt>C-k>"
-" inoremap <expr> <CR> pumvisible() ? "\<lt>C-m>" : "\<lt>CR>"
+set completeopt=menuone,longest,preview,menuone
+inoremap <expr> <CR> pumvisible() ? "\<lt>C-m>" : "\<lt>CR>"
 
 " <Tab> should first try to expand/jump within a snippet, if that fails it
 " should try autocompletion (using either omnicomplete or keyword) if typing a
 " word or insert a \t otherwise.
 function! MagicTab()
   if col('.') > 1 && strpart(getline('.'), col('.')-2, 3) =~ '^\w'
-    if &omnifunc != ''
+    if pumvisible()
+      return "\<C-n>"
+    elseif &omnifunc != ''
       return "\<C-x>\<C-o>"
     elseif exists("b:complete_with_tags") && b:complete_with_tags ==# 1
       return "\<C-x>\<C-]>"
@@ -328,6 +331,7 @@ function! MagicTab()
   endif
 endfunction
 inoremap <Tab> <C-r>=MagicTab()<CR>
+
 
 
 """""""
@@ -383,6 +387,9 @@ noremap <C-j> :m+<CR>==
 noremap <C-k> :m-2<CR>==
 vnoremap <C-j> :m'>+<CR>gv=gv
 vnoremap <C-k> :m-2<CR>gv=gv
+" don't break visual mode on indent/dedent
+vnoremap > >gv
+vnoremap < <gv
 
 
 """"""""""
@@ -429,24 +436,6 @@ if has("gui_running")
   set guioptions-=m
   set guioptions-=R
   set guioptions-=r
-
-  " Font things
-  set guifont=Monospace\ 12
-  function! s:GetFontSize()
-    return str2nr(matchlist(&guifont, "[0-9][0-9]*")[0])
-  endfunction
-  function! s:IncreaseFontSize()
-    let curr = s:GetFontSize()
-    let new = substitute(&guifont, curr, curr + 1, '')
-    execute "set guifont=".substitute(new, ' ', '\\ ', '')
-  endfunction
-  function! s:DecreaseFontSize()
-    let curr = s:GetFontSize()
-    let new = substitute(&guifont, curr, curr - 1, '')
-    execute "set guifont=".substitute(new, ' ', '\\ ', '')
-  endfunction
-  map ]z :call <sid>IncreaseFontSize()<CR>
-  map [z :call <sid>DecreaseFontSize()<CR>
 else
   colorscheme my_colors
 endif
@@ -495,6 +484,8 @@ nnoremap [t :tabprev<CR>
 nnoremap ]t :tabnext<CR>
 nnoremap [T :tabfirst<CR>
 nnoremap [T :tablast<CR>
+nnoremap <t :-tabm<CR>
+nnoremap >t :+tabm<CR>
 
 
 """""""""""""""
@@ -582,14 +573,21 @@ call searchers#make_binding({
 
 
 """""""""""""""
-" Insert dates
+" Insert things
 """""""""""""""
-function! AppendDateAtCursor(format)
+function! s:appendDateAtCursor(format)
   let @x=substitute(system("date +'".a:format."'"), "\n", "", "")
   normal! "xp
 endfunction
-nnoremap g<C-d> :call AppendDateAtCursor("%a, %d %b %Y")<CR>
-nnoremap g<C-t> :call AppendDateAtCursor("%H:%M")<CR>
+nnoremap g<C-d> :call <SID>appendDateAtCursor("%a, %d %b %Y")<CR>
+nnoremap g<C-S-t> :call <SID>appendDateAtCursor("%a, %d %b %Y %H:%M")<CR>
+nnoremap g<C-S-t> :call <SID>appendDateAtCursor("%H:%M")<CR>
+nnoremap g<C-f> "=expand("%")<CR>p
+inoremap <C-g><C-d> <C-o>:call <SID>appendDateAtCursor("%a, %d %b %Y")<CR>
+inoremap <C-g><C-t> <C-o>:call <SID>appendDateAtCursor("%H:%M")<CR>
+inoremap <C-g><C-S-t> <C-o>:call <SID>appendDateAtCursor("%a, %d %b %Y %H:%M")<CR>
+inoremap <C-g><C-f> <C-o>"=expand("%")<CR>p
+inoremap <c-g><C-f> <C-o>"=expand("%")<CR>p
 
 """"""""
 " Shell
@@ -617,12 +615,6 @@ endfunction
 """""""""""
 map gut :UndotreeToggle<CR>
 let g:undotree_SetFocusWhenToggle=1
-
-
-""""""""""""""""""""
-" TextObj RubyBlock
-""""""""""""""""""""
-runtime macros/matchit.vim
 
 
 """"""""""
@@ -676,13 +668,17 @@ let g:mdpp_todo_colors = {
       \    "ctermfg": "yellow"
       \  }
       \}
-" noremap <space>ah :VNotes<space>
-" noremap <space>al :VNotes<space>
-" noremap <space>aj :HNotes<space>
-" noremap <space>ak :HNotes<space>
-" noremap <space>at :TNotes<space>
-" noremap <space>an :Notes<CR>
-
+let g:mdpp_repl_configs = {
+      \   'sql': {
+      \     'cmd': 'snowsql prod'
+      \   },
+      \   'ruby': {
+      \     'cmd': 'irb'
+      \   },
+      \   'r': {
+      \     'cmd': 'R --no-save --no-readline --interactive'
+      \   }
+      \ }
 let g:markdown_fold_style = 'nested'
 
 
@@ -695,20 +691,18 @@ function! PandocPreview(out)
 endfunction
 
 
-""""""""""""
-" UltiSnips 
-""""""""""""
-let g:UltiSnipsExpandTrigger="<C-g>"
-let g:UltiSnipsJumpForwardTrigger="<Tab>"
-let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
-let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsRemoveSelectModeMappings = 0
-nnoremap <space>se :UltiSnipsEdit<CR>
-
 """""""""""
 " Fugitive
 """""""""""
 noremap g* :Ggrep <cword><CR>
+function! Gtodo(string)
+  if a:string == ''
+    Ggrep 'TODO.*simon'
+  else
+    exec "Ggrep 'TODO.*" . a:string . "'"
+  endif
+endfunction
+command! -nargs=* Gtodo call Gtodo(<q-args>)
 
 
 """""""""""""""""
@@ -716,8 +710,38 @@ noremap g* :Ggrep <cword><CR>
 """""""""""""""""
 let g:limelight_default_coefficient = 0.3
 let g:limelight_paragraph_span = 1
-" autocmd User GoyoEnter Limelight
-" autocmd User GoyoLeave Limelight!
+
+
+"""""""""""""
+" XML things
+"""""""""""""
+let g:xml_syntax_folding=1
+au FileType xml setlocal foldmethod=syntax
+
+
+""""""""""
+" Vim LSC
+""""""""""
+let g:lsc_server_commands = {
+      \ 'python': 'pyls'
+      \ }
+let g:lsc_auto_map = {
+    \ 'GoToDefinition': '<C-]>',
+    \ 'GoToDefinitionSplit': ['<C-W>]', '<C-W><C-]>'],
+    \ 'FindReferences': 'gr',
+    \ 'NextReference': ']r',
+    \ 'PreviousReference': '[r',
+    \ 'FindImplementations': 'gI',
+    \ 'FindCodeActions': 'ga',
+    \ 'Rename': 'gR',
+    \ 'ShowHover': v:true,
+    \ 'DocumentSymbol': 'go',
+    \ 'WorkspaceSymbol': 'gS',
+    \ 'SignatureHelp': 'gm',
+    \ 'Completion': 'completefunc',
+    \}
+let g:lsc_reference_highlights = v:false
+
 
 " GenericScratchPad
 function! RunScratchPadCmd(cmd, filename, lines)
@@ -772,25 +796,44 @@ endfunction
 
 command! -nargs=0 JavaScratchPad call scratch#open("ScratchPad.java", "RunJava")
 
-"""""""""
-" vim-lsc
-"""""""""
-let g:lsc_reference_highlights = v:false
-let g:lsc_auto_map = {
-      \ 'GoToDefinition': '<C-]>',
-      \ 'GoToDefinitionSplit': '<C-W><C-]>',
-      \ 'FindReferences': 'gr',
-      \ 'NextReference': '<C-n>',
-      \ 'PreviousReference': '<C-p>',
-      \ 'FindImplementations': 'gI',
-      \ 'FindCodeActions': 'ga',
-      \ 'Rename': 'gR',
-      \ 'ShowHover': v:true,
-      \ 'DocumentSymbol': 'go',
-      \ 'WorkspaceSymbol': 'gS',
-      \ 'SignatureHelp': 'gm',
-      \ 'Completion': 'completefunc',
-      \ }
+"""""""""""
+" REPL.vim
+"""""""""""
+
+function! s:make_repl_name(cmd)
+  return substitute(a:cmd, '[^a-zA_Z_][^a-zA-Z_]*', '_', 'g')
+endfunction
+
+function! s:has_existing_repl()
+  if exists('b:repl') && b:repl != ''
+    if repl#is_running(b:repl)
+      return v:true
+    else
+      unlet b:repl
+    end
+  endif
+  return v:false
+endfunction
+  
+function! s:start_generic_repl(cmd, bang)
+  if a:bang != '!' && s:has_existing_repl()
+    echoerr "REPL ".b:repl." is already running in this buffer. Please stop that repl first."
+    return
+  else
+    let l:repl_name = s:make_repl_name(a:cmd)
+    let b:repl = l:repl_name
+    call repl#start(l:repl_name, {'opbind': 'cp', 'linebind': 'cpp', 'cmd': a:cmd})
+  endif
+endfunction
+
+function s:stop_buffer_repl()
+  call repl#kill(b:repl)
+  unlet b:repl
+endfunction
+
+command! -nargs=+ -bang -complete=shellcmd Repl call <SID>start_generic_repl(<q-args>, <q-bang>)
+command! -nargs=0 ReplStop call <SID>stop_buffer_repl()
+
 
 """""""""""""""""""""
 " Local modifications
@@ -798,6 +841,6 @@ let g:lsc_auto_map = {
 if filereadable(glob('~/.vimrc.local'))
   so ~/.vimrc.local
 endif
-if filereadable(glob('./.vimrc.local'))
+if filereadable(glob('./.vimrc.local')) && (fnamemodify('.', ':p') != fnamemodify('~', ':p'))
   so ./.vimrc.local
 endif
