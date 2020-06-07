@@ -814,7 +814,7 @@ function! s:has_existing_repl()
   endif
   return v:false
 endfunction
-  
+
 function! s:start_generic_repl(cmd, bang)
   if a:bang != '!' && s:has_existing_repl()
     echoerr "REPL ".b:repl." is already running in this buffer. Please stop that repl first."
