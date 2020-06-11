@@ -436,6 +436,7 @@ if has("gui_running")
   set guioptions-=m
   set guioptions-=R
   set guioptions-=r
+  set guifont=Menlo-Regular:h10
 else
   colorscheme my_colors
 endif
@@ -833,6 +834,15 @@ endfunction
 
 command! -nargs=+ -bang -complete=shellcmd Repl call <SID>start_generic_repl(<q-args>, <q-bang>)
 command! -nargs=0 ReplStop call <SID>stop_buffer_repl()
+
+""""""""""
+" Open.vim
+""""""""""
+let g:browser = "open"
+let g:open_vim_patterns = [
+      \ ['^/.*', 'norm! gf'],
+      \ ['https\?://.*', '!' . g:browser . ' "<VALUE>"'],
+      \ ]
 
 
 """""""""""""""""""""

@@ -49,3 +49,4 @@ vim/bundle/psql.vim
 vim/spell
 vim/bundle/repl.vim
 vim/bundle/tap.vim
+vim/ftplugin/sql.vim
