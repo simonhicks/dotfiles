@@ -841,6 +841,7 @@ command! -nargs=0 ReplStop call <SID>stop_buffer_repl()
 let g:browser = "open"
 let g:open_vim_patterns = [
       \ ['^/.*', 'norm! gf'],
+      \ ['(\zshttps\?://.*\ze)', '!' . g:browser . ' "<VALUE>"'],
       \ ['https\?://.*', '!' . g:browser . ' "<VALUE>"'],
       \ ]
 
