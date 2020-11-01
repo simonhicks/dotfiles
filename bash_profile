@@ -58,11 +58,6 @@ elif [ -e /usr/local/etc/bash_completion.d/git-completion.bash ]
 then
   . /usr/local/etc/bash_completion.d/git-completion.bash
 fi
-# and git-flow
-if [ -e /usr/local/etc/bash_completion.d/git-flow-completion.bash ]
-then
-  . /usr/local/etc/bash_completion.d/git-flow-completion.bash
-fi
 
 set -o vi
 export EDITOR=vim
@@ -90,11 +85,11 @@ function safe_rm {
   do
     if [ $arg == ~ ]
     then
-      echo "Don't be a fucking idiot"
+      echo "Don't be an idiot"
       doit=0
     elif [ $arg == / ]
     then
-      echo "Don't be a fucking idiot"
+      echo "Don't be an idiot"
       doit=0
     fi
   done
@@ -140,28 +135,6 @@ then
     alias cdup='. ~/scripts/resources/cdup.sh'
 fi
 
-# # FIXME I'm not sure what to do here... basically, I just don't want to screw
-# # up desideratum's setup... I don't think I use rbenv there much (if at all) so
-# # it shouldn't matter, but I'm leaving this in just in case until I can
-# # actually have a look
-#
-# <<<<<<< HEAD
-# # if which rbenv > /dev/null
-# # then
-# #   eval "$(rbenv init -)"
-# # fi
-# =======
-if [ -d "${HOME}/.rbenv" ];
-then
-  export RBENV_ROOT="${HOME}/.rbenv"
-  export PATH="${RBENV_ROOT}/bin:${PATH}"
-  eval "$(rbenv init -)"
-elif which rbenv > /dev/null
-then
-  eval "$(rbenv init -)"
-fi
-# >>>>>>> 26b86658f9392f36e1e13665493483edd6f118c8
-
 if [ -d ~/Dropbox/todo ]
 then
   export TODO_DIR=~/Dropbox/todo
@@ -174,8 +147,6 @@ then
   export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home
 fi
 
-
-export DOCKER_HOST=tcp://localhost:2375
 
 # do this last, so stuff in the scripts, local-scripts and current directories
 # override everything else.

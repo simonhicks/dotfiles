@@ -1,2 +1,3 @@
 " autoclose tags
-imap <silent> <buffer> </ </<C-x><C-o>
+imap <silent> <buffer> </ </<C-x><C-o><C-n>
+

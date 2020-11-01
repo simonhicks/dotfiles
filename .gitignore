@@ -48,3 +48,6 @@ lein/repl-history
 vim/bundle/print_todo
 vim/bundle/psql.vim
 vim/spell
+vim/bundle/repl.vim
+vim/bundle/tap.vim
+vim/ftplugin/sql.vim
