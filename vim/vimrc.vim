@@ -39,7 +39,9 @@ set undofile
 set undolevels=10000
 set undoreload=10000
 
-" NOTE if these directories don't exist vim can't create them for you.
+call mkdir($HOME . "/.vim/backup", "p")
+call mkdir($HOME . "/.vim/swap", "p")
+call mkdir($HOME . "/.vim/undo", "p")
 set backupdir=~/.vim/backup
 set directory=~/.vim/swap
 set undodir=~/.vim/undo
