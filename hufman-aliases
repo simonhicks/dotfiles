@@ -43,7 +43,12 @@ fi
 
 if [ `which xsel` ]
 then
-  alias  pb='xsel --clipboard'
+  alias pb='xsel --clipboard'
+fi
+
+if [ `which xclip` ]
+then
+  alias pbcopy='xclip -selection clipboard -i'
 fi
 
 if [ `which kpcli` ]

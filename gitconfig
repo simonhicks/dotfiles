@@ -15,7 +15,7 @@
   co = checkout
   cb = checkout -b
   A = add -A .
-  c = commit
+  c = commit -ama
   pl = pull
   ps = push
   m = merge

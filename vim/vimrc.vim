@@ -2,7 +2,7 @@
 " Standard pathogen and vim setup
 """"""""""""""""""""""""""""""""""
 set nocompatible
-let g:pathogen_disabled=["eclim","tsuquyomi"]
+let g:pathogen_disabled=["eclim","tsuquyomi", "vim-fakeclip"]
 call pathogen#infect() 
 syntax on
 filetype plugin indent on
@@ -590,6 +590,9 @@ function! AppendDateAtCursor(format)
 endfunction
 nnoremap g<C-d> :call AppendDateAtCursor("%a, %d %b %Y")<CR>
 nnoremap g<C-t> :call AppendDateAtCursor("%H:%M")<CR>
+inoremap <c-g><C-d> <c-o>:call AppendDateAtCursor("%a, %d %b %Y")<CR>
+inoremap <c-g><C-t> <c-o>:call AppendDateAtCursor("%H:%M")<CR>
+
 
 """"""""
 " Shell
@@ -730,6 +733,46 @@ function! RunScratchPadCmd(cmd, filename, lines)
     echom line
   endfor
 endfunction
+
+
+"""""""""""
+" REPL.vim
+"""""""""""
+
+function! s:make_repl_name(cmd)
+  return substitute(a:cmd, '[^a-zA_Z_][^a-zA-Z_]*', '_', 'g')
+endfunction
+
+function! s:has_existing_repl()
+  if exists('b:repl') && b:repl != ''
+    if repl#is_running(b:repl)
+      return v:true
+    else
+      unlet b:repl
+    end
+  endif
+  return v:false
+endfunction
+
+function! s:start_generic_repl(cmd, bang)
+  if a:bang != '!' && s:has_existing_repl()
+    echoerr "REPL ".b:repl." is already running in this buffer. Please stop that repl first."
+    return
+  else
+    let l:repl_name = s:make_repl_name(a:cmd)
+    let b:repl = l:repl_name
+    call repl#start(l:repl_name, {'opbind': 'cp', 'linebind': 'cpp', 'cmd': a:cmd})
+  endif
+endfunction
+
+function s:stop_buffer_repl()
+  call repl#kill(b:repl)
+  unlet b:repl
+endfunction
+
+command! -nargs=+ -bang -complete=shellcmd Repl call <SID>start_generic_repl(<q-args>, <q-bang>)
+command! -nargs=0 ReplStop call <SID>stop_buffer_repl()
+
 
 " BashScratchPad
 function! RunBash(lines)
