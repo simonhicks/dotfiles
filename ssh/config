@@ -1,0 +1,7 @@
+Host si
+HostName hicks.si
+User simon
+
+Host gh
+HostName github.com
+User git
