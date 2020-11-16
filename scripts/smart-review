@@ -1,0 +1,13 @@
+#!/bin/bash
+
+vim -c ":SmartReview"
+echo -n "Commit and push? "
+read answer
+
+if [[ $answer =~ ^[yY] ]]
+then
+  cd ~/journal
+  git add .
+  git commit -ama
+  git push origin master
+fi
