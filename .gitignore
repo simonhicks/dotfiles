@@ -31,6 +31,8 @@ vim/bundle/todo
 vim/bundle/todo.vim
 vim/bundle/fuzzy
 vim/bundle/fuzzy.vim
+vim/bundle/repl.vim
+vim/bundle/tap.vim
 vim/bundle/open.vim
 vim/bundle/open
 vim/bundle/csv-utils.vim
