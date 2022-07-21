@@ -411,6 +411,9 @@ function! SimpleFoldtext()
 endfunction
 set foldtext=SimpleFoldtext()
 
+" Let the markdown plugin do it's fancypants folding thing
+let g:markdown_folding=1
+
 
 """"""""""
 " Display
@@ -871,11 +874,15 @@ command! -nargs=0 ReplStop call <SID>stop_buffer_repl()
 """"""""""
 " Open.vim
 """"""""""
-let g:browser = "open"
+if filereadable("~/local-scripts/browser")
+  let g:browser = "~/local-scripts/browser"
+else
+  let g:browser = "open"
+endif
 let g:open_vim_patterns = [
       \ ['^/.*', 'norm! gf'],
-      \ ['(\zshttps\?://.*\ze)', '!' . g:browser . ' "<VALUE>"'],
-      \ ['https\?://.*', '!' . g:browser . ' "<VALUE>"'],
+      \ ['\[\zs[^/][^/]*/[^\]][^\]]*\ze\]', "!" . g:browser . " 'https://github.com/<VALUE>'"],
+      \ ['https\?://.*',                     "!" . g:browser . " '<VALUE>'"]
       \ ]
 
 
