@@ -40,16 +40,18 @@ deployVimPlugin() {
   ln -s ${VIMPROJECTS}/${1}
 }
 
-deployVimPlugin bufedit.vim
+deployVimPlugin multiselect.vim
 deployVimPlugin cntr.vim
-deployVimPlugin doit.vim
-deployVimPlugin foxdot.vim
+deployVimPlugin wordcount.vim
 deployVimPlugin mdpp
-deployVimPlugin open.vim
-deployVimPlugin repl.vim
-deployVimPlugin scratch.vim
-deployVimPlugin searchers.vim
-deployVimPlugin show.vim
-deployVimPlugin tap.vim
-deployVimPlugin todo.vim
 deployVimPlugin workflow.vim
+deployVimPlugin bufedit.vim
+deployVimPlugin tap.vim
+deployVimPlugin repl.vim
+deployVimPlugin todo.vim
+deployVimPlugin psql.vim
+deployVimPlugin scratch.vim
+deployVimPlugin show.vim
+deployVimPlugin open.vim
+deployVimPlugin searchers.vim
+deployVimPlugin doit.vim

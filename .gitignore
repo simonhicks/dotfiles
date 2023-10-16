@@ -52,4 +52,6 @@ vim/bundle/psql.vim
 vim/spell
 vim/bundle/repl.vim
 vim/bundle/tap.vim
+vim/bundle/multiselect.vim
+vim/bundle/wordcount.vim
 vim/ftplugin/sql.vim
