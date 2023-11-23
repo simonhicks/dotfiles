@@ -1,8 +1,8 @@
 # set background
-/usr/bin/feh --bg-fill '/home/si/Pictures/wallpaper.jpg' 
+#/usr/bin/feh --bg-fill '/home/si/Pictures/wallpaper.jpg' 
 
 # remap some keys
-# xmodmap ~/.Xmodmap
+xmodmap ~/.Xmodmap
 
 # load xterm settings
 # xrdb -merge ~/.Xresources

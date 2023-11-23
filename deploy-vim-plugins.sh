@@ -49,7 +49,6 @@ deployVimPlugin bufedit.vim
 deployVimPlugin tap.vim
 deployVimPlugin repl.vim
 deployVimPlugin todo.vim
-deployVimPlugin psql.vim
 deployVimPlugin scratch.vim
 deployVimPlugin show.vim
 deployVimPlugin open.vim
