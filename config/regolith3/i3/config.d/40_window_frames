@@ -1,0 +1,41 @@
+###############################################################################
+# Window Settings
+###############################################################################
+
+# Provide window class to float above tiled windows
+floating_maximum_size -1 x -1
+for_window [class="floating_window"] floating enable
+
+# Set titlebar mode
+default_floating_border normal 1
+default_border normal 1
+smart_borders no_gaps
+
+# Enable popup during fullscreen
+popup_during_fullscreen smart
+
+# window focus follows your mouse movements as the mouse crosses window borders
+focus_follows_mouse no
+
+# Hiding borders adjacent to the screen edges.
+# The "smart" setting hides borders on workspaces with only one window visible.
+hide_edge_borders none
+
+###############################################################################
+# gaps Window Resize
+###############################################################################
+
+## Resize // Window Gaps // <> + - ##
+bindsym $mod+plus gaps inner current plus 6
+bindsym $mod+minus gaps inner current minus 6
+
+###############################################################################
+# gaps Appearance and Behavior
+###############################################################################
+
+# Specify the distance between windows in pixels
+gaps inner 6
+gaps outer 0
+
+# Only enable gaps on a workspace when there is at least one container
+smart_gaps off

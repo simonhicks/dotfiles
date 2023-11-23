@@ -1,0 +1,45 @@
+###############################################################################
+# WM Bar
+###############################################################################
+
+# Create variables from Xresources for bar look (DO NOT MODIFY, because this is how regolith looks work)
+set_from_resource $wm.bar.background.color wm.bar.background.color "#002b36"
+set_from_resource $wm.bar.statusline.color wm.bar.statusline.color "#93a1a1"
+set_from_resource $wm.bar.separator.color wm.bar.separator.color "#268bd2"
+set_from_resource $wm.bar.workspace.focused.border.color wm.bar.workspace.focused.border.color "#073642"
+set_from_resource $wm.bar.workspace.focused.background.color wm.bar.workspace.focused.background.color "#073642"
+set_from_resource $wm.bar.workspace.focused.text.color wm.bar.workspace.focused.text.color "#eee8d5"
+set_from_resource $wm.bar.workspace.active.border.color wm.bar.workspace.active.border.color "#073642"
+set_from_resource $wm.bar.workspace.active.background.color wm.bar.workspace.active.background.color "#073642"
+set_from_resource $wm.bar.workspace.active.text.color wm.bar.workspace.active.text.color "#586e75"
+set_from_resource $wm.bar.workspace.inactive.border.color wm.bar.workspace.inactive.border.color "#002b36"
+set_from_resource $wm.bar.workspace.inactive.background.color wm.bar.workspace.inactive.background.color "#002b36"
+set_from_resource $wm.bar.workspace.inactive.text.color wm.bar.workspace.inactive.text.color "#586e75"
+set_from_resource $wm.bar.workspace.urgent.border.color wm.bar.workspace.urgent.border.color "#dc322f"
+set_from_resource $wm.bar.workspace.urgent.background.color wm.bar.workspace.urgent.background.color "#dc322f"
+set_from_resource $wm.bar.workspace.urgent.text.color wm.bar.workspace.urgent.text.color "#fdf6e3"
+set_from_resource $wm.bar.font wm.bar.font "pango:DejaVu 9"
+
+# The bar configuration
+bar {
+  position                  bottom
+  mode                      dock
+  font                      $wm.bar.font
+  separator_symbol          " | "
+  status_command            i3xrocks -u ~/.config/regolith3/i3xrocks/conf.d -d /usr/share/i3xrocks/conf.d
+  tray_output               primary
+  strip_workspace_numbers   yes
+  workspace_min_width       36
+
+  colors {
+      background $wm.bar.background.color
+      statusline $wm.bar.statusline.color
+      separator  $wm.bar.separator.color
+
+#                        BORDER  BACKGROUND TEXT
+      focused_workspace  $wm.bar.workspace.focused.border.color      $wm.bar.workspace.focused.background.color   $wm.bar.workspace.focused.text.color
+      active_workspace   $wm.bar.workspace.active.border.color       $wm.bar.workspace.active.background.color    $wm.bar.workspace.active.text.color
+      inactive_workspace $wm.bar.workspace.inactive.border.color     $wm.bar.workspace.inactive.background.color  $wm.bar.workspace.inactive.text.color
+      urgent_workspace   $wm.bar.workspace.urgent.border.color       $wm.bar.workspace.urgent.background.color    $wm.bar.workspace.urgent.text.color
+  }
+}

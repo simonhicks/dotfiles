@@ -1,0 +1,19 @@
+###############################################################################
+# Session Management
+###############################################################################
+
+## Reload WM Config
+bindsym $mod+Shift+c reload
+
+## Refresh Session
+bindsym $mod+Shift+r exec --no-startup-id /usr/bin/regolith-look refresh
+
+## Restart WM
+set_from_resource $wm.binding.restart wm.binding.restart Ctrl+r
+bindsym $mod+Ctrl+r restart
+
+## Lock Screen
+bindsym $mod+Escape exec dbus-send --type=method_call --dest=org.gnome.ScreenSaver /org/gnome/ScreenSaver org.gnome.ScreenSaver.Lock
+
+## Sleep
+bindsym $mod+Shift+s exec systemctl suspend

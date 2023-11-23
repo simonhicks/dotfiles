@@ -1,0 +1,43 @@
+###############################################################################
+# Window and Workspace Navigation
+###############################################################################
+
+## Relative Parent
+bindsym $mod+a focus parent
+
+## Relative Child
+bindsym $mod+z focus child
+
+## Relative Window
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+## Last Focused Window
+bindsym $mod+period exec --no-startup-id pkill -USR1 -F "${XDG_RUNTIME_DIR}/swap_focus.pid"
+
+exec --no-startup-id i3-swap-focus
+
+## Workspaces 1-10
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+
+## Next/Previous Workspace
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+
+## Exit App
+bindsym $mod+w [con_id="__focused__"] kill
+bindsym $mod+q [con_id="__focused__"] kill
+
+## Terminate App
+bindsym $mod+Shift+q [con_id="__focused__"] exec --no-startup-id kill -9 $(xdotool getwindowfocus getwindowpid)

@@ -1,0 +1,2 @@
+# Start the installed regolith-compositor
+exec_always --no-startup-id /usr/share/regolith-compositor/init

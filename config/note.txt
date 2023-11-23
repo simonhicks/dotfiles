@@ -1,0 +1,5 @@
+n.b. this config directory is just copied straight from ~/.config without any attempt to make it
+portable, so it makes some references to absolute paths and so on that will mean it probably won't work
+without at least some modification.
+
+Don't expect it to "just work"!
