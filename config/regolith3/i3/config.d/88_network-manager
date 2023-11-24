@@ -1,2 +1,0 @@
-# Load nm-applet to provide auth dialogs for network access
-exec --no-startup-id /usr/bin/nm-applet

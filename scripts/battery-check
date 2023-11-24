@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# Get battery status.
+#
+# Returns:
+#   The battery's status or state.
+get_battery_status() {
+    echo "$__UPOWER_INFO" | awk -W posix '$1 == "state:" {print $2}'
+}
+
+# Get battery percentage.
+#
+# Returns:
+#   The battery's percentage, without the %.
+get_battery_percent() {
+    echo "$__UPOWER_INFO" | awk -W posix '$1 == "percentage:" { gsub("%","",$2); print int($2)}'
+}
+
+BATT_DEVICE="DisplayDevice"
+__UPOWER_INFO=$(upower --show-info "/org/freedesktop/UPower/devices/${BLOCK_INSTANCE:-$BATT_DEVICE}")
+
+
+BATT_PERCENT=$(get_battery_percent)
+CHARGE_STATE=$(get_battery_status)
+
+while true; do
+  echo checking
+  if [ -z "$CHARGE_STATE" ]; then
+    echo failed to get charge state
+    i3-nagbar -m 'scripts/battery-check failed to get CHARGE_STATE' -t error
+  elif [ "$CHARGE_STATE" == "discharging" ]; then
+    if [ -z "$BATT_PERCENT" ]; then
+      echo failed to get battery percentage
+      i3-nagbar -m 'scripts/battery-check failed to get BATT_PERCENT' -t error
+    elif [ "$BATT_PERCENT" -ge 0 ] && [ "$BATT_PERCENT" -le 5 ]; then
+      echo alerting very low battery
+      i3-nagbar -m "Battery is down to $BATT_PERCENT%. Please plug your laptop in!" -t error &
+    elif [ "$BATT_PERCENT" -ge 5 ] && [ "$BATT_PERCENT" -le 15 ]; then
+      echo alerting low battery
+      i3-nagbar -m "Battery is down to $BATT_PERCENT%. Please plug your laptop in!" -t warning &
+    fi
+  fi
+  sleep 300
+done
