@@ -1,0 +1,9 @@
+###############################################################################
+# Minimized Windows
+###############################################################################
+
+## Push/Pop from the 'minimized stack'
+bindsym $mod+m move scratchpad
+bindsym $mod+Shift+m scratchpad show; floating disable
+## swap the current window for the next thing in the 'minimized stack'
+bindsym $mod+Ctrl+m move scratchpad; scratchpad show; floating disable

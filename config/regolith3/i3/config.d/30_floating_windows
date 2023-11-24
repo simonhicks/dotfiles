@@ -1,0 +1,12 @@
+###############################################################################
+# Floating Windows
+###############################################################################
+
+## Window Floating Toggle
+bindsym $mod+Shift+f floating toggle
+
+## Tile/Float Focus Toggle
+bindsym $mod+Shift+t focus mode_toggle
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod

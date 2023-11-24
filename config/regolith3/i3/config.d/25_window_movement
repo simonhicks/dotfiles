@@ -1,0 +1,35 @@
+###############################################################################
+# Window Navigation
+###############################################################################
+
+## Relative Parent
+bindsym $mod+a focus parent
+
+## Relative Child
+bindsym $mod+z focus child
+
+## Relative Window
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+## Last Focused Window
+bindsym $mod+semicolon exec --no-startup-id pkill -USR1 -F "${XDG_RUNTIME_DIR}/swap_focus.pid"
+exec --no-startup-id i3-swap-focus
+
+## Move Window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+## Vertical/Horizontal Window splits
+bindsym $mod+Shift+minus split vertical
+bindsym $mod+Shift+backslash split horizontal
+
+## Toggle container layout
+bindsym $mod+t layout toggle tabbed splith splitv
+
+## Window Fullscreen Toggle
+bindsym $mod+f fullscreen toggle

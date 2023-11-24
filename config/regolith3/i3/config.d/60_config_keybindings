@@ -5,10 +5,6 @@
 ## Settings
 bindsym $mod+c exec --no-startup-id regolith-control-center
 
-## File Browser
-bindsym $mod+Shift+n exec --no-startup-id /usr/bin/gnome-terminal -- lf
-
-
 for_window [class="regolith-control-center"] floating enable
 
 exec --no-startup-id /usr/libexec/gnome-flashback-media-keys

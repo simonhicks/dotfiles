@@ -1,0 +1,9 @@
+###############################################################################
+# Closing Windows
+###############################################################################
+
+## Exit App
+bindsym $mod+q [con_id="__focused__"] kill
+
+## Terminate App
+bindsym $mod+Shift+q [con_id="__focused__"] exec --no-startup-id kill -9 $(xdotool getwindowfocus getwindowpid)
