@@ -9,6 +9,3 @@ bindsym $mod+Shift+question exec --no-startup-id ilia -p keybindings -a -t $ilia
 
 ## Look seletor
 bindsym $mod+$alt+l exec --no-startup-id regolith-look-selector -t $ilia.stylesheet
-
-## Window by Name
-bindsym $mod+Shift+space exec --no-startup-id ilia -p windows -t $ilia.stylesheet

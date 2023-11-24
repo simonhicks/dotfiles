@@ -2,7 +2,8 @@
 # Named Windows
 ###############################################################################
 
-## NOTE Open by name is in ~/.config/regolith3/i3/config.d/20_ilia
+## Window by Name
+bindsym $mod+Shift+space exec --no-startup-id /home/simon/scripts/i3-focus-window
 
 mode "Window" {
   # Rename current window
@@ -13,4 +14,3 @@ mode "Window" {
   bindsym $mod+w mode "default"
 }
 bindsym $mod+w mode "Window"
-

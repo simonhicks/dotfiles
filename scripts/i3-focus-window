@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+WINDOW_ID=$(i3-msg -t get_tree | jq '.. | arrays | .[] | objects | select(.window_type == "normal") | [.name, .window] | join(" | ")' | sed -e 's/^"//' -e 's/"$//' | ilia -p textlist | grep -o '[0-9][0-9]*$')
+i3-msg "[id=$WINDOW_ID] focus"
+

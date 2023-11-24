@@ -8,6 +8,7 @@ mode "Workspace" {
 
   # Send window to named workspace
   bindsym s exec --no-startup-id /home/simon/scripts/i3-send-to-workspace; mode "default"
+  bindsym Shift+s exec --no-startup-id /home/simon/scripts/i3-send-to-new-workspace; mode "default"
 
   # Focus named workspace
   bindsym o exec --no-startup-id /home/simon/scripts/i3-workspace-selector; mode "default"
