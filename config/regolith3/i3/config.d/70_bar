@@ -22,7 +22,7 @@ set_from_resource $wm.bar.font wm.bar.font "pango:DejaVu 9"
 
 # The bar configuration
 bar {
-  position                  bottom
+  position                  top
   mode                      dock
   font                      $wm.bar.font
   separator_symbol          " | "
