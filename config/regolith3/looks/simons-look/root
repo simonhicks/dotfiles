@@ -65,6 +65,7 @@ gtk.icon_theme_name: Papirus-Dark
 #define gtk_document_font_name Sans 9
 #define gtk_monospace_font_name BitstreamVeraSansMono Nerd Font 9
 #define terminal_font_name BitstreamVeraSansMono Nerd Font 9
+#define status_bar_font pango:DejaVu 9
 
 gtk.font_name: gtk_font_name
 gtk.document_font_name: gtk_document_font_name

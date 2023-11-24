@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+rofi -dmenu -P 'Input' -lines 0 -config ~/.config/regolith3/looks/simons-look/rofi-dmenu-theme.rasi

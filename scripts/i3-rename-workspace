@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+name=$($HOME/scripts/get-input-string)
+num=$(i3-msg -t get_workspaces | jq '.[] | select(.focused) | .num')
+
+if [ "$name" ] && [ "$num" ]; then
+  bash -c "i3-msg 'rename workspace to \"$num: $name\"'"
+fi

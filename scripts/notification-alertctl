@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+
+mute_notification_alerts(){
+  touch ~/.notifications_mute
+}
+
+unmute_notifications_alerts(){
+  rm ~/.notifications_mute
+}
+
+notifications_alerts_muted(){
+  [ -f ~/.notifications_mute ]
+}
+
+notifications_alerts_toggle(){
+  if $(notifications_alerts_muted); then
+    unmute_notifications_alerts
+  else
+    mute_notification_alerts
+  fi
+}
+
+notifications_alerts_status(){
+  if $(notifications_alerts_muted); then
+    echo muted
+  else
+    echo unmuted
+  fi
+}
+
+notifications_alerts_help(){
+  echo "USAGE: $0 toggle|status|help"
+}
+
+if [ "$1" == "toggle" ]; then
+  notifications_alerts_toggle
+elif [ "$1" == "status" ]; then
+  notifications_alerts_status
+elif ["$1" == "help" ]; then
+  notifications_alerts_help
+elif ["$1" == "--help" ]; then
+  notifications_alerts_help
+elif ["$1" == "-h" ]; then
+  notifications_alerts_help
+else
+  notifications_alerts_help
+  exit 1
+fi

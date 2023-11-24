@@ -2,7 +2,7 @@
 mode "Resize Mode" {
         # These bindings trigger as soon as you enter the resize mode
 
-        ## Resize // Resize Window // k j h l ##
+        ## Resize Window
         bindsym h resize shrink width 3 px or 3 ppt
         bindsym k resize grow height 3 px or 3 ppt
         bindsym j resize shrink height 3 px or 3 ppt
@@ -13,7 +13,7 @@ mode "Resize Mode" {
         bindsym Shift+j resize shrink height 12 px or 12 ppt
         bindsym Shift+l resize grow width 12 px or 12 ppt
 
-        ## Resize // Exit Resize Mode // Escape or Enter ##
+        ## Exit Resize Mode
         bindsym Return mode "default"
         bindsym Escape mode "default"
         bindsym $mod+r mode "default"

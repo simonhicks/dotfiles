@@ -9,7 +9,7 @@
 
 ilia.stylesheet: /usr/share/regolith-look/lascaille/ilia.css
 
-wm.bar.font: pango:DejaVu 9
+wm.bar.font: status_bar_font
 wm.bar.position: i3wm_bar_position
 wm.bar.background.color: color_base03
 wm.bar.statusline.color: color_base0
