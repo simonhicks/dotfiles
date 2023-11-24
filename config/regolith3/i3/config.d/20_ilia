@@ -7,11 +7,8 @@ bindsym $mod+space exec --no-startup-id ilia -p apps -t $ilia.stylesheet
 ## Keybinding Viewer
 bindsym $mod+Shift+question exec --no-startup-id ilia -p keybindings -a -t $ilia.stylesheet
 
-## Window by Name
-bindsym $mod+Shift+space exec --no-startup-id ilia -p windows -t $ilia.stylesheet
-
-## File Search
-bindsym $mod+Ctrl+space exec --no-startup-id ilia -p tracker -t $ilia.stylesheet
-
 ## Look seletor
 bindsym $mod+$alt+l exec --no-startup-id regolith-look-selector -t $ilia.stylesheet
+
+## Window by Name
+bindsym $mod+Shift+space exec --no-startup-id ilia -p windows -t $ilia.stylesheet

@@ -1,5 +1,5 @@
 ## Resize Mode
-mode "Resize Mode" {
+mode "Resize" {
         # These bindings trigger as soon as you enter the resize mode
 
         ## Resize Window
@@ -18,4 +18,4 @@ mode "Resize Mode" {
         bindsym Escape mode "default"
         bindsym $mod+r mode "default"
 }
-bindsym $mod+r mode "Resize Mode"
+bindsym $mod+r mode "Resize"

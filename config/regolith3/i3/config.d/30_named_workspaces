@@ -2,7 +2,7 @@
 # Named Workspaces
 ###############################################################################
 
-mode "Workspace Mode" {
+mode "Workspace" {
   # Rename current workspace
   bindsym r exec --no-startup-id /home/simon/scripts/i3-rename-workspace; mode "default"
 
@@ -14,6 +14,9 @@ mode "Workspace Mode" {
 
   ## Exit Workspace Mode
   bindsym Escape mode "default"
-  bindsym $mod+w mode "default"
+  bindsym $mod+Shift+w mode "default"
 }
-bindsym $mod+w mode "Workspace Mode"
+bindsym $mod+Shift+w mode "Workspace"
+
+# Focus named workspace
+bindsym $mod+Ctrl+space exec --no-startup-id /home/simon/scripts/i3-workspace-selector; mode "default"
