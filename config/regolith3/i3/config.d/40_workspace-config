@@ -2,82 +2,25 @@
 # Window and Workspace Configuration
 ###############################################################################
 
-## Window Position
-set_from_resource $wm.binding.move_left wm.binding.move_left Shift+h
-set_from_resource $wm.binding.move_right wm.binding.move_right Shift+l
-set_from_resource $wm.binding.move_up wm.binding.move_up Shift+k
-set_from_resource $wm.binding.move_down wm.binding.move_down Shift+j
-bindsym $mod+$wm.binding.move_left move left
-bindsym $mod+$wm.binding.move_down move down
-bindsym $mod+$wm.binding.move_up move up
-bindsym $mod+$wm.binding.move_right move right
+## Vertical/Horizontal Window splits
+bindsym $mod+Shift+minus split vertical
+bindsym $mod+Shift+backslash split horizontal
 
-## Containing Workspace
-set_from_resource $wm.binding.move_workspace_output_left wm.binding.move_workspace_output_left Ctrl+Shift+Left
-set_from_resource $wm.binding.move_workspace_output_right wm.binding.move_workspace_output_right Ctrl+Shift+Right
-set_from_resource $wm.binding.move_workspace_output_up wm.binding.move_workspace_output_up Ctrl+Shift+Up
-set_from_resource $wm.binding.move_workspace_output_down wm.binding.move_workspace_output_down Ctrl+Shift+Down
-bindsym $mod+$wm.binding.move_workspace_output_left move workspace to output left
-bindsym $mod+$wm.binding.move_workspace_output_right move workspace to output right
-bindsym $mod+$wm.binding.move_workspace_output_up move workspace to output up
-bindsym $mod+$wm.binding.move_workspace_output_down move workspace to output down
-
-## Containing Workspace
-set_from_resource $wm.binding.take_left wm.binding.take_left Ctrl+Shift+h
-set_from_resource $wm.binding.take_right wm.binding.take_right Ctrl+Shift+l
-set_from_resource $wm.binding.take_up wm.binding.take_up Ctrl+Shift+k
-set_from_resource $wm.binding.take_down wm.binding.take_down Ctrl+Shift+j
-bindsym $mod+$wm.binding.take_left move workspace to output left
-bindsym $mod+$wm.binding.take_down move workspace to output down
-bindsym $mod+$wm.binding.take_up move workspace to output up
-bindsym $mod+$wm.binding.take_right move workspace to output right
-
-## Vertical Window Orientation
-set_from_resource $wm.binding.split_v wm.binding.split_v v
-bindsym $mod+$wm.binding.split_v split vertical
-
-## Horizontal Window Orientation
-set_from_resource $wm.binding.split_h wm.binding.split_h g
-bindsym $mod+$wm.binding.split_h split horizontal
-
-## Toggle Window Orientation
-set_from_resource $wm.binding.orientation_toggle wm.binding.orientation_toggle BackSpace
-bindsym $mod+$wm.binding.orientation_toggle split toggle
+## Toggle container layout
+bindsym $mod+t layout toggle tabbed splith splitv
 
 ## Window Fullscreen Toggle
-set_from_resource $wm.binding.fullscreen_toggle wm.binding.fullscreen_toggle f
-bindsym $mod+$wm.binding.fullscreen_toggle fullscreen toggle
+bindsym $mod+f fullscreen toggle
 
 ## Window Floating Toggle
-set_from_resource $wm.binding.float_toggle wm.binding.float_toggle Shift+f
-bindsym $mod+$wm.binding.float_toggle floating toggle
-
-## Move to Scratchpad
-set_from_resource $wm.binding.move_scratchpad wm.binding.move_scratchpad Ctrl+m
-bindsym $mod+$wm.binding.move_scratchpad move to scratchpad
+bindsym $mod+Shift+f floating toggle
 
 ## Tile/Float Focus Toggle
-set_from_resource $wm.binding.focus_toggle wm.binding.focus_toggle Shift+t
-bindsym $mod+$wm.binding.focus_toggle focus mode_toggle
+bindsym $mod+Shift+t focus mode_toggle
 
-## Window Layout Mode
-set_from_resource $wm.binding.layout_mode wm.binding.layout_mode t
-bindsym $mod+$wm.binding.layout_mode layout toggle tabbed splith splitv
+## Push/Pop from the 'minimized stack'
+bindsym $mod+m move scratchpad
+bindsym $mod+Shift+m scratchpad show; floating disable
+## swap the current window for the next thing in the 'minimized stack'
+bindsym $mod+Ctrl+m move scratchpad; scratchpad show; floating disable
 
-## Move Window to Workspace 1 - 10
-bindsym $mod+Shift+1 move container to workspace number 1
-bindsym $mod+Shift+2 move container to workspace number 2
-bindsym $mod+Shift+3 move container to workspace number 3
-bindsym $mod+Shift+4 move container to workspace number 4
-bindsym $mod+Shift+5 move container to workspace number 5
-bindsym $mod+Shift+6 move container to workspace number 6
-bindsym $mod+Shift+7 move container to workspace number 7
-bindsym $mod+Shift+8 move container to workspace number 8
-bindsym $mod+Shift+9 move container to workspace number 9
-bindsym $mod+Shift+0 move container to workspace number 10
-
-set_from_resource $wm.workspace.auto_back_and_forth wm.workspace.auto_back_and_forth no
-workspace_auto_back_and_forth $wm.workspace.auto_back_and_forth
-
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
