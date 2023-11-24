@@ -22,14 +22,6 @@ focus_follows_mouse no
 hide_edge_borders none
 
 ###############################################################################
-# gaps Window Resize
-###############################################################################
-
-## Resize // Window Gaps // <> + - ##
-bindsym $mod+plus gaps inner current plus 6
-bindsym $mod+minus gaps inner current minus 6
-
-###############################################################################
 # gaps Appearance and Behavior
 ###############################################################################
 
