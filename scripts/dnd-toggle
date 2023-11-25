@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+dnd_on() {
+  # pause popup notifications
+  notify-send.py a --hint boolean:deadd-notification-center:true string:type:pausePopups
+}
+
+dnd_off() {
+  # unpause popup notifications
+  notify-send.py a --hint boolean:deadd-notification-center:true string:type:unpausePopups
+}
+
+# due to flipping, this sets zen-mode to on by default
+[ -f /tmp/dnd-mode ] || echo 0 > /tmp/dnd-mode
+CURRENT_STATE=$(cat /tmp/dnd-mode)
+
+if [ "$CURRENT_STATE" = "1" ]
+then
+  dnd_off
+  echo 0 > /tmp/dnd-mode
+  notify-send "Do Not Disturb disabled" -i 'applications-system'
+else
+  dnd_on
+  echo 1 > /tmp/dnd-mode
+  notify-send "Do Not Disturb enabled" -i 'applications-system'
+fi

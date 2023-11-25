@@ -185,6 +185,11 @@ then
   export PATH=~/jdks/current/bin:$PATH
 fi
 
+if [ -d ~/.local/bin ]
+then
+  export PATH=$PATH:~/.local/bin
+fi
+
 # add . to the path
 export PATH=.:$PATH
 

@@ -1,0 +1,8 @@
+# start the notification daemon
+exec --no-startup-id /usr/bin/deadd-notification-center
+
+## Notification Viewer
+bindsym $mod+n exec --no-startup-id kill -s USR1 $(pidof deadd-notification-center)
+
+## DND Mode
+bindsym $mod+Shift+n exec --no-startup-id /home/simon/scripts/dnd-toggle

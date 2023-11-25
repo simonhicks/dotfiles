@@ -1,5 +1,0 @@
-## Notification Viewer
-bindsym $mod+n exec --no-startup-id ilia -p notifications
-
-# Start Rofication for notifications
-exec --no-startup-id /usr/bin/rofication-daemon

@@ -1,0 +1,181 @@
+/* * { */
+/*   /1* Darker, dark to light gradients *1/ */
+/*   --base03: rgba(31, 35, 42, 0.8); */
+/*   --base02: rgba(41, 43, 48, 0.8); */
+/*   --base01: rgba(191, 186, 176, 1); */
+/*   --base00: rgba(203, 204, 198, 1); */
+
+/*   /1* Light gradients *1/ */
+/*   --base0: rgba(230, 225, 199, 1); */
+/*   --base3: #FFFFFF; */
+
+/*   /1* Palette *1/ */ 
+/*   --yellow: #FFD580; */
+/*   --orange: #FFA759; */
+/*   --red: rgba(255, 51, 51, 0.5); */
+/*   --magenta: #D4BFFF; */
+/*   --violet: #B48EAD; */
+/*   --blue: #77A8D9; */
+/*   --cyan: #95E6CB; */
+/*   --green: #BAE67E; */
+/*   --brown: #F29E74; */
+/*   --ltblue: #73D0FF; */
+/*   --ltgreen: #A6CC70; */
+/*   --ltyellow: #FFE6B3; */
+/*   --ltcyan: #5CCFE6; */
+/* } */
+
+/* Notification center */
+
+.blurredBG, #main_window, .blurredBG.low, .blurredBG.normal {
+    background: rgba(41, 43, 48, 0.8);;
+}
+
+.noti-center.time {
+    font-size: 32px;
+}
+
+/* Notifications */
+
+.notification.content {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.appname {
+    font-size: 12px;
+}
+
+.time {
+    font-size: 12px;
+}
+
+.blurredBG.notification {
+    background:  rgba(41, 43, 48, 0.5);
+}
+
+.blurredBG.notification.critical {
+    /* TEST */
+    background: rgba(255, 51, 51, 0.5);
+}
+
+.notificationInCenter.critical {
+    /* TEST */
+    background: rgba(155, 51, 51, 0.5);
+}
+
+/* Labels */
+
+label {
+    color: rgba(203, 204, 198, 1);
+}
+
+label.notification {
+    color: rgba(203, 204, 198, 1);
+}
+
+label.critical {
+    /* TEST */
+    color: #fff;
+}
+.notificationInCenter label.critical {
+    /* TEST */
+    color: #fff;
+}
+
+
+/* Buttons */
+
+button {
+    background: transparent;
+    color: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    border-width: 0px;
+    background-position: 0px 0px;
+    text-shadow: none;
+}
+
+button:hover {
+    border-top: transparent;
+    border-radius: 3px;
+    background: rgba(255, 235, 235, 0.6);
+    border-width: 0px;
+    border-color: rgba(230, 215, 199, 0.2);
+    color: #011;
+}
+
+
+/* Custom Buttons */
+
+.userbutton {
+    /* TEST */
+    background: rgba(235,255,255, 0.15);
+}
+
+.userbuttonlabel {
+    /* TEST */
+    color: #ddd;
+    font-size: 12px;
+}
+
+.userbutton:hover {
+    /* TEST */
+    background: rgba(235, 255, 255, 0.3);
+}
+
+.userbuttonlabel:hover {
+    /* TEST */
+    color: #eee;
+}
+
+button.buttonState1 {
+    /* TEST */
+    background: rgba(235,255,255,0.5);
+}
+
+.userbuttonlabel.buttonState1 {
+    /* TEST */
+    color: #000;
+}
+
+button.buttonState1:hover {
+    /* TEST */
+    background: rgba(235,255,255, 0.4);
+}
+
+.userbuttonlabel.buttonState1:hover {
+    /* TEST */
+    color: #eee;
+}
+
+button.buttonState2 {
+    /* TEST */
+    background: rgba(41, 43, 48, 0.5);
+}
+
+.userbuttonlabel.buttonState2 {
+    /* TEST */
+    color: #eee;
+}
+
+button.buttonState2:hover {
+    /* TEST */
+    background: rgba(203, 204, 198, 0.3);
+}
+
+.userbuttonlabel.buttonState2:hover {
+    /* TEST */
+    color: #fff;
+}
+
+
+/* Images */
+
+image.deadd-noti-center.notification.image {
+    margin-left: 20px;
+}
