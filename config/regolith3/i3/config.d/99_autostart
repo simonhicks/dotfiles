@@ -6,11 +6,5 @@ exec --no-startup-id /usr/bin/unclutter -b
 # Load nm-applet to provide auth dialogs for network access
 exec --no-startup-id /usr/bin/nm-applet
 
-# remap a couple of keys
-exec xmodmap /home/simon/.Xmodmap
-
 # fire an i3-nagbar if there are new notifications
-# exec --no-startup-id /home/simon/scripts/notification-alertd
-
 exec --no-startup-id /usr/bin/deadd-notification-center
-
