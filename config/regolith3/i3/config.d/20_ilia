@@ -1,11 +1,11 @@
 # Load stylesheet if exists
 set_from_resource $ilia.stylesheet ilia.stylesheet
 
-## Application
-bindsym $mod+space exec --no-startup-id ilia -p apps -t $ilia.stylesheet
-
 ## Keybinding Viewer
 bindsym $mod+Shift+question exec --no-startup-id ilia -p keybindings -a -t $ilia.stylesheet
 
 ## Look seletor
 bindsym $mod+$alt+l exec --no-startup-id regolith-look-selector -t $ilia.stylesheet
+
+## Combi launcher
+bindsym $mod+space exec --no-startup-id /home/simon/scripts/rofi-combi-launcher

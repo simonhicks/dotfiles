@@ -9,9 +9,6 @@ exec --no-startup-id /usr/bin/nm-applet
 # remap a couple of keys
 exec xmodmap /home/simon/.Xmodmap
 
-# fire an i3-nagbar if the battery gets too low
-exec --no-startup-id /home/simon/scripts/battery-check
-
-# fire an i3-nagbar every 5 minutes if there are new notifications
+# fire an i3-nagbar if there are new notifications
 exec --no-startup-id /home/simon/scripts/notification-alertd
 

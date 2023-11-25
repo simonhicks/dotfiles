@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-
-ACTIVE_WINDOW_IDENTIFIER=$(xdotool getactivewindow)
-xdotool set_window --name "$($HOME/scripts/get-input-string)" $ACTIVE_WINDOW_IDENTIFIER

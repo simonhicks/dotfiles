@@ -10,6 +10,7 @@ for_window [class="floating_window"] floating enable
 default_floating_border normal 1
 default_border normal 1
 smart_borders no_gaps
+title_align center
 
 # Enable popup during fullscreen
 popup_during_fullscreen smart

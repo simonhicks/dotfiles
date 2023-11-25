@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+rofi -combi-modi "workspace:$HOME/scripts/rofi-i3-workspace.sh#window#drun#I3 Action:$HOME/scripts/rofi-i3-window-action.sh" \
+     -sort -sorting-method fzf \
+     -modi combi -show combi \
+     -config $HOME/.config/regolith3/looks/simons-look/rofi-launcher-theme.rasi
