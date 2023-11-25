@@ -4,8 +4,8 @@ list_actions() {
   echo Rename Workspace
   echo Rename Window
   echo Move Window to Workspace
-  echo Mark Window
   echo Jump to Marked Window
+  echo Open Workspace
 }
 
 get_input() {
@@ -44,6 +44,11 @@ jump_to_marked_window() {
   i3-msg "[con_mark=$chosen_window] focus"
 }
 
+open_workspace() {
+  name=$(list_workspaces | get_input "Workspace")
+  i3-msg "workspace $name"
+}
+
 if [ "$1" = "Rename Workspace" ]; then
   coproc ( rename_workspace  > /dev/null 2>&1 )
   exit 0
@@ -55,6 +60,9 @@ elif [ "$1" = "Move Window to Workspace" ]; then
   exit 0
 elif [ "$1" = "Jump to Marked Window" ]; then
   coproc ( jump_to_marked_window > /dev/null 2&1 )
+  exit 0
+elif [ "$1" = "Open Workspace" ]; then
+  coproc ( open_workspace > /dev/null 2&1 )
   exit 0
 else
   list_actions

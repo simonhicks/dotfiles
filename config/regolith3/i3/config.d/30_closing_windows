@@ -3,6 +3,7 @@
 ###############################################################################
 
 ## Exit App
+bindsym $mod+w [con_id="__focused__"] kill
 bindsym $mod+q [con_id="__focused__"] kill
 
 ## Terminate App
