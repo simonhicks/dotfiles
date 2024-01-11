@@ -87,3 +87,4 @@ i3xrocks.weather.error_message: typeface_bar_glyph_error
 i3xrocks.label.next-workspace-widget: typeface_bar_glyph_next_workspace
 
 i3xrocks.label.app_launcher: typeface_bar_glyph_app_launcher
+i3xrocks.weather.units: m

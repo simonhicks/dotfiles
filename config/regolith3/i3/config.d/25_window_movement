@@ -24,12 +24,14 @@ bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
-## Vertical/Horizontal Window splits
+## Vertical/Horizontal/Tab Window splits
 bindsym $mod+Shift+minus split vertical
 bindsym $mod+Shift+backslash split horizontal
+bindsym $mod+t split vertical; layout tabbed
+
 
 ## Toggle container layout
-bindsym $mod+t layout toggle tabbed splith splitv
+bindsym $mod+Shit+t layout toggle tabbed splith splitv
 
 ## Window Fullscreen Toggle
 bindsym $mod+f fullscreen toggle

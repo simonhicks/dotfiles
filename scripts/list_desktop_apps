@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# TODO this lists all the *.desktop apps and filters them with the word applications. It's clumsy and still includes things that aren't applications. Figure out how to test files for whether they are _actually_ applications
+
+for DIR in $(echo $XDG_DATA_DIRS | tr ":" " ")
+do
+  find $DIR -name '*.desktop' | grep applications
+done
