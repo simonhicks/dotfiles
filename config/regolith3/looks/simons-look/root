@@ -68,8 +68,8 @@ gtk.icon_theme_name: Papirus-Dark
 ! --------------------------------------------------
 ! -- These are the fonts that change inconsistently
 ! --------------------------------------------------
-#define gtk_monospace_font_name BitstreamVeraSansMono Nerd Font 16
-#define status_bar_font pango:DejaVu 16
+#define status_bar_font pango:DejaVu 9
+#define gtk_monospace_font_name BitstreamVeraSansMono Nerd Font 9
 
 gtk.font_name: gtk_font_name
 gtk.document_font_name: gtk_document_font_name
