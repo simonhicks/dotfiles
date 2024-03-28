@@ -29,7 +29,7 @@ PS1='$([ $? -eq 0 ] || (tput setaf 1 && echo "[FAIL] "))\[$(tput setaf 3)\][\D{%
 # enable color support of ls
 export CLICOLOR=1
 if [[ ! "$(uname -a)" =~ "Darwin" ]]
-then # we're on a linux box
+then # we're in linux
   alias ls='ls --color=auto'
 fi
 
@@ -43,9 +43,6 @@ elif [[ `which brew` != "" ]] && [ -f $(brew --prefix)/etc/bash_completion ]
 then
   . $(brew --prefix)/etc/bash_completion
 fi
-
-# # add ./src to CDPATH
-# export CDPATH=".:~/src"
 
 # add git's tab completion
 if [ -e /usr/local/git/contrib/completion/git-completion.bash ]
@@ -73,7 +70,6 @@ function mcd {
     fi
 }
 
-# file navigation with back
 function peekd {
     list=($(dirs)) && echo ${list[1]}
 }
@@ -83,11 +79,7 @@ function safe_rm {
   doit=1
   for arg in $@
   do
-    if [ $arg == ~ ]
-    then
-      echo "Don't be an idiot"
-      doit=0
-    elif [ $arg == / ]
+    if [ $arg == ~ ] || [ $arg == / ]
     then
       echo "Don't be an idiot"
       doit=0
@@ -135,18 +127,17 @@ then
     alias cdup='. ~/scripts/resources/cdup.sh'
 fi
 
-if [ -d ~/Dropbox/todo ]
-then
-  export TODO_DIR=~/Dropbox/todo
-  export TODOTXT_CFG_FILE=~/.todo.cfg
-  export TODOTXT_DEFAULT_ACTION=ls
-fi
-
 if [ -d /System/Library/Frameworks ]
 then
   export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home
 fi
 
+# add jdk to the path
+if [ -e ~/jdks/current ]
+then
+  export JAVA_HOME=~/jdks/current/jre/
+  export PATH=~/jdks/current/bin:$PATH
+fi
 
 # do this last, so stuff in the scripts, local-scripts and current directories
 # override everything else.
@@ -161,28 +152,6 @@ if [ -e ~/local-scripts ]
 then
     # add ~/local-scripts to the path
     export PATH=~/local-scripts:$PATH
-fi
-
-# add dart to the path
-if [ -e ~/src/dart/dart-sdk ]
-then
-  export PATH=~/src/dart/dart-sdk/bin:$PATH
-elif [ -e /usr/lib/dart/bin ]
-then
-  export PATH=/usr/lib/dart/bin:$PATH
-fi
-
-# add flutter to the path
-if [ -e ~/opt/flutter/bin ]
-then
-  export PATH=~/opt/flutter/bin:$PATH
-fi
-
-# add jdk to the path
-if [ -e ~/jdks/current ]
-then
-  export JAVA_HOME=~/jdks/current/jre/
-  export PATH=~/jdks/current/bin:$PATH
 fi
 
 if [ -d ~/.local/bin ]

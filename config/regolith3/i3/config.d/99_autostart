@@ -1,10 +1,13 @@
 ## Random other things to start
 
+# fire an i3-nagbar if the battery gets too low
+exec --no-startup-id /home/simon/scripts/battery-check
+
 # Hide the mouse pointer if unused for a duration
 exec --no-startup-id /usr/bin/unclutter -b
 
 # Load nm-applet to provide auth dialogs for network access
 exec --no-startup-id /usr/bin/nm-applet
 
-# fire an i3-nagbar if there are new notifications
-exec --no-startup-id /usr/bin/deadd-notification-center
+# # start the notification daemon
+# exec --no-startup-id /usr/bin/deadd-notification-center
