@@ -1,0 +1,27 @@
+#!/bin/bash
+
+MIN_VOLUME="${MIN_VOLUME:-26}"
+RESET_VOLUME="${RESET_VOLUME:-32}"
+
+input_volume() {
+  osascript -e "get volume settings" | awk -F, '{print $2}' | awk -F: '{print $2}'
+}
+
+set_input_volume() {
+  osascript -e "set volume input volume $1"
+}
+
+check_and_reset() {
+  if [ "$(input_volume)" -lt "$MIN_VOLUME" ]
+  then
+    echo "[`date`] Resetting volume"
+    set_input_volume $RESET_VOLUME
+  fi
+}
+
+echo "Press Ctrl-C to quit"
+while :
+do
+  check_and_reset
+  sleep 1
+done
