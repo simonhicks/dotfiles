@@ -425,7 +425,9 @@ endif
 
 if has("gui_running")
   set bg=dark
-  colorscheme my_colors "blackboard
+  colorscheme my_colors
+  " set bg=light
+  " colorscheme solarized
   set anti " anti aliased fonts
   set vb " visual bell instead of beep
   set guioptions-=T

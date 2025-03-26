@@ -7,6 +7,9 @@
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
 
+# stupid bloody mac and their stupid bloody opinions
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
 # append to the history file, don't overwrite it
 shopt -s histappend
 # update history with every command
@@ -32,6 +35,7 @@ if [[ ! "$(uname -a)" =~ "Darwin" ]]
 then # we're on a linux box
   alias ls='ls --color=auto'
 fi
+
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -163,26 +167,16 @@ then
     export PATH=~/local-scripts:$PATH
 fi
 
-# add dart to the path
-if [ -e ~/src/dart/dart-sdk ]
-then
-  export PATH=~/src/dart/dart-sdk/bin:$PATH
-elif [ -e /usr/lib/dart/bin ]
-then
-  export PATH=/usr/lib/dart/bin:$PATH
-fi
-
-# add flutter to the path
-if [ -e ~/opt/flutter/bin ]
-then
-  export PATH=~/opt/flutter/bin:$PATH
-fi
-
 # add jdk to the path
 if [ -e ~/jdks/current ]
 then
   export JAVA_HOME=~/jdks/current/jre/
   export PATH=~/jdks/current/bin:$PATH
+fi
+
+if [ -d /opt/homebrew/bin ]
+then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
 # add . to the path
