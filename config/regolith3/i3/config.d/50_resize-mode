@@ -16,6 +16,6 @@ mode "Resize" {
         ## Exit Resize Mode
         bindsym Return mode "default"
         bindsym Escape mode "default"
-        bindsym $win+r mode "default"
+        bindsym $alt+r mode "default"
 }
-bindsym $win+r mode "Resize"
+bindsym $alt+r mode "Resize"

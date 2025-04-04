@@ -3,7 +3,7 @@
 ###############################################################################
 
 ## Settings
-bindsym $mod+c exec --no-startup-id regolith-control-center
+bindsym $alt+c exec --no-startup-id regolith-control-center
 
 for_window [class="regolith-control-center"] floating enable
 

@@ -3,17 +3,17 @@
 ###############################################################################
 
 ## Reload WM Config
-bindsym $win+Shift+c reload
+bindsym $alt+Shift+c reload
 
 ## Refresh Session
-bindsym $win+Shift+r exec --no-startup-id /usr/bin/regolith-look refresh
+bindsym $alt+Shift+r exec --no-startup-id /usr/bin/regolith-look refresh
 
 ## Restart WM
 set_from_resource $wm.binding.restart wm.binding.restart Ctrl+r
-bindsym $win+Ctrl+r restart
+bindsym $alt+Ctrl+r restart
 
 ## Lock Screen
-bindsym $win+Shift+Escape exec dbus-send --type=method_call --dest=org.gnome.ScreenSaver /org/gnome/ScreenSaver org.gnome.ScreenSaver.Lock
+bindsym $alt+Shift+Escape exec dbus-send --type=method_call --dest=org.gnome.ScreenSaver /org/gnome/ScreenSaver org.gnome.ScreenSaver.Lock
 
 ## Sleep
-bindsym $win+Shift+s exec systemctl suspend
+bindsym $alt+Shift+s exec systemctl suspend

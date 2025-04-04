@@ -3,8 +3,8 @@
 ###############################################################################
 
 ## Exit App
-bindsym $win+w [con_id="__focused__"] kill
-bindsym $win+q [con_id="__focused__"] kill
+bindsym $alt+w [con_id="__focused__"] kill
+bindsym $alt+q [con_id="__focused__"] kill
 
 ## Terminate App
-bindsym $win+Shift+q [con_id="__focused__"] exec --no-startup-id kill -9 $(xdotool getwindowfocus getwindowpid)
+bindsym $alt+Shift+q [con_id="__focused__"] exec --no-startup-id kill -9 $(xdotool getwindowfocus getwindowpid)

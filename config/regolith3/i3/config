@@ -1,6 +1,6 @@
 # Meta Key - Alt key is Mod1, and Windows key is Mod4
-set $win Mod4
 set $alt Mod1
+set $win Mod4
 
 # just delegate everything to the local partials
 include ~/.config/regolith3/i3/config.d/*

@@ -3,35 +3,35 @@
 ###############################################################################
 
 ## Relative Parent
-bindsym $win+a focus parent
+bindsym $alt+a focus parent
 
 ## Relative Child
-bindsym $win+z focus child
+bindsym $alt+z focus child
 
 ## Relative Window
-bindsym $win+h focus left
-bindsym $win+j focus down
-bindsym $win+k focus up
-bindsym $win+l focus right
+bindsym $alt+h focus left
+bindsym $alt+j focus down
+bindsym $alt+k focus up
+bindsym $alt+l focus right
 
 ## Last Focused Window
-bindsym $win+semicolon exec --no-startup-id pkill -USR1 -F "${XDG_RUNTIME_DIR}/swap_focus.pid"
+bindsym $alt+semicolon exec --no-startup-id pkill -USR1 -F "${XDG_RUNTIME_DIR}/swap_focus.pid"
 exec --no-startup-id i3-swap-focus
 
 ## Move Window
-bindsym $win+Shift+h move left
-bindsym $win+Shift+j move down
-bindsym $win+Shift+k move up
-bindsym $win+Shift+l move right
+bindsym $alt+Shift+h move left
+bindsym $alt+Shift+j move down
+bindsym $alt+Shift+k move up
+bindsym $alt+Shift+l move right
 
 ## Vertical/Horizontal/Tab Window splits
-bindsym $win+Shift+minus split vertical
-bindsym $win+Shift+backslash split horizontal
-bindsym $win+t split vertical; layout tabbed
+bindsym $alt+Shift+minus split vertical
+bindsym $alt+Shift+backslash split horizontal
+bindsym $alt+t split vertical; layout tabbed
 
 
 ## Toggle container layout
-bindsym $win+Shit+t layout toggle tabbed splith splitv
+bindsym $alt+Shit+t layout toggle tabbed splith splitv
 
 ## Window Fullscreen Toggle
-bindsym $win+f fullscreen toggle
+bindsym $alt+f fullscreen toggle

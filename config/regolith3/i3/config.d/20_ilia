@@ -2,10 +2,10 @@
 set_from_resource $ilia.stylesheet ilia.stylesheet
 
 ## Keybinding Viewer
-bindsym $win+Shift+question exec --no-startup-id ilia -p keybindings -a -t $ilia.stylesheet
+bindsym $alt+Shift+question exec --no-startup-id ilia -p keybindings -a -t $ilia.stylesheet
 
 ## Look seletor
-bindsym $win+$alt+l exec --no-startup-id regolith-look-selector -t $ilia.stylesheet
+bindsym $alt+$win+l exec --no-startup-id regolith-look-selector -t $ilia.stylesheet
 
 ## Combi launcher
-bindsym $win+space exec --no-startup-id /home/simon/scripts/rofi-combi-launcher
+bindsym $alt+space exec --no-startup-id /home/simon/scripts/rofi-combi-launcher

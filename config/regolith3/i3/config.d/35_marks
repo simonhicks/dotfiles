@@ -59,9 +59,9 @@ mode "Set Marks" {
 
   ## Exit Window Mode
   bindsym Escape mode "default"
-  bindsym $win+m mode "default"
+  bindsym $alt+m mode "default"
 }
-bindsym $win+m mode "Set Marks"
+bindsym $alt+m mode "Set Marks"
 
 mode "Marks" {
   bindsym a [con_mark=a] focus; mode "default"
@@ -93,6 +93,6 @@ mode "Marks" {
 
   ## Exit Window Mode
   bindsym Escape mode "default"
-  bindsym $win+apostrophe mode "default"
+  bindsym $alt+apostrophe mode "default"
 }
-bindsym $win+apostrophe mode "Marks"
+bindsym $alt+apostrophe mode "Marks"
