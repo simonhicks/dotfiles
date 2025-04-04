@@ -647,7 +647,7 @@ map <C-s> :SyntasticCheck<CR>
 " call s:add_contents_to_mdpp_path("~/NotesFiles/")
 " call s:add_contents_to_mdpp_path("~/Dropbox/SyncedNotes/")
 let g:mdpp_sidebar_width = 50
-let g:mdpp_todo_states = ["TODO", "INPROGRESS", "DONE"]
+let g:mdpp_todo_states = ["TODO", "DONE"]
 let g:mdpp_todo_colors = {
       \  "TODO": {
       \    "guifg": "#ff0000",
@@ -700,6 +700,12 @@ function! Gtodo(string)
   endif
 endfunction
 command! -nargs=* Gtodo call Gtodo(<q-args>)
+
+"""""""""""""""""""""
+" Searching with grep
+"""""""""""""""""""""
+noremap l* :lvimgrep <cword> **/*<CR>
+" TODO make searching with :lv[imgrep] easier
 
 
 """""""""""""""""

@@ -13,6 +13,7 @@ repl-port
 lein/credentials.clj.gpg
 vim/swap/*
 vim/bundle/active
+vim/bundle/virtual_files.vim
 vim/bundle/show.vim
 vim/bundle/foxdot.vim
 vim/bundle/cntr.vim

@@ -2,10 +2,12 @@
 
 list_actions() {
   echo Rename Workspace
-  echo Rename Window
+  # echo Rename Window
   echo Move Window to Workspace
   echo Jump to Marked Window
   echo Open Workspace
+  echo Dock
+  echo Undock
 }
 
 get_input() {
@@ -63,6 +65,12 @@ elif [ "$1" = "Jump to Marked Window" ]; then
   exit 0
 elif [ "$1" = "Open Workspace" ]; then
   coproc ( open_workspace > /dev/null 2&1 )
+  exit 0
+elif [ "$1" = "Dock" ]; then
+  coproc ( /home/simon/local-scripts/dock > /dev/null 2&1 )
+  exit 0
+elif [ "$1" = "Undock" ]; then
+  coproc ( /home/simon/local-scripts/undock > /dev/null 2&1 )
   exit 0
 else
   list_actions
