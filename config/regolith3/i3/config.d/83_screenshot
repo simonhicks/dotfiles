@@ -1,1 +1,1 @@
-bindsym $mod+Shift+p exec --no-startup-id /usr/bin/flameshot gui
+bindsym $win+Shift+p exec --no-startup-id /usr/bin/flameshot gui

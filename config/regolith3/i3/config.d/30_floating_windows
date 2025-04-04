@@ -3,10 +3,10 @@
 ###############################################################################
 
 ## Window Floating Toggle
-bindsym $mod+Shift+f floating toggle
+bindsym $win+Shift+f floating toggle
 
 ## Tile/Float Focus Toggle
-bindsym $mod+Shift+t focus mode_toggle
+bindsym $win+Shift+t focus mode_toggle
 
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
+# Use Mouse+$win to drag floating windows to their wanted position
+floating_modifier $win

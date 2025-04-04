@@ -3,7 +3,7 @@
 ###############################################################################
 
 ## Terminal
-bindsym $mod+Return exec --no-startup-id /usr/bin/x-terminal-emulator
+bindsym $win+Return exec --no-startup-id /usr/bin/x-terminal-emulator
 
 ## Browser
-bindsym $mod+Shift+Return exec --no-startup-id gtk-launch $(xdg-settings get default-web-browser)
+bindsym $win+Shift+Return exec --no-startup-id gtk-launch $(xdg-settings get default-web-browser)

@@ -1,5 +1,5 @@
 # Meta Key - Alt key is Mod1, and Windows key is Mod4
-set $mod Mod4
+set $win Mod4
 set $alt Mod1
 
 # just delegate everything to the local partials
