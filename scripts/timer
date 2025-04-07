@@ -1,0 +1,3 @@
+#!/bin/bash
+
+clear && countdown "${1:-4m}" && go/bin/confetty
