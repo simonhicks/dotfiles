@@ -31,7 +31,7 @@ bindsym $alt+t split vertical; layout tabbed
 
 
 ## Toggle container layout
-bindsym $alt+Shit+t layout toggle tabbed splith splitv
+bindsym $alt+Shift+t layout toggle tabbed splith splitv
 
 ## Window Fullscreen Toggle
 bindsym $alt+f fullscreen toggle
