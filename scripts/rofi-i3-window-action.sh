@@ -11,7 +11,7 @@ list_actions() {
 }
 
 get_input() {
-  rofi -dmenu -P "$1" -lines 0 -config ~/.config/regolith3/looks/simons-look/rofi-dmenu-theme.rasi
+  rofi -dmenu -P "$1" -lines 0 -config ~/.config/regolith3/looks/sophies-look/rofi-dmenu-theme.rasi
 }
 
 rename_workspace() {
@@ -67,10 +67,10 @@ elif [ "$1" = "Open Workspace" ]; then
   coproc ( open_workspace > /dev/null 2&1 )
   exit 0
 elif [ "$1" = "Dock" ]; then
-  coproc ( /home/simon/local-scripts/dock > /dev/null 2&1 )
+  coproc ( /home/sophie/local-scripts/dock > /dev/null 2&1 )
   exit 0
 elif [ "$1" = "Undock" ]; then
-  coproc ( /home/simon/local-scripts/undock > /dev/null 2&1 )
+  coproc ( /home/sophie/local-scripts/undock > /dev/null 2&1 )
   exit 0
 else
   list_actions

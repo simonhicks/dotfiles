@@ -8,4 +8,4 @@ bindsym $alt+Shift+question exec --no-startup-id ilia -p keybindings -a -t $ilia
 bindsym $alt+$win+l exec --no-startup-id regolith-look-selector -t $ilia.stylesheet
 
 ## Combi launcher
-bindsym $alt+space exec --no-startup-id /home/simon/scripts/rofi-combi-launcher
+bindsym $alt+space exec --no-startup-id /home/sophie/scripts/rofi-combi-launcher

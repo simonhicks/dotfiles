@@ -5,4 +5,4 @@ exec --no-startup-id /usr/bin/deadd-notification-center
 bindsym $alt+n exec --no-startup-id kill -s USR1 $(pidof deadd-notification-center)
 
 ## DND Mode
-bindsym $alt+Shift+n exec --no-startup-id /home/simon/scripts/dnd-toggle
+bindsym $alt+Shift+n exec --no-startup-id /home/sophie/scripts/dnd-toggle

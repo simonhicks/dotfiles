@@ -8,7 +8,7 @@
 ! -- Look name
 ! --------------------------------------------
 
-regolith.look: lascaille
+regolith.look: Sophies look
 
 ! --------------------------------------------
 ! -- Wallpaper 
@@ -17,7 +17,7 @@ regolith.look: lascaille
 ! -- Specify either a complete file path to an image
 ! -- and (optionally) options how to display the file
 
-regolith.wallpaper.file: /usr/share/regolith-look/lascaille/ESP_016895_1525_desktop.jpg
+regolith.wallpaper.file: /home/sophie/.config/regolith3/looks/sophies-look/wallpaper.jpg
 regolith.wallpaper.options: zoom
 
 !-- *Or* specify a color
@@ -38,7 +38,7 @@ regolith.wallpaper.color.shading.type:
 ! -- Specify either a complete file path to an image
 ! -- and (optionally) options how to display the file
 
-regolith.lockscreen.wallpaper.file: /home/simon/.config/regolith/looks/pia21972.png
+regolith.lockscreen.wallpaper.file: /home/sophie/.config/regolith3/looks/sophies-look/wallpaper.jpg
 regolith.lockscreen.wallpaper.options: zoom
 
 !-- *Or* specify a color
@@ -110,9 +110,9 @@ gtk.monospace_font_name: gtk_monospace_font_name
 ! -- Component resources
 ! --------------------------------------------
 
-#include "/home/simon/.config/regolith3/looks/simons-look/i3xrocks"
-#include "/home/simon/.config/regolith3/looks/simons-look/wm"
-#include "/home/simon/.config/regolith3/looks/simons-look/gnome-terminal"
+#include "/home/sophie/.config/regolith3/looks/sophies-look/i3xrocks"
+#include "/home/sophie/.config/regolith3/looks/sophies-look/wm"
+#include "/home/sophie/.config/regolith3/looks/sophies-look/gnome-terminal"
 
 ! --------------------------------------------
 ! -- Loader Path - Path to script responsible 

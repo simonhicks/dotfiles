@@ -7,10 +7,10 @@ nnoremap <buffer> cP :set operatorfunc=IPythonDedentEvalOperator<CR>g@
 nnoremap <buffer> cpp :python run_this_line()<CR>
 nnoremap <buffer> cPP :python dedent_run_this_line()<CR>
 
-if exists("g:did_load_simons_python_stuff")
+if exists("g:did_load_sophies_python_stuff")
   finish
 endif
-let g:did_load_simons_python_stuff = 1
+let g:did_load_sophies_python_stuff = 1
 
 function! IPythonEvalOperator(type)
   if a:type ==# 'char'

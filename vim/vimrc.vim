@@ -692,14 +692,6 @@ endfunction
 " Fugitive
 """""""""""
 noremap g* :Ggrep <cword><CR>
-function! Gtodo(string)
-  if a:string == ''
-    Ggrep 'TODO.*simon'
-  else
-    exec "Ggrep 'TODO.*" . a:string . "'"
-  endif
-endfunction
-command! -nargs=* Gtodo call Gtodo(<q-args>)
 
 """""""""""""""""""""
 " Searching with grep

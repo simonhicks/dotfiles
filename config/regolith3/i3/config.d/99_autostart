@@ -1,7 +1,7 @@
 ## Random other things to start
 
 # fire an i3-nagbar if the battery gets too low
-exec --no-startup-id /home/simon/scripts/battery-check
+exec --no-startup-id /home/sophie/scripts/battery-check
 
 # Hide the mouse pointer if unused for a duration
 exec --no-startup-id /usr/bin/unclutter -b
