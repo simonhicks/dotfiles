@@ -647,7 +647,7 @@ map <C-s> :SyntasticCheck<CR>
 " call s:add_contents_to_mdpp_path("~/NotesFiles/")
 " call s:add_contents_to_mdpp_path("~/Dropbox/SyncedNotes/")
 let g:mdpp_sidebar_width = 50
-let g:mdpp_todo_states = ["TODO", "DONE"]
+let g:mdpp_todo_states = ["TODO", "STARTED", "DONE"]
 let g:mdpp_todo_colors = {
       \  "TODO": {
       \    "guifg": "#ff0000",
