@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+# requires jq
+
+DIRECTION=$1
+
+show_usage() {
+  echo "USAGE: $0 <next|prev>"
+}
+
+if [ "$DIRECTION" != "next" ] && [ "$DIRECTION" != "prev" ]
+then
+  show_usage
+  exit 1
+fi
+
+focused_output() {
+ i3-msg -t get_workspaces | jq '.[] | select(.focused) | .output' 
+}
+
+PRIMARY_OUTPUT=$( i3-msg -t get_outputs | jq '.[] | select(.primary) | .name' )
+WORKSPACE_ON_PRIMARY=$( i3-msg -t get_outputs | jq '.[] | select(.primary) | .current_workspace' )
+INITIAL_OUTPUT=$(focused_output)
+INITIAL_WORKSPACE=$( i3-msg -t get_workspaces | jq '.[] | select(.focused) | .name')
+
+
+i3-msg workspace $DIRECTION
+
+# if we changed output, we need to fix that...move the workspace we just selected
+# to the output we started in, and then move whatever output that workspace was in
+if [ "$(focused_output)" != "$INITIAL_OUTPUT" ]
+then
+  OTHER_OUTPUT=$(focused_output)
+  i3-msg move workspace to output $INITIAL_OUTPUT
+  i3-msg workspace $INITIAL_WORKSPACE
+  i3-msg move workspace to output $OTHER_OUTPUT
+  i3-msg workspace $DIRECTION
+fi

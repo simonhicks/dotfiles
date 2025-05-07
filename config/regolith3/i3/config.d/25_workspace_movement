@@ -27,8 +27,8 @@ bindsym $alt+Shift+9 move container to workspace number 9
 bindsym $alt+Shift+0 move container to workspace number 10
 
 ## Next/Previous Workspace
-bindsym $alt+Tab workspace next
-bindsym $alt+Shift+Tab workspace prev
+bindsym $alt+Tab exec --no-startup-id /home/sophie/scripts/rotate-workspace next
+bindsym $alt+Shift+Tab exec --no-startup-id /home/sophie/cripts/rotate-workspace prev
 
 ## Move Workspace to Relative Output
 bindsym $alt+Ctrl+Shift+h move workspace to output left
