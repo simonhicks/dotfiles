@@ -1,5 +1,6 @@
 [user]
-  name = Simon Hicks
+	name = SH
+	email = na@private.nope
 
 [color]
   ui = auto

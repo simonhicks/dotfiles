@@ -696,7 +696,9 @@ noremap g* :Ggrep <cword><CR>
 """""""""""""""""""""
 " Searching with grep
 """""""""""""""""""""
-noremap l* :lvimgrep <cword> **/*<CR>
+" FIXME this causes a delay when hitting l to go right, which is SUPER
+" annoying
+" noremap l* :lvimgrep <cword> **/*<CR>
 " TODO make searching with :lv[imgrep] easier
 
 
