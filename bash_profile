@@ -135,7 +135,7 @@ fi
 # add jdk to the path
 if [ -e ~/jdks/current ]
 then
-  export JAVA_HOME=~/jdks/current/jre/
+  export JAVA_HOME=~/jdks/current/
   export PATH=~/jdks/current/bin:$PATH
 fi
 

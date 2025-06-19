@@ -68,8 +68,10 @@ gtk.icon_theme_name: Papirus-Dark
 ! --------------------------------------------------
 ! -- These are the fonts that change inconsistently
 ! --------------------------------------------------
-#define status_bar_font pango:DejaVu 9
-#define gtk_monospace_font_name BitstreamVeraSansMono Nerd Font 9
+! -- Not sure what this one is doing here, but uncommenting it breaks things
+#define status_bar_font         pango:DejaVu 9
+! -- This seems to be the one that changes both window titles and status bar. The sizes that work are 9 & 18 :shrug:.
+define gtk_monospace_font_name  BitstreamVeraSansMono Nerd Font 18
 
 gtk.font_name: gtk_font_name
 gtk.document_font_name: gtk_document_font_name
